@@ -262,7 +262,7 @@ a .card {
 /* ===== MOBILE STYLES (900px and below) ===== */
 @media (max-width: 900px) {
     :root {
-        font-size: 24px;
+        font-size: 30px;
     }
 
     body {
