@@ -4,6 +4,14 @@
 */
 
 /* ===== MAIN VARIABLES ===== */
+@font-face {
+  font-family: 'Analogist';
+  src: url('/fonts/Analogist-Regular.woff2') format('woff2'),
+       url('/fonts/Analogist-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
     /* Colours */
     --primary-text: #0D0D0D;
@@ -14,8 +22,8 @@
 
     /* Typography */
     font-size: 18px;
-    --font-body: 'Trebuchet MS', sans-serif;
-    --font-heading: 'Garamond', serif;
+    --font-body: 'Forum PS', sans-serif;
+    --font-heading: 'Analogist', serif;
     --line-height: 1;
     --letter-spacing: 0.2em;
 
@@ -63,6 +71,11 @@ body {
 
 p {
     font-family: var(--font-body);
+    margin-bottom: var(--lg);
+}
+
+.p-centred {
+    text-align: center;
 }
 
 main { 
@@ -70,28 +83,31 @@ main {
     margin: var(--xxxl);
 }
 
+.logo {
+    width: 320px;
+}
+
 /* ===== TYPOGRAPHY ===== */
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     font-family: var(--font-heading);
-    color: var(--primary-text);
     margin: var(--xs) 0;
-    line-height: var(--md);
+    line-height: 1.2;
 }
 
 h1 { font-size: var(--xxxl); 
     text-align: center; 
-    line-height: 1; 
     text-transform: uppercase;
 }
-h2 { font-size: var(--xxl); line-height: 1;}
-h3 { font-size: var(--xl); line-height: 1;}
-h4 { font-size: var(--lg); line-height: 1;}
+h2 { font-size: var(--xxl);}
+h3 { font-size: var(--xl);}
+h4 { font-size: var(--lg);}
 h5 { font-size: var(--md); 
-    font-family: var(--font-body);
     text-align: center; 
     color: var(--accent);
     text-transform: uppercase;
+    letter-spacing: var(--xxs);
     margin-bottom: 0;
+    margin-top: var(--xxl);
     font-weight: normal;
 }
 
@@ -101,7 +117,7 @@ a {
 }
 
 a .card {
-    color: var(--primary-text)
+    color: var(--primary-bg)
 }
 
 /* ===== BASE RESETS ===== */
@@ -140,7 +156,6 @@ a .card {
 .section-1 { 
     background: var(--primary-bg); 
     color: var(--primary-text);
-    padding-bottom: calc(var(--xxxl) + var(--xl));
 }
 
 .section-1::after {
@@ -151,9 +166,6 @@ a .card {
 .section-2 { 
     background: var(--primary-text); 
     color: var(--secondary-bg);
-    margin-top: calc(-1 * var(--xl)); 
-    padding-top: calc(var(--xxxl) + var(--xl));
-    padding-bottom: calc(var(--xxxl) + var(--xl));
 }
 
 .section-2::after {
@@ -163,9 +175,7 @@ a .card {
 
 .section-3 { 
     background: var(--dark-red); 
-    color: var(--secondary-bg);
-    margin-top: calc(-1 * var(--xl));
-    padding-top: calc(var(--xxxl) + var(--xl));
+    color: var(--secondary-bg) !important;
 }
 
 .section-3::after {
@@ -215,7 +225,7 @@ a .card {
 }
 
 .card:hover {
-    background-color: var(--secondary-bg);
+    background-color: var(--primary-text);
 }
 
 .card-img-container {
@@ -251,10 +261,6 @@ a .card {
 
 /* ===== MOBILE STYLES (900px and below) ===== */
 @media (max-width: 900px) {
-    :root {
-        font-size: 16px; 
-    }
-    
     body {
         width: 100%;
         padding-left: 0; 
@@ -263,12 +269,16 @@ a .card {
     main {
         margin: var(--xxl) var(--sm); 
     }
+
+    .logo {
+        width: 400px;
+    }
     
     /* Typography */
-    h1 { font-size: var(--xxl); }
-    h2 { font-size: var(--xl); }
-    h3 { font-size: var(--lg); }
-    h4 { font-size: var(--md); }
+    h1 { font-size: var(--xxxl); }
+    h2 { font-size: var(--xxl); }
+    h3 { font-size: var(--xl); }
+    h4 { font-size: var(--lg); }
     
     /* Sections */
     .section {
@@ -305,6 +315,7 @@ a .card {
     
     .card .btn {
         width: 100%;
+        height: var(--xxxl)
     }
     
     .grid {
