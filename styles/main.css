@@ -14,8 +14,8 @@
 
     /* Typography */
     font-size: 18px;
-    --font-body: 'Futura PT', sans-serif;
-    --font-heading: 'Balgon Bold', serif;
+    --font-body: 'Trebuchet MS', sans-serif;
+    --font-heading: 'Garamond', serif;
     --line-height: 1;
     --letter-spacing: 0.2em;
 
@@ -61,6 +61,10 @@ body {
     position: relative;
 }
 
+p {
+    font-family: var(--font-body);
+}
+
 main { 
     flex: 1;
     margin: var(--xxxl);
@@ -70,7 +74,7 @@ main {
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
     color: var(--primary-text);
-    margin-bottom: var(--xxxs);
+    margin: var(--xs) 0;
     line-height: var(--md);
 }
 
