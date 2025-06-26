@@ -1,5 +1,4 @@
-/* DEBUG 
-* {
+/* {
     outline: 1px solid red !important;
 }
 */
@@ -42,7 +41,6 @@
 }
 
 html {
-    box-sizing: border-box;
     overflow-x: hidden;
 }
 
@@ -50,7 +48,7 @@ html {
     box-sizing: inherit;
 }
 
-/* ===== BODY STYLES (ALL SCREENS) ===== */
+/* ===== BODY STYLES ===== */
 body {
     font-family: var(--font-body);
     color: var(--primary-text);
@@ -104,7 +102,7 @@ a .card {
 }
 
 .container {
-    margin: 0 auto;
+    margin: 0;
     width: 100%;
     max-width: 1200px;
 }
@@ -117,24 +115,43 @@ a .card {
 .section-1 {
     background: var(--primary-bg);
     color: var(--primary-text) !important;position: relative;
-    padding-bottom: 100px;
+    padding: 0;
 }
 
 .section-2 {
-  background: var(--primary-text);
-  color: var(--secondary-bg) !important;
-  padding: var(--xl);
+    background: var(--primary-text);
+    color: var(--secondary-bg) !important;
+    padding: var(--xxl);
 }
 
 .section-3 {
-  background: var(--dark-red);
-  color: var(--secondary-bg) !important;
+    background: var(--dark-red);
+    color: var(--secondary-bg) !important;
 }
 
 .section-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--xxxl);
+    max-width: 1200px;
+    margin: 0;
+    padding: 0 var(--xxxl);
+}
+
+.section-separator-down {
+    width: 100%;
+    height: 40px;
+    background: var(--primary-text);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    margin: -1px 0;
+    position: relative;
+    z-index: 1;
+}
+.section-separator-up {
+    width: 100%;
+    height: 40px;
+    background: var(--primary-text);
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+    margin: -1px 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* ===== MOBILE FOR ALL PAGES ===== */
