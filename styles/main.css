@@ -261,9 +261,12 @@ a .card {
 
 /* ===== MOBILE STYLES (900px and below) ===== */
 @media (max-width: 900px) {
+    :root {
+        font-size: 24px;
+    }
+
     body {
         width: 100%;
-        padding-left: 0; 
     }
     
     main {
@@ -282,21 +285,16 @@ a .card {
     
     /* Sections */
     .section {
-        padding: var(--xxl) 0 !important;
+        padding: var(--xl);
     }
     
-    .section-1 {
+    .section-1, .section-2, .section-3 {
         padding-bottom: calc(var(--xxl) + var(--lg)) !important;
     }
     
-    .section-2,
-    .section-3 {
+    .section-1, .section-2, .section-3 {
         margin-top: calc(-1 * var(--lg));
         padding-top: calc(var(--xxl) + var(--lg)) !important;
-    }
-    
-    .section-2 {
-        padding-bottom: calc(var(--xxl) + var(--lg)) !important;
     }
     
     .section::after {
@@ -304,7 +302,7 @@ a .card {
     }
     
     .section-content {
-        width: 92%;
+        width: 90%;
         padding: 0 var(--sm); 
     }
     
@@ -315,7 +313,7 @@ a .card {
     
     .card .btn {
         width: 100%;
-        height: var(--xxxl)
+        height: var(--xxl)
     }
     
     .grid {
