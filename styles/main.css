@@ -3,7 +3,7 @@
 }
 */
 
-/* ===== MAIN VARIABLES ===== */
+/* ===== RESET & BASE STYLES ===== */
 @font-face {
   font-family: 'Analogist';
   src: url('/fonts/Analogist-Regular.woff2') format('woff2'),
@@ -12,6 +12,17 @@
   font-style: normal;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+/* ===== MAIN VARIABLES ===== */
 :root {
     /* Colours */
     --primary-text: #0D0D0D;
@@ -48,10 +59,6 @@
     --padding-btn: var(--sm) var(--md);
 }
 
-html {
-    overflow-x: hidden;
-}
-
 *, *:before, *:after {
     box-sizing: inherit;
 }
@@ -61,6 +68,7 @@ body {
     font-family: var(--font-body);
     color: var(--primary-text);
     background-color: var(--primary-bg);
+    line-height: var(--lg);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -76,6 +84,10 @@ p {
 
 .p-centred {
     text-align: center;
+}
+
+.ps {
+    font-size: var(--xs);
 }
 
 main { 
@@ -120,29 +132,11 @@ a .card {
     color: var(--primary-bg)
 }
 
-/* ===== BASE RESETS ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* ===== SECTIONS ===== */
+/* ===== SECTION STYLES ===== */
 .section {
     width: 100%;
     padding: var(--xxxl) 0;
     position: relative;
-}
-
-.section::after {
-    content: "";
-    position: absolute;
-    bottom: calc(var(--xl) * -1);
-    left: 0;
-    width: 100%;
-    height: var(--xl);
-    z-index: 1;
-    display: block;
 }
 
 .section-content {
@@ -154,34 +148,48 @@ a .card {
     z-index: 2;
 }
 
-.section-1 { 
-    background: var(--primary-bg); 
+.section-light {
+    background: var(--primary-bg);
     color: var(--primary-text);
 }
 
-.section-1::after {
-    background: var(--primary-bg);
-    clip-path: polygon(0 0, 50% 100%, 100% 0);
-}
-
-.section-2 { 
-    background: var(--primary-text); 
+.section-dark {
+    background: var(--primary-text);
     color: var(--secondary-bg);
 }
 
-.section-2::after {
-    background: var(--primary-text);
-    clip-path: polygon(0 0, 50% 100%, 100% 0);
-}
-
-.section-3 { 
-    background: var(--dark-red); 
-    color: var(--secondary-bg) !important;
-}
-
-.section-3::after {
+.section-red {
     background: var(--dark-red);
+    color: var(--secondary-bg);
+}
+
+.section-divider {
+    width: 100%;
+    height: var(--xl);
+    position: relative;
+    z-index: 1;
+}
+
+.divider-down {
     clip-path: polygon(0 0, 50% 100%, 100% 0);
+    margin-bottom: 0;
+    margin-top: calc(-1 * var(--xl) + 1px);
+}
+
+.divider-light { background: var(--primary-bg); }
+.divider-dark { background: var(--primary-text); }
+.divider-red { background: var(--dark-red); }
+
+.section-with-divider {
+    padding-bottom: calc(var(--xxxl) + var(--xl));
+}
+
+.section-after-divider {
+    margin-top: calc(-1 * var(--xl) + 1px);
+}
+
+.section-footer {
+    padding-bottom: var(--xxl);
 }
 
 /* ===== CONTENT STYLES ===== */
@@ -286,26 +294,25 @@ a .card {
     
     /* Sections */
     .section {
-        padding: var(--xl);
+        padding: var(--xxl) 0;
     }
     
-    .section-1, .section-2, .section-3 {
-        padding-bottom: calc(var(--xxl) + var(--lg)) !important;
+    .section-with-divider {
+        padding-bottom: calc(var(--xxl) + var(--lg));
     }
     
-    .section-1, .section-2, .section-3 {
-        margin-top: calc(-1 * var(--lg));
-        padding-top: calc(var(--xxl) + var(--lg)) !important;
+    .section-after-divider {
+        margin-top: calc(-1 * var(--lg) - 8px);
     }
     
-    .section::after {
-        height: var(--lg); 
-        bottom: calc(var(--lg) * .01);
+    .section-divider {
+        top: -8px;
+        height: var(--lg);
     }
     
     .section-content {
-        width: 90%;
-        padding: 0 var(--sm); 
+        width: 92%;
+        padding: 0 var(--sm);
     }
     
     /* Components */
@@ -314,8 +321,7 @@ a .card {
     }
     
     .card .btn {
-        width: 100%;
-        height: var(--xxl)
+        height: var(--xxl);
     }
     
     .grid {
