@@ -47,7 +47,6 @@
     -webkit-transform: scale(1);
     transform-origin: 0 0;
     -webkit-transform-origin: 0 0;
-    height: ;
     }
 
     .sr-only {
@@ -95,7 +94,7 @@
         letter-spacing: normal !important;
       }
       #mlb2-27199669.ml-form-embedContainer .ml-form-embedWrapper {
-        background-color: #0D0D0D;
+        background-color: #F2F2F2;
         
         border-width: 0px;
         border-color: transparent;
@@ -522,7 +521,6 @@
         text-align: left;
         margin-bottom: 0;
         position: relative;
-        vertical-align: top;
       }
       #mlb2-27199669.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow label {
         font-weight: normal;
@@ -934,10 +932,21 @@
   
   <script>
     function ml_webform_success_27199669() {
-      var $ = ml_jQuery || jQuery;
-      $('.ml-subscribe-form-27199669 .row-success').show();
-      $('.ml-subscribe-form-27199669 .row-form').hide();
-    }
+  var $ = ml_jQuery || jQuery;
+  
+  // Prevent the default form submission behavior
+  event.preventDefault();
+  
+  // Show the success message
+  $('.ml-subscribe-form-27199669 .row-success').show();
+  $('.ml-subscribe-form-27199669 .row-form').hide();
+  
+  // Optionally customize the success message
+  $('.ml-form-successContent h4').text('Thanks for subscribing!');
+  $('.ml-form-successContent p').text("You'll receive a confirmation email shortly.");
+  
+  return false;
+}
       </script>
   
   
