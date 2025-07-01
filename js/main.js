@@ -23,6 +23,14 @@ function initializeHeader() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
+    // Add dropdown arrows if missing
+    document.querySelectorAll('.mobile-menu-group > .nav-link, .mobile-menu-group > .dropdown-link').forEach(link => {
+        if (!link.querySelector('.dropdown-arrow') && link.nextElementSibling?.classList.contains('dropdown')) {
+            link.innerHTML += '<span class="dropdown-arrow">▾</span>';
+            link.classList.add('with-arrow');
+        }
+    });
+
     // Mobile menu toggle
     hamburger?.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -30,7 +38,21 @@ function initializeHeader() {
         navMenu.classList.toggle('active');
     });
 
-    // Mobile click behavior for main menu items (Books)
+    // Desktop hover behavior
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            if (window.innerWidth > 900) {
+                this.querySelector('.submenu')?.classList.add('active');
+            }
+        });
+        item.addEventListener('mouseleave', function() {
+            if (window.innerWidth > 900) {
+                this.querySelector('.submenu')?.classList.remove('active');
+            }
+        });
+    });
+
+    // Mobile click behavior for main items (Books)
     document.querySelectorAll('.main-menu-group > .with-arrow').forEach(link => {
         link.addEventListener('click', function(e) {
             if (window.innerWidth <= 900) {
@@ -40,7 +62,7 @@ function initializeHeader() {
                 const dropdown = this.closest('.main-menu-group').querySelector('.main-dropdown');
                 const isOpen = dropdown?.classList.contains('active');
                 
-                // Close all other main dropdowns
+                // Close all other dropdowns
                 document.querySelectorAll('.main-dropdown.active').forEach(dd => {
                     if (dd !== dropdown) dd.classList.remove('active');
                 });
@@ -80,7 +102,7 @@ function initializeHeader() {
         });
     });
 
-    // Close menu when clicking regular links
+    // Close menu when clicking non-arrow links
     document.querySelectorAll('.dropdown-link:not(.with-arrow)').forEach(link => {
         link.addEventListener('click', function() {
             if (window.innerWidth <= 900) {
@@ -116,23 +138,35 @@ function initializeHeader() {
 
 // ===== FOOTER INITIALIZATION =====
 function initializeFooter() {
+    // Update copyright year
     const yearElement = document.querySelector('.footer-bottom .year');
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
     
-    document.querySelectorAll('.footer-nav a').forEach(link => {
-        if (link.pathname === window.location.pathname) {
-            link.classList.add('active');
-        }
-    });
-    
-    document.querySelector('.footer-logo')?.addEventListener('click', (e) => {
-        if (e.currentTarget.href === window.location.href) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    });
+    // Initialize MailerLite
+    initializeMailerLite();
+}
+
+function initializeMailerLite() {
+    // Load MailerLite script if not already loaded
+    if (!document.querySelector('script[src*="mailerlite"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://assets.mailerlite.com/js/universal.js';
+        script.async = true;
+        script.onload = setupMailerLiteForm;
+        document.head.appendChild(script);
+    } else if (window.ml) {
+        setupMailerLiteForm();
+    } else {
+        // Retry every 500ms until MailerLite is loaded
+        const checkInterval = setInterval(() => {
+            if (window.ml) {
+                clearInterval(checkInterval);
+                setupMailerLiteForm();
+            }
+        }, 500);
+    }
 }
 
 // ===== INITIALIZATION =====
