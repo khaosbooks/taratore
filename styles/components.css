@@ -1,26 +1,31 @@
 /* ===== HEADER VARIABLES ===== */
 :root {
-  /* Extending your existing variables */
   --header-bg-opacity: 0.5;
   --header-scrolled-bg-opacity: 0.9;
   --dropdown-bg-opacity: 0.9;
   --dropdown-scrolled-bg-opacity: 0.9;
   
-  /* Calculated from existing spacing variables */
   --header-blur: var(--xxs);
   --dropdown-blur: var(--sm);
   
-  /* Color variants using your existing palette */
   --divider-color: rgba(var(--primary-text-rgb), 0.1);
   --divider-scrolled-color: rgba(var(--primary-bg-rgb), 0.1);
-}
 
-/* Adding RGB versions of your main colors if not present */
-:root {
   --primary-text-rgb: 13, 13, 13;
   --primary-bg-rgb: 221, 218, 214;
   --secondary-bg-rgb: 242, 242, 242;
   --accent-rgb: 242, 61, 61;
+
+  --mobile-logo-height: var(--xl);
+  --hamburger-scale: 0.8;
+
+  --mobile-text-scale: 0.9;
+  --mobile-heading1: calc(var(--xxxl) * var(--mobile-text-scale));
+  --mobile-heading2: calc(var(--xxl) * var(--mobile-text-scale));
+  --mobile-heading3: calc(var(--xl) * var(--mobile-text-scale));
+  --mobile-heading4: calc(var(--lg) * var(--mobile-text-scale));
+  --mobile-heading5: calc(var(--md) * var(--mobile-text-scale));
+  --mobile-body-text: calc(1rem * var(--mobile-text-scale));
 }
 
 /* ===== HEADER STYLES ===== */
@@ -140,10 +145,6 @@
   opacity: 1;
 }
 
-.main-menu-group:hover .dropdown-arrow {
-  transform: rotate(180deg);
-}
-
 /* Submenu Groups */
 .submenu-group {
   position: relative;
@@ -177,7 +178,7 @@
 }
 
 .submenu-group:hover .dropdown-arrow {
-  transform: rotate(90deg);
+  transform: rotate(180deg);
 }
 
 /* Dropdown Items */
@@ -227,10 +228,15 @@
 }
 
 /* Hamburger Menu */
+.hamburger-container {
+  display: flex;
+  align-items: center;
+}
+
 .hamburger {
-  display: none;
-  cursor: pointer;
-  padding: var(--xs);
+  transform: scale(var(--hamburger-scale));
+  padding: var(--xxs);
+  position: relative;
 }
 
 .bar {
@@ -296,16 +302,45 @@
 
 /* ===== MOBILE STYLES ===== */
 @media (max-width: 900px) {
+  :root {
+    font-size: var(--mobile-body-text);
+  }
+
+  h1 { font-size: var(--mobile-heading1); }
+  h2 { font-size: var(--mobile-heading2); }
+  h3 { font-size: var(--mobile-heading3); }
+  h4 { font-size: var(--mobile-heading4); }
+  h5 { font-size: var(--mobile-heading5); }
+  
+  .nav-menu {
+    font-size: calc(var(--sm) * var(--mobile-text-scale));
+  }
+  
+  .btn, .discord-btn {
+    font-size: calc(var(--sm) * var(--mobile-text-scale));
+  }
+
+
   .header {
     padding: var(--sm) 0;
   }
   
+  .logo {
+    width: auto;
+    max-width: 60%;
+  }
+  
+  .logo-full,
+  .mobile-logo {
+    height: var(--mobile-logo-height);
+  }
+
   .hamburger {
     display: block;
   }
   
   .hamburger.active .bar:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+    transform: translateY(12px) rotate(45deg);
   }
   
   .hamburger.active .bar:nth-child(2) {
@@ -313,7 +348,7 @@
   }
   
   .hamburger.active .bar:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+    transform: translateY(-12px) rotate(-45deg);
   }
   
   .nav-menu {
@@ -358,6 +393,14 @@
     border-radius: var(--xxxs);
     margin: var(--sm) auto;
     display: inline-block;
+  }
+
+  .submenu-group .dropdown-arrow {
+    transform: rotate(90deg);
+  }
+
+  .submenu-group:hover .dropdown-arrow {
+    transform: rotate(270deg);
   }
 
   .main-menu-group,
