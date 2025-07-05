@@ -17,7 +17,7 @@
 
 @media (max-width: 900px) {
   .status-banner {
-    bottom: calc(var(--xxxl)*1.5) !important;
+    bottom: calc(var(--xxxl)*1.4) !important;
     left: calc(var(--md)*-.6) !important;
     padding: var(--md) var(--xxxl) var(--md) var(--xxl) !important;
     font-size: var(--md) !important;
