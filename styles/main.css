@@ -1,15 +1,11 @@
-/* {
-    outline: 1px solid red !important;
-}
-*/
-
 /* ===== RESET & BASE STYLES ===== */
 @font-face {
   font-family: 'Analogist';
-  src: url('/fonts/Analogist-Regular.woff2') format('woff2'),
-       url('/fonts/Analogist-Regular.woff') format('woff');
+  src: url('../fonts/Analogist-Regular.woff2') format('woff2'),
+       url('../fonts/Analogist-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 * {
@@ -58,6 +54,33 @@ html {
     /* Padding */
     --padding-btn: var(--sm) var(--md);
 }
+
+
+/* Dark mode colors */
+[data-theme="dark"] {
+  --primary-text: #DDDAD6;
+  --primary-bg: #0D0D0D;
+  --secondary-bg: #1A1A1A;
+  --accent: #A61C00;
+  --dark-red: #F2F2F2;
+}
+
+/* Dyslexia mode */
+.dyslexia-mode {
+  font-family: "OpenDyslexic", sans-serif;
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+}
+
+/* Active toggle states */
+.toggle-dark[data-active="true"]::after {
+  content: " (Light)";
+}
+
+.toggle-dyslexia[data-active="true"]::after {
+  content: " (Standard)";
+}
+
 
 *, *:before, *:after {
     box-sizing: inherit;
