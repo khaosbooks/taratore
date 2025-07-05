@@ -129,43 +129,71 @@
     align-items: center;
   }
 
+  .parallax-glow {
+    background-position: right center;
+  }
+
   .hero-content {
     flex-direction: column;
     width: 100%;
     gap: var(--xl);
+    margin-left: calc(-1 * var(--xxl));
     align-items: center;
+    padding: 0 var(--md); 
+    box-sizing: border-box; 
   }
 
   .hero-text {
     order: 1;
     min-height: auto;
+    width: 100%; /* Force full width */
     max-width: 100%;
     text-align: center;
+        padding: 0 var(--sm); /* Add internal padding */
   }
 
   .hero-text .hero-tight {
     max-width: 100%;
+        width: 100%;
     align-items: center;
   }
 
   .hero-text h1 {
     text-align: center !important;
+            width: 100%;
+
   }
 
   .hero-content > .hero-tight {
     order: 2;
     max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .book-mockup-3d {
     max-height: 40vh;
     transform: perspective(1000px) rotateY(-10deg);
+        width: auto; /* Allow natural image width */
   }
 
   .hero-buttons {
     width: 100%;
     max-width: 300px;
     margin: var(--md) auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn, .btn-secondary {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: var(--sm) var(--md);
+    box-sizing: border-box;
   }
 
   .hero-text .hero-buttons {
