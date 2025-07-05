@@ -590,6 +590,7 @@
   .site-footer {
     padding-left: 0;
     padding-right: 0;
+    margin: 0;
   }
 
   .footer-grid {
@@ -616,5 +617,6 @@
   
   .footer-col {
     align-items: center;
+    padding: 0 var(--xxl);
   }
 }
