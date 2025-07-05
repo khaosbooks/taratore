@@ -169,7 +169,41 @@ function initializeMailerLite() {
     }
 }
 
+// ===== PARALLAX EFFECT =====
+function initializeParallax() {
+  const layers = [
+    { element: document.querySelector('.parallax-bg'), speed: 0.5 }, 
+    { element: document.querySelector('.parallax-glow'), speed: 0.1 },
+    { element: document.querySelector('.parallax-foreground'), speed: 0.3 } 
+  ].filter(layer => layer.element); 
+
+  if (layers.length) {
+    let lastScrollPosition = 0;
+    let ticking = false;
+    
+    const updateParallax = () => {
+      layers.forEach(layer => {
+        layer.element.style.transform = `translateY(${lastScrollPosition * layer.speed}px)`;
+      });
+      ticking = false;
+    };
+    
+    const onScroll = () => {
+      lastScrollPosition = window.pageYOffset;
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateParallax(); 
+  }
+}
+
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
-    loadComponents();
+    loadComponents().then(() => {
+        initializeParallax(); 
+    });
 });

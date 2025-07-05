@@ -9,6 +9,7 @@
   
   <link rel="stylesheet" href="/styles/main.css">
   <link rel="stylesheet" href="/styles/components.css">
+  <link rel="stylesheet" href="/styles/books.css">
   
   <style>
     body { 
@@ -17,20 +18,204 @@
       padding: 0;
       font-family: var(--font-body);
     }
-    main { 
-      padding: 2rem;
-      margin-top: 150px;
-      min-height: 200vh;
-    }
   </style>
 </head>
 
-<body>
+<body data-book-type="series">
+  <div class="status-banner">Available Now</div>
   
-  <main>
-    <h1>Scroll down to test header</h1>
-    <p>Content goes here</p>
-  </main>
+
+
+<section class="book-hero">
+  <div class="parallax-wrapper">
+    <div class="parallax-bg" style="background-image: url('/images/books/LastSunrise/hero-bg.jpg')"></div>
+    <div class="parallax-foreground" style="background-image: url('/images/books/LastSunrise/hero-fg.png')"></div>
+    <div class="hero-bg-overlay"></div>
+    <div class="parallax-glow" style="background-image: url('/images/books/LastSunrise/hero-glow.png')"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-tight">
+        <h1 style="text-align: left;">Last Sunrise</h1>
+        <p>Sinialli was the best courtesan in all of Trace, and she would make sure everyone remembered her.</p>
+        <div class="hero-buttons">
+          <a href="https://books2read.com/lastsunrise" class="btn">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-tight">
+      <img src="/images/books/LastSunrise/mockup_ebook.png" alt="3D Mockup of Last Sunrise" class="book-mockup-3d">
+      <div class="hero-buttons">
+        <a href="https://books2read.com/lastsunrise" class="btn-secondary">Read Excerpt</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+<!--next to work on
+  <section class="series-nav-section section-dark">
+    <div class="series-nav-container">
+      <a href="#">God of Discovery</a> → 
+      <a href="#" class="current">Last Sunrise</a> → 
+      <a href="#">Untitled Sequel</a>
+    </div>
+  </section>
+
+  <section class="book-content-section section-light">
+    <div class="book-content-container">
+      <div class="content-columns">
+        <aside class="metadata-column">
+          <div class="metadata-card">
+            <h4>Details</h4>
+            <ul class="metadata-list">
+              <li><strong>Published:</strong> July 3, 2024</li>
+              <li><strong>Length:</strong> 18,571 words</li>
+              <li><strong>Format:</strong> eBook</li>
+            </ul>
+            
+            <h4>Genres</h4>
+            <div class="genre-pills">
+              <span class="pill">Fantasy</span>
+              <span class="pill">Dark Fantasy</span>
+              <span class="pill">Standalone</span>
+            </div>
+            
+            <h4>Content Warnings</h4>
+            <ul class="metadata-list">
+              <li>Blood</li>
+              <li>Death</li>
+              <li>Sexual content</li>
+              <li>Coercion</li>
+              <li>Suicidal thoughts</li>
+            </ul>
+          </div>
+        </aside>
+
+        <div class="content-column">
+          <h2>Last Sunrise</h2>
+          <div class="synopsis">
+            <p>When the constant war between the two nations reaches the doorsteps of the Crescent Moon Pavilion, Sinialli's life is turned completely around and she is left with nothing but memories of better times. She prays for release and to join her family, to become one with them, but the gods have other plans.</p>
+            <p>With the scents of magic surrounding her and guiding her, Sinialli knows what she has to do. She knows this would be the last sunset she would ever see, if she ever even makes it to sunrise. And she knows, as the best courtesan in all of Trace, what it would take to make sure she and her family would be remembered forever.</p>
+            <p><a href="#" class="btn excerpt-btn">Read Excerpt</a></p>
+            <p><a href="#" class="btn excerpt-btn">Buy Now</a></p>
+          </div>
+        </div>
+      </div>
+
+      
+      <section class="excerpt">
+        <details class="excerpt-accordion">
+          <summary>Read First Chapter</summary>
+          <div class="excerpt-content">
+            <p>The pavilion smelled of jasmine and regret. Sinialli moved through the perfumed air like a shadow, her silks whispering secrets against her skin. Outside, the war drums echoed, but here—here there was only the dance.</p>
+            <p>She touched the vial at her throat, cool against her pulse. Tonight would be her performance of a lifetime. Not for the patrons who thought they owned her, but for the gods who had abandoned her people.</p>
+          <p class="excerpt-cta">There's more—go read the story!</p>
+        <a href="https://books2read.com/lastsunrise" class="btn excerpt-btn">Continue Reading</a>
+          </div>
+        </details>
+      </section>
+
+    </div>
+  </section>
+
+  <section class="reviews-section section-dark with-chevron">
+    <div class="section-content">
+      <h2>What Readers Say</h2>
+      <div class="reviews-container">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"A hauntingly beautiful tale of sacrifice and memory."</p>
+          <cite>- Goodreads Reviewer</cite>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★☆</div>
+          <p>"Sinialli's story stayed with me long after the last page."</p>
+          <cite>- BookBlogger</cite>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"The prose is as sharp as Sinialli's wit and just as deadly."</p>
+          <cite>- Fantasy Reader</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider divider-down divider-dark"></div>
+
+  <section class="extras-section section-light">
+    <div class="section-content">
+      <h2>Discover More</h2>
+      
+      <div class="art-grid">
+        <div class="art-item">
+          <img src="/images/books/LastSunrise/character_Sinialli.png" alt="Sinialli character art">
+        </div>
+        <div class="art-item">
+          <img src="/images/books/LastSunrise/character_Sinialli.png" alt="Sinialli character art">
+        </div>
+        <div class="art-item">
+          <img src="/images/books/LastSunrise/character_Sinialli.png" alt="Sinialli character art">
+        </div>
+        <div class="art-item">
+          <img src="/images/books/LastSunrise/character_Sinialli.png" alt="Sinialli character art">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider divider-up divider-light"></div>
+
+  <section class="characters-section section-red">
+    <div class="section-content">
+      <h2>The Characters</h2>
+      <div class="character-grid">
+        <div class="character-card">
+          <div class="character-image">
+            <img src="/images/books/LastSunrise/character_Sinialli.png" alt="Sinialli">
+          </div>
+          <div class="character-info">
+            <h3>Sinialli</h3>
+            <ul class="character-traits">
+              <li>Courtesan</li>
+              <li>Performer</li>
+              <li>Survivor</li>
+            </ul>
+            <p>The best courtesan in all of Trace, trained in the art of performance and persuasion.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider divider-down divider-red"></div>
+
+  <section class="more-series-section section-dark">
+    <div class="section-content">
+      <h2>More in This Series</h2>
+      <div class="series-grid">
+        <a href="#" class="series-card">
+          <div class="card-img-container">
+            <img src="/images/books/LastSunrise/clean-cover.png" alt="God of Discovery">
+          </div>
+          <h3>God of Discovery</h3>
+          <p>Book 1</p>
+          <button class="btn">Learn More</button>
+        </a>
+        <a href="#" class="series-card">
+          <div class="card-img-container">
+            <img src="/images/books/LastSunrise/clean-cover.png" alt="Last Sunrise">
+          </div>
+          <h3>Last Sunrise</h3>
+          <p>Book 2</p>
+          <button class="btn">Learn More</button>
+        </a>
+      </div>
+    </div>
+  </section>
+-->
   
 </body>
 </html>

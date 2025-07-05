@@ -249,6 +249,30 @@ a .card {
     transform: var(--shift-up)
 }
 
+.btn-secondary {
+    display: inline-flex;
+    background: transparent;
+    padding: var(--padding-btn);
+    border: 1px solid var(--primary-bg);
+    color: var(--primary-bg) !important;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: var(--transition);
+    align-items: center;
+    gap: var(--sm);
+    text-transform: uppercase;
+    font-size: var(--sm);
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.btn-secondary:hover {
+    background: var(--primary-bg);
+    color: var(--primary-text) !important;
+    transform: var(--shift-up)
+}
+
 .card {
     height: 100%;
     display: flex;
