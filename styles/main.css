@@ -8,6 +8,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('../fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+       url('../fonts/OpenDyslexic-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +35,12 @@ html {
     --secondary-bg: #F2F2F2;
     --accent: #F23D3D;
     --dark-red: #591212;
+
+    /* For calculations */
+    --primary-text-rgb: 13, 13, 13;
+    --primary-bg-rgb: 221, 218, 214;
+    --secondary-bg-rgb: 242, 242, 242;
+    --accent-rgb: 242, 61, 61;
 
     /* Typography */
     font-size: 18px;
@@ -47,12 +62,18 @@ html {
 
     /* Effects */
     --shadow-default: 0 0.2rem 0.4rem var(--accent);
-    --shadow-reverse: 0 -0.2rem 0.4rem var(--secondary-bg);
     --shift-up: translateY(-2px);
     --transition: all 0.3s ease;
+    
+    --header-bg-opacity: 0.5;
+    --header-scrolled-bg-opacity: 0.9;
+    --dropdown-bg-opacity: 0.9;
+    --dropdown-two-opacity: 0.95;
+    --dropdown-low-opacity: 0.2;
 
-    /* Padding */
-    --padding-btn: var(--sm) var(--md);
+    --header-blur: var(--xxs);
+    --dropdown-blur: var(--sm);
+  
 }
 
 
