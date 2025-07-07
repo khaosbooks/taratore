@@ -11,12 +11,38 @@ async function loadComponents() {
         
         initializeHeader();
         initializeFooter();
+        initializeAccordions();
 
         document.body.classList.add('components-loaded');
     } catch (error) {
         console.error('Error loading components:', error);
     }
 }
+
+// ===== ACCORDION INITIALIZATION =====
+function initializeAccordions() {
+    document.querySelectorAll('.accordion-item').forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        const content = item.querySelector('.accordion-content');
+        
+        // Set initial state
+        header.setAttribute('aria-expanded', 'false');
+        content.style.maxHeight = '0';
+        
+        header.addEventListener('click', () => {
+            const isExpanded = header.getAttribute('aria-expanded') === 'true';
+            header.setAttribute('aria-expanded', !isExpanded);
+            content.style.maxHeight = isExpanded ? '0' : `${content.scrollHeight}px`;
+            
+            // Toggle icon
+            const icon = header.querySelector('.accordion-icon');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '×';
+            }
+        });
+    });
+}
+
 
 // ===== HEADER INITIALIZATION =====
 function initializeHeader() {

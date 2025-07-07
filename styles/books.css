@@ -118,6 +118,9 @@
 
 .hero-buttons {
   margin-top: var(--xl);
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 /* #endregion */
 /* #region - MOBILE */
@@ -260,26 +263,75 @@
 
 .sticky-side-column {
   flex: 1;
-  max-width: 25%;
-  background: linear-gradient(
-    to bottom,
-    var(--secondary-bg) 0%,
-    var(--secondary-bg) 70%,
-    color-mix(in srgb, var(--secondary-bg) 75%, var(--primary-bg)) 75%,
-    color-mix(in srgb, var(--secondary-bg) 50%, var(--primary-bg)) 80%,
-    color-mix(in srgb, var(--secondary-bg) 25%, var(--primary-bg)) 85%,
-    var(--primary-bg) 90%,
-    var(--primary-bg) 100% );  
+  max-width: 33%;
+  background: var(--secondary-bg);  
   border-left: var(--red-border);
+  border-bottom: var(--red-border);
   position: relative;
-  max-height: 50vh;
 }
 
 .sticky-content {
-  position: sticky;
-  top: 0; 
-  padding: var(--xxxl);
-  overflow-y: auto;
+  padding: var(--xxl);
+    padding-bottom: 0;
+
+}
+
+/* Accordion Styles */
+.accordion-item {
+  margin-bottom: var(--md);
+  border-bottom: 1px solid var(--primary-bg);
+}
+
+.accordion-header {
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.accordion-header:hover {
+  color: var(--accent);
+}
+
+.accordion-icon {
+  font-size: 1.2em;
+  transition: transform 0.3s ease;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-left: var(--sm);
+}
+
+/* Active state */
+.accordion-header[aria-expanded="true"] .accordion-icon {
+  transform: rotate(90deg); /* Turns + into × */
+}
+
+.accordion-header[aria-expanded="true"] + .accordion-content {
+  max-height: 500px; /* Adjust based on content */
+  padding-bottom: var(--sm);
+}
+
+/* List styling */
+.accordion-content ul {
+  list-style: none;
+  padding: 0;
+  margin: var(--xs) 0 0;
+}
+
+.accordion-content li {
+  padding: var(--xxs) 0;
+  position: relative;
+  padding-left: var(--sm);
+}
+
+.accordion-content li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
 }
 
 @media (max-width: 900px) {
