@@ -279,7 +279,7 @@
 /* Accordion Styles */
 .accordion-item {
   margin-bottom: var(--md);
-  border-bottom: 1px solid var(--primary-bg);
+  border-bottom: var(--light-border);
 }
 
 .accordion-header {
@@ -293,28 +293,18 @@
 }
 
 .accordion-icon {
-  font-size: 1.2em;
   transition: transform 0.3s ease;
 }
 
 .accordion-content {
-  max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
-  padding-left: var(--sm);
 }
 
-/* Active state */
 .accordion-header[aria-expanded="true"] .accordion-icon {
   transform: rotate(90deg); /* Turns + into × */
 }
 
-.accordion-header[aria-expanded="true"] + .accordion-content {
-  max-height: 500px; /* Adjust based on content */
-  padding-bottom: var(--sm);
-}
-
-/* List styling */
 .accordion-content ul {
   list-style: none;
   padding: 0;
