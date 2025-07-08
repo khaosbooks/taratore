@@ -12,11 +12,30 @@ async function loadComponents() {
         initializeHeader();
         initializeFooter();
         initializeAccordions();
+        initializeTooltips();
 
         document.body.classList.add('components-loaded');
     } catch (error) {
         console.error('Error loading components:', error);
     }
+}
+
+// ===== TOOLTIP INITIALIZATION =====
+function initializeTooltips() {
+  document.querySelectorAll('.tooltip-icon[data-wordcount]').forEach(icon => {
+    const wordCount = parseInt(icon.dataset.wordcount);
+    const formattedCount = wordCount.toLocaleString();
+    const pageCount = Math.round(wordCount / 300);
+    
+    // Update tooltip text
+    icon.querySelector('.tooltip-text').textContent = 
+      `This would be ${pageCount} pages long as a paperback book, calculated based on an average of 300 words per page.`;
+    
+    // Add accessibility attributes
+    icon.setAttribute('role', 'button');
+    icon.setAttribute('aria-label', 'Word count explanation');
+    icon.setAttribute('tabindex', '0');
+  });
 }
 
 // ===== ACCORDION INITIALIZATION =====
@@ -25,7 +44,6 @@ function initializeAccordions() {
         const header = item.querySelector('.accordion-header');
         const content = item.querySelector('.accordion-content');
         
-        // Set initial state
         header.setAttribute('aria-expanded', 'false');
         content.style.maxHeight = '0';
         
@@ -33,12 +51,6 @@ function initializeAccordions() {
             const isExpanded = header.getAttribute('aria-expanded') === 'true';
             header.setAttribute('aria-expanded', !isExpanded);
             content.style.maxHeight = isExpanded ? '0' : `${content.scrollHeight}px`;
-            
-            // Toggle icon
-            const icon = header.querySelector('.accordion-icon');
-            if (icon) {
-                icon.textContent = isExpanded ? '+' : '×';
-            }
         });
     });
 }

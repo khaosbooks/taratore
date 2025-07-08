@@ -221,9 +221,10 @@
 }
 
 .metadata-card {
-  padding: var(--md) 0;
+  padding: var(--lg);
   box-shadow: var(--shadow-default);
   margin-bottom: var(--xxl);
+  background: var(--secondary-bg);
 }
 
 .details-list {
@@ -243,6 +244,50 @@
   font-weight: bold;
   margin-right: var(--xs);
 }
+  .word-count {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip-icon {
+    display: inline-block;
+    cursor: help;
+    color: var(--dark-red);
+    font-size: 0.8em;
+    margin-left: var(--xxxs);
+    position: relative;
+  }
+  
+  .tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    background-color: var(--dark-red);
+    color: var(--secondary-bg);
+    text-align: center;
+    padding: var(--xs);
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: var(--md);
+  }
+  
+  .tooltip-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--dark-red) transparent transparent transparent;
+  }
 
 .genre-list {
   list-style: none;
@@ -259,6 +304,10 @@
   padding: var(--xxs) var(--sm);
   font-size: var(--xs);
   text-transform: uppercase;
+}
+
+.genre-list .novel {
+  background-color: var(--dark-red);
 }
 
 .sticky-side-column {
@@ -290,19 +339,21 @@
 
 .accordion-header:hover {
   color: var(--accent);
+  background: none;
 }
 
 .accordion-icon {
+  display: inline-block;
   transition: transform 0.3s ease;
+}
+
+.accordion-header[aria-expanded="true"] .accordion-icon {
+  transform: rotate(180deg);
 }
 
 .accordion-content {
   overflow: hidden;
   transition: max-height 0.3s ease;
-}
-
-.accordion-header[aria-expanded="true"] .accordion-icon {
-  transform: rotate(90deg); /* Turns + into × */
 }
 
 .accordion-content ul {
@@ -315,6 +366,7 @@
   padding: var(--xxs) 0;
   position: relative;
   padding-left: var(--sm);
+  background: none;
 }
 
 .accordion-content li::before {
@@ -336,7 +388,7 @@
   }
 
   .metadata-card {
-    padding: var(--sm) 0;
+    padding: var(--sm);
     margin-bottom: var(--lg); 
   }
 
@@ -369,259 +421,4 @@
     overflow-y: visible; 
   }
 }
-
-
 /* #endregion */
-
-
-
-
-
-.book-content-container {
-  padding: 0;
-}
-
-.content-columns {
-  display: flex;
-  gap: var(--xxl);
-  margin-bottom: var(--xxxl);
-}
-
-.metadata-column {
-  flex: 0 0 400px;
-}
-
-.content-column {
-  flex: 1;
-}
-
-.metadata-card {
-  background: var(--secondary-bg);
-  padding: var(--lg);
-}
-
-h4 {
-  border-top: 1px solid rgba(0,0,0,0.1);
-  margin-top: var(--lg);
-  padding-top: var(--sm);
-}
-
-.metadata-list li {
-  margin-bottom: var(--sm);
-}
-
-.genre-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--xs);
-  margin: var(--sm) 0 var(--lg);
-}
-
-.pill {
-  background: var(--accent);
-  color: var(--primary-bg);
-  padding: var(--xxs) var(--sm);
-  font-size: var(--xs);
-  text-transform: uppercase;
-}
-
-/* ===== EXCERPT ===== */
-.excerpt {
-  margin: var(--xxxl) 0;
-}
-
-.excerpt-accordion {
-  border-top: 2px solid var(--primary-text);
-  border-bottom: 2px solid var(--primary-text);
-  padding: var(--md) 0;
-  margin-bottom: var(--md);
-}
-
-.excerpt-accordion[open] {
-  border-color: var(--accent);
-}
-
-.excerpt-accordion summary {
-  cursor: pointer;
-  font-family: var(--font-heading);
-  font-size: var(--lg);
-  list-style: none;
-}
-
-.excerpt-accordion summary::-webkit-details-marker {
-  display: none;
-}
-
-.excerpt-content {
-  padding-top: var(--md);
-}
-
-.excerpt-cta {
-  font-style: italic;
-  margin: var(--md) 0;
-  text-align: center;
-}
-
-/* ===== REVIEWS ===== */
-.reviews-container {
-  display: flex;
-  gap: var(--md);
-  overflow-x: auto;
-  padding: var(--md) 0;
-  scroll-snap-type: x mandatory;
-}
-
-.review-card {
-  min-width: 300px;
-  scroll-snap-align: start;
-  background: var(--primary-text);
-  padding: var(--lg);
-  border: 2px solid var(--accent);
-}
-
-.review-card p {
-  margin-bottom: var(--sm);
-}
-
-.stars {
-  color: var(--accent);
-  margin-bottom: var(--sm);
-}
-
-cite {
-  font-style: normal;
-  color: var(--secondary-bg);
-}
-
-/* ===== ART GRID ===== */
-.art-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: var(--md);
-  grid-auto-flow: dense;
-}
-
-.art-item {
-  break-inside: avoid;
-}
-
-.art-item img {
-  width: 100%;
-  height: auto;
-  transition: var(--transition);
-  border: 2px solid var(--primary-text);
-}
-
-.art-item img:hover {
-  border-color: var(--accent);
-}
-
-/* ===== CHARACTER CARDS ===== */
-.character-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--lg);
-}
-
-.character-card {
-  display: flex;
-  gap: var(--md);
-  border: 2px solid var(--primary-bg);
-  padding: var(--md);
-}
-
-.character-image {
-  flex: 0 0 120px;
-}
-
-.character-image img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-}
-
-.character-traits {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--xs);
-  margin: var(--sm) 0;
-  list-style: none;
-  padding: 0;
-}
-
-.character-traits li {
-  background: var(--primary-bg);
-  color: var(--primary-text);
-  padding: var(--xxs) var(--sm);
-  font-size: var(--xs);
-}
-
-/* ===== SERIES GRID ===== */
-.series-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: var(--lg);
-  margin-top: var(--xl);
-}
-
-.series-card {
-  color: var(--primary-bg);
-  transition: var(--transition);
-}
-
-.series-card:hover {
-  transform: var(--shift-up);
-}
-
-.series-card .card-img-container {
-  aspect-ratio: 5/8;
-  margin-bottom: var(--sm);
-}
-
-.series-card h3 {
-  margin-bottom: var(--xxs);
-}
-
-.series-card .btn {
-  margin-top: var(--sm);
-  width: 100%;
-}
-
-/* ===== MOBILE STYLES ===== */
-@media (max-width: 900px) {
-  .hero-content {
-    flex-direction: column;
-    padding-top: var(--xxxl);
-    gap: var(--xl);
-  }
-  
-  .book-mockup-3d {
-    max-height: 50vh;
-  }
-  
-  .hero-text {
-    text-align: center;
-  }
-  
-  .status-banner {
-    bottom: var(--xxl);
-    padding: var(--xxs) var(--xxl) var(--xxs) var(--lg);
-    font-size: var(--xs);
-    transform: rotate(35deg) translateX(-15px) translateY(-5px);
-    min-width: 150px;
-  }
-
-  .content-columns {
-    flex-direction: column;
-  }
-  
-  .metadata-column {
-    flex: 1;
-    width: 100%;
-  }
-  
-  .character-card {
-    flex-direction: column;
-  }
-}
