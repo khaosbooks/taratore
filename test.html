@@ -22,7 +22,11 @@
 </head>
 
 <body data-book-type="series">
-  <div class="status-banner">Available Now</div>
+  <div class="status-banner-wrapper">
+    <div class="status-banner">
+      Available Now
+    </div>
+  </div>
 
   <section class="book-hero">
     <div class="parallax-wrapper">
@@ -44,7 +48,7 @@
       <div class="hero-tight">
         <img src="/images/books/LastSunrise/mockup_ebook.png" alt="3D Mockup of Last Sunrise" class="book-mockup-3d">
         <div class="hero-buttons">
-          <a href="https://books2read.com/lastsunrise" class="btn-secondary">Read Excerpt</a>
+          <a href="#excerpt" class="btn-secondary">Read Excerpt</a>
         </div>
       </div>
     </div>
@@ -83,6 +87,9 @@
         <h2>Last Sunrise</h2>
         <p>When the constant war between the two nations reaches the doorsteps of the Crescent Moon Pavilion, Sinialli's life is turned completely around and she is left with nothing but memories of better times. She prays for release and to join her family, to become one with them, but the gods have other plans.</p>
         <p>With the scents of magic surrounding her and guiding her, Sinialli knows what she has to do. She knows this would be the last sunset she would ever see, if she ever even makes it to sunrise. And she knows, as the best courtesan in all of Trace, what it would take to make sure she and her family would be remembered forever.</p>
+        <div class="hero-buttons">
+          <a href="#excerpt" class="btn-secondary black">Read Excerpt</a>
+        </div>
         <div class="hero-buttons">
           <a href="https://books2read.com/lastsunrise" class="btn">Buy Now</a>
         </div>
@@ -146,49 +153,86 @@
 
   <div class="section-divider divider-down divider-light"></div>
 
-  <section class="section section-dark section-after-divider section-with-divider">
-
+  <section class="section section-dark section-after-divider section-with-divider" id="excerpt">
+    <section class="padded">
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false">
+          <h2>Read Excerpt <span class="accordion-icon">▾</span></h2>
+        </button>
+        <div class="accordion-content">
+          <p>When the constant war between the two nations reaches the doorsteps of the Crescent Moon Pavilion, Sinialli's life is turned completely around and she is left with nothing but memories of better times.</p>
+          <div class="hero-buttons">
+            <button class="btn">Continue reading</button>
+          </div>
+          <div class="hero-buttons">
+            <button class="btn-secondary excerpt-close">Close Excerpt</button>
+          </div>
+        </div>
+      </div>
+    </section>
   </section>
+
+  <div class="section-divider divider-down divider-dark"></div>
+
+  <section class="section section-red section-after-divider section-with-divider">
+    <section class="padded">
+      <h2>What Readers Say</h2>
+      <div class="reviews-container">
+        <button class="scroll-arrow" aria-label="Previous review">
+          ‹
+        </button>
+        
+        <div class="reviews-scroller">
+          <div class="reviews-track">
+            <!-- Review Card 1 -->
+            <div class="review-card">
+              <div class="review-content">
+                <div class="review-stars">★★★★★</div>
+                <p>"Absolutely breathtaking! The prose wrapped around me like silk and the characters felt more real than people I know."</p>
+                <div class="review-author">- Goodreads Reviewer</div>
+              </div>
+            </div>
+            
+            <!-- Review Card 2 -->
+            <div class="review-card">
+              <div class="review-content">
+                <div class="review-stars">★★★★★</div>
+                <p>"I couldn't put it down. The perfect blend of poetic language and raw emotion that left me in tears by the end."</p>
+                <div class="review-author">- Amazon Customer</div>
+              </div>
+            </div>
+            
+            <!-- Review Card 3 -->
+            <div class="review-card">
+              <div class="review-content">
+                <div class="review-stars">★★★★☆</div>
+                <p>"A stunning debut that redefines dark fantasy. The courtesan protagonist was a refreshing change from typical heroes."</p>
+                <div class="review-author">- Book Blogger</div>
+              </div>
+            </div>
+            
+            <!-- Review Card 4 -->
+            <div class="review-card">
+              <div class="review-content">
+                <div class="review-stars">★★★★★</div>
+                <p>"The last 50 pages had me holding my breath. That ending will haunt me for years to come in the best possible way."</p>
+                <div class="review-author">- NetGalley Reviewer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="scroll-arrow" aria-label="Next review">
+          ›
+        </button>
+      </div>
+    </section>
+  </section>
+
+  <div class="section-divider divider-down divider-red"></div>
 
 
 <!--next to work on
-      <section class="excerpt">
-        <details class="excerpt-accordion">
-          <summary>Read First Chapter</summary>
-          <div class="excerpt-content">
-            <p>The pavilion smelled of jasmine and regret. Sinialli moved through the perfumed air like a shadow, her silks whispering secrets against her skin. Outside, the war drums echoed, but here—here there was only the dance.</p>
-            <p>She touched the vial at her throat, cool against her pulse. Tonight would be her performance of a lifetime. Not for the patrons who thought they owned her, but for the gods who had abandoned her people.</p>
-          <p class="excerpt-cta">There's more—go read the story!</p>
-        <a href="https://books2read.com/lastsunrise" class="btn excerpt-btn">Continue Reading</a>
-          </div>
-        </details>
-      </section>
-
-    </div>
-  </section>
-
-  <section class="reviews-section section-dark with-chevron">
-    <div class="section-content">
-      <h2>What Readers Say</h2>
-      <div class="reviews-container">
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p>"A hauntingly beautiful tale of sacrifice and memory."</p>
-          <cite>- Goodreads Reviewer</cite>
-        </div>
-        <div class="review-card">
-          <div class="stars">★★★★☆</div>
-          <p>"Sinialli's story stayed with me long after the last page."</p>
-          <cite>- BookBlogger</cite>
-        </div>
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p>"The prose is as sharp as Sinialli's wit and just as deadly."</p>
-          <cite>- Fantasy Reader</cite>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <div class="section-divider divider-down divider-dark"></div>
 

@@ -13,6 +13,7 @@ async function loadComponents() {
         initializeFooter();
         initializeAccordions();
         initializeTooltips();
+        initializeReviewScroller();
 
         document.body.classList.add('components-loaded');
     } catch (error) {
@@ -20,22 +21,112 @@ async function loadComponents() {
     }
 }
 
+// ===== REVIEW SCROLLER =====
+function initializeReviewScroller() {
+    // Wait for everything to be ready
+    setTimeout(() => {
+        const container = document.querySelector('.reviews-container');
+        if (!container) {
+            console.error('Review container not found');
+            return;
+        }
+
+        const scroller = container.querySelector('.reviews-scroller');
+        const track = container.querySelector('.reviews-track');
+        const cards = Array.from(track.querySelectorAll('.review-card'));
+        const prevBtn = container.querySelector('.left-arrow');
+        const nextBtn = container.querySelector('.right-arrow');
+
+        // Validate we have enough cards
+        if (cards.length < 3) {
+            console.warn('Need at least 3 review cards');
+            return;
+        }
+
+        // Clone cards for infinite loop
+        const cloneCards = cards.map(card => card.cloneNode(true));
+        cloneCards.forEach(card => track.appendChild(card));
+
+        // Calculate card width including gap
+        const cardWidth = cards[0].offsetWidth + 
+                        parseInt(getComputedStyle(cards[0]).marginLeft) +
+                        parseInt(getComputedStyle(cards[0]).marginRight) +
+                        parseInt(getComputedStyle(track).gap);
+
+        // State management
+        let currentIndex = 0;
+        let isAnimating = false;
+
+        // Core scroll function
+        function scrollToIndex(index, behavior = 'smooth') {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const totalCards = cards.length;
+            let targetPos = index * cardWidth;
+
+            // Handle infinite loop
+            if (index >= totalCards) {
+                currentIndex = 0;
+                targetPos = 0;
+            } else if (index < 0) {
+                currentIndex = totalCards - 1;
+                targetPos = totalCards * cardWidth;
+            } else {
+                currentIndex = index;
+            }
+
+            scroller.scrollTo({
+                left: targetPos,
+                behavior: behavior
+            });
+
+            setTimeout(() => {
+                isAnimating = false;
+            }, 500);
+        }
+
+        // Navigation functions
+        function nextCard() {
+            scrollToIndex(currentIndex + 1);
+        }
+
+        function prevCard() {
+            scrollToIndex(currentIndex - 1);
+        }
+
+        // Event listeners
+        if (nextBtn) nextBtn.addEventListener('click', nextCard);
+        if (prevBtn) prevBtn.addEventListener('click', prevCard);
+
+        // Handle infinite scroll reset
+        scroller.addEventListener('scroll', () => {
+            const totalWidth = cards.length * cardWidth;
+            if (scroller.scrollLeft >= totalWidth) {
+                scroller.scrollLeft = 0;
+            } else if (scroller.scrollLeft <= 0) {
+                scroller.scrollLeft = totalWidth - cardWidth;
+            }
+        });
+
+        // Initialize position
+        scrollToIndex(0, 'auto');
+
+    }, 100); // Small delay to ensure DOM is ready
+}
+
 // ===== TOOLTIP INITIALIZATION =====
 function initializeTooltips() {
-  document.querySelectorAll('.tooltip-icon[data-wordcount]').forEach(icon => {
-    const wordCount = parseInt(icon.dataset.wordcount);
-    const formattedCount = wordCount.toLocaleString();
-    const pageCount = Math.round(wordCount / 300);
-    
-    // Update tooltip text
-    icon.querySelector('.tooltip-text').textContent = 
-      `This would be ${pageCount} pages long as a paperback book, calculated based on an average of 300 words per page.`;
-    
-    // Add accessibility attributes
-    icon.setAttribute('role', 'button');
-    icon.setAttribute('aria-label', 'Word count explanation');
-    icon.setAttribute('tabindex', '0');
-  });
+    document.querySelectorAll('.tooltip-icon[data-wordcount]').forEach(icon => {
+        const wordCount = parseInt(icon.dataset.wordcount);
+        const pageCount = Math.round(wordCount / 250);
+        
+        icon.querySelector('.tooltip-text').textContent = 
+            `This would be ${pageCount} pages long as a paperback book.`;
+        
+        icon.setAttribute('role', 'button');
+        icon.setAttribute('aria-label', 'Word count explanation');
+    });
 }
 
 // ===== ACCORDION INITIALIZATION =====
@@ -55,20 +146,11 @@ function initializeAccordions() {
     });
 }
 
-
 // ===== HEADER INITIALIZATION =====
 function initializeHeader() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
-    // Add dropdown arrows if missing
-    document.querySelectorAll('.mobile-menu-group > .nav-link, .mobile-menu-group > .dropdown-link').forEach(link => {
-        if (!link.querySelector('.dropdown-arrow') && link.nextElementSibling?.classList.contains('dropdown')) {
-            link.innerHTML += '<span class="dropdown-arrow">▾</span>';
-            link.classList.add('with-arrow');
-        }
-    });
-
     // Mobile menu toggle
     hamburger?.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -76,78 +158,12 @@ function initializeHeader() {
         navMenu.classList.toggle('active');
     });
 
-    // Desktop hover behavior
-    document.querySelectorAll('.dropdown-item').forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            if (window.innerWidth > 900) {
-                this.querySelector('.submenu')?.classList.add('active');
-            }
-        });
-        item.addEventListener('mouseleave', function() {
-            if (window.innerWidth > 900) {
-                this.querySelector('.submenu')?.classList.remove('active');
-            }
-        });
-    });
-
-    // Mobile click behavior for main items (Books)
-    document.querySelectorAll('.main-menu-group > .with-arrow').forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 900) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const dropdown = this.closest('.main-menu-group').querySelector('.main-dropdown');
-                const isOpen = dropdown?.classList.contains('active');
-                
-                // Close all other dropdowns
-                document.querySelectorAll('.main-dropdown.active').forEach(dd => {
-                    if (dd !== dropdown) dd.classList.remove('active');
-                });
-                
-                // Close all submenus when opening a main menu
-                if (!isOpen) {
-                    document.querySelectorAll('.nested-dropdown.active').forEach(sub => {
-                        sub.classList.remove('active');
-                    });
-                }
-                
-                dropdown?.classList.toggle('active', !isOpen);
-            }
-        });
-    });
-
-    // Mobile click behavior for submenu items (Series 1/2)
-    document.querySelectorAll('.submenu-group > .with-arrow').forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 900) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const submenu = this.closest('.submenu-group').querySelector('.nested-dropdown');
-                const isOpen = submenu?.classList.contains('active');
-                
-                // Toggle current submenu
-                submenu?.classList.toggle('active', !isOpen);
-                
-                // Close other submenus at the same level
-                if (this.closest('.main-dropdown')) {
-                    this.closest('.main-dropdown').querySelectorAll('.nested-dropdown').forEach(sm => {
-                        if (sm !== submenu) sm.classList.remove('active');
-                    });
-                }
-            }
-        });
-    });
-
-    // Close menu when clicking non-arrow links
-    document.querySelectorAll('.dropdown-link:not(.with-arrow)').forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 900) {
-                hamburger?.classList.remove('active');
-                navMenu?.classList.remove('active');
-            }
-        });
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger?.classList.remove('active');
+            navMenu?.classList.remove('active');
+        }
     });
 
     // Sticky header
@@ -157,21 +173,6 @@ function initializeHeader() {
     }
     window.addEventListener('scroll', updateHeader);
     updateHeader();
-
-    // Highlight current page
-    document.querySelectorAll('.nav-link').forEach(link => {
-        if (link.pathname === window.location.pathname) {
-            link.classList.add('active');
-        }
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (navMenu && hamburger && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    });
 }
 
 // ===== FOOTER INITIALIZATION =====
@@ -181,67 +182,9 @@ function initializeFooter() {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
-    
-    // Initialize MailerLite
-    initializeMailerLite();
-}
-
-function initializeMailerLite() {
-    // Load MailerLite script if not already loaded
-    if (!document.querySelector('script[src*="mailerlite"]')) {
-        const script = document.createElement('script');
-        script.src = 'https://assets.mailerlite.com/js/universal.js';
-        script.async = true;
-        script.onload = setupMailerLiteForm;
-        document.head.appendChild(script);
-    } else if (window.ml) {
-        setupMailerLiteForm();
-    } else {
-        // Retry every 500ms until MailerLite is loaded
-        const checkInterval = setInterval(() => {
-            if (window.ml) {
-                clearInterval(checkInterval);
-                setupMailerLiteForm();
-            }
-        }, 500);
-    }
-}
-
-// ===== PARALLAX EFFECT =====
-function initializeParallax() {
-  const layers = [
-    { element: document.querySelector('.parallax-bg'), speed: 0.5 }, 
-    { element: document.querySelector('.parallax-glow'), speed: 0.1 },
-    { element: document.querySelector('.parallax-foreground'), speed: 0.3 } 
-  ].filter(layer => layer.element); 
-
-  if (layers.length) {
-    let lastScrollPosition = 0;
-    let ticking = false;
-    
-    const updateParallax = () => {
-      layers.forEach(layer => {
-        layer.element.style.transform = `translateY(${lastScrollPosition * layer.speed}px)`;
-      });
-      ticking = false;
-    };
-    
-    const onScroll = () => {
-      lastScrollPosition = window.pageYOffset;
-      if (!ticking) {
-        window.requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    };
-    
-    window.addEventListener('scroll', onScroll, { passive: true });
-    updateParallax(); 
-  }
 }
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
-    loadComponents().then(() => {
-        initializeParallax(); 
-    });
+    loadComponents();
 });

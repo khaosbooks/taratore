@@ -228,7 +228,7 @@
 }
 
 .header.scrolled .menu-divider {
-  background-color: var(--divider-scrolled-color);
+  background-color: var(--primary-bg);
 }
 
 .header.scrolled .main-dropdown {

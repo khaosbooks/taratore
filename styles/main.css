@@ -88,6 +88,7 @@ html { overflow-x: hidden; }
 
     --red-border: var(--xxxs) solid var(--accent);
     --light-border: var(--xxxs) solid var(--primary-bg);
+    --black-border: var(--xxxs) solid var(--primary-text);
     --thick-border: var(--xxxl) solid var(--accent);
 
     /* Logo */
@@ -257,6 +258,10 @@ a .card {
     position: relative;
 }
 
+.padded {
+    padding: 0 var(--xxxl);
+}
+
 .section-no-top {
     top:0;
     padding-top: 0;
@@ -378,9 +383,14 @@ a .card {
 }
 
 .btn-secondary:hover {
-    background: var(--primary-bg);
+    background: var(--secondary-bg);
     color: var(--primary-text) !important;
     transform: var(--shift-up)
+}
+
+.black {
+    border: 1px solid var(--primary-text);
+    color: var(--primary-text) !important;
 }
 
 /* Cards */
