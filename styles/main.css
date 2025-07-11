@@ -187,7 +187,8 @@ a .card {
 }
 
 @media (max-width: 900px) {
-    h1 { font-size: var(--mobile-heading1); }
+    h1 { font-size: var(--mobile-heading1); 
+        padding-top: var(--xxxl);}
     h2 { font-size: var(--mobile-heading2); }
     h3 { font-size: var(--mobile-heading3); }
     h4 { font-size: var(--mobile-heading4); }
