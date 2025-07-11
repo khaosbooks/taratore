@@ -131,12 +131,6 @@
   transform: perspective(1000px) rotateY(-15deg);
 }
 
-.hero-buttons {
-  margin-top: var(--xl);
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
 /* #endregion */
 /* #region - SERIES NAV */
 .series-nav-container {
@@ -154,9 +148,17 @@
   margin-bottom: var(--xs);
 }
 
-.series-links {
+.series-title a:hover {
+  color: var(--primary-bg);
+}
+
+.series-links a {
   font-size: var(--md);
   margin-top: var(--xxxs);
+}
+
+.series-links a:hover {
+  color: var(--accent);
 }
 
 .series-nav-section {
@@ -222,7 +224,6 @@
   .hero-text h1 {
     text-align: center !important;
     width: 100%;
-
   }
 
   .hero-content > .hero-tight {
@@ -232,6 +233,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: var(--xl);
   }
 
   .book-mockup-3d {
@@ -240,31 +242,21 @@
     width: auto;
   }
 
-  .hero-buttons {
-    width: 100%;
-    max-width: 300px;
-    margin: var(--md) auto 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .btn, .btn-secondary {
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-    padding: var(--sm) var(--md);
-    box-sizing: border-box;
-    font-size: var(--md);
-  }
-
-  .hero-text .hero-buttons {
+  .hero-text {
     margin-top: var(--xl);
   }
-
-  .hero-content > .hero-tight .hero-buttons {
-    margin-top: var(--md);
+  
+  .hero-content > .hero-tight > .btn-secondary {
+    width: calc(100% - 2 * var(--xs));
+    margin: var(--sm) auto;
+    display: block;
   }
+  
+  .hero-content > .hero-tight > .btn-secondary a {
+    display: block;
+    width: 100%;
+  }
+  
 }
 /* #endregion */
 /* #region - SIDE BAR SECTION */
@@ -359,8 +351,7 @@
 }
 
 .genre-list li {
-  background: var(--accent);
-  color: var(--primary-bg);
+  background-color: var(--primary-bg);
   padding: var(--xxs) var(--sm);
   font-size: var(--xs);
   text-transform: uppercase;
@@ -371,12 +362,12 @@
   border: var(--xxs) solid transparent;
   border-image: linear-gradient(
     to right,
-    #FF0018 0% 16.66%,  /* Red */
-    #FFA52C 16.66% 33.33%,  /* Orange */
-    #FFFF41 33.33% 50%,  /* Yellow */
-    #008018 50% 66.66%,  /* Green */
-    #0000F9 66.66% 83.33%,  /* Blue */
-    #86007D 83.33% 100%  /* Purple */
+    #FF0018 0% 16.66%,
+    #FFA52C 16.66% 33.33%,
+    #FFFF41 33.33% 50%,
+    #008018 50% 66.66%,
+    #0000F9 66.66% 83.33%,
+    #86007D 83.33% 100% 
   ) 1;
   background-origin: border-box;
   background-clip: padding-box;
@@ -401,7 +392,6 @@
 
 /* Accordion Styles */
 .accordion-item {
-  border-bottom: var(--light-border);
   padding-top: var(--xxl);
 }
 
@@ -514,17 +504,9 @@
   margin-bottom: var(--xl);
 }
 
-.excerpt-close {
-  padding: var(--xs) var(--xl);
-}
-
 @media (max-width: 900px) {
   .padded {
     padding: 0 var(--lg);
-  }
-  
-  .excerpt-close {
-    width: 100%;
   }
 }
 /* #endregion */
@@ -597,6 +579,10 @@
   break-inside: avoid;
 }
 
+.masonry-grid img[data-loaded="false"] {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .masonry-grid {
     columns: 2;
@@ -625,7 +611,6 @@
   line-height: var(--xxl);
 }
 
-/* Show placeholder when no image */
 .card-img-container:not(:has(img)) .initials,
 .card-img-container img[src=""] + .initials {
   display: block;

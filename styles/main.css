@@ -145,6 +145,10 @@ p {
     margin-bottom: var(--lg);
 }
 
+.p-tight {
+    margin-bottom: 0 !important;
+}
+
 .p-centred {
     text-align: center;
 }
@@ -343,7 +347,7 @@ a .card {
 
 /* Buttons */
 .btn {
-    display: inline-flex;
+    display: flex;
     padding: var(--padding-btn);
     background-color: var(--accent);
     color: var(--primary-bg) !important;
@@ -353,11 +357,15 @@ a .card {
     transition: var(--transition);
     align-items: center;
     gap: var(--sm);
-    text-transform: uppercase;
     font-size: var(--sm);
     justify-content: center;
     text-align: center;
-    width: 100%;
+    margin-top: var(--md);
+    box-shadow: var(--shadow-default);
+}
+
+.btn a {
+    color: var(--primary-bg) !important;
 }
 
 .btn:hover {
@@ -366,42 +374,34 @@ a .card {
 }
 
 .btn-secondary {
-    display: inline-flex;
     background: transparent;
-    padding: var(--padding-btn);
     border: 1px solid var(--primary-bg);
-    color: var(--primary-bg) !important;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: var(--transition);
-    align-items: center;
-    gap: var(--sm);
-    text-transform: uppercase;
-    font-size: var(--sm);
-    justify-content: center;
-    text-align: center;
-    width: 100%;
 }
 
 .btn-secondary:hover {
-    background: var(--secondary-bg);
+    background: var(--secondary-bg) !important;
+    transform: var(--shift-up);
+}
+
+.btn-secondary:hover a {
     color: var(--primary-text) !important;
-    transform: var(--shift-up)
 }
 
 .btn-blocked {
     cursor: no-drop;
 }
 
-.btn-blocked:hover {
-    background-color: var(--secondary-bg) !important;
-    transform: none;
+.btn-black {
+    border: 1px solid var(--primary-text);
+}
+
+.btn-black a {
     color: var(--primary-text) !important;
 }
 
-.black {
-    border: 1px solid var(--primary-text);
-    color: var(--primary-text) !important;
+.btn-bottom {
+    position: absolute;
+    bottom: 0;
 }
 
 /* Cards */
@@ -431,74 +431,20 @@ a .card {
     object-fit: cover;
 }
 
-.card .btn {
+.card {
     margin-top: auto;
-    width: 50%;
 }
 /* #endregion */
 /* #region - MOBILE */
 @media (max-width: 900px) {
-    :root {
-        font-size: 30px;
-    }
-
-    body {
-        width: 100%;
-    }
-    
-    main {
-        margin: var(--xxl) var(--sm); 
-    }
-
-    .logo {
-        width: 400px;
-    }
-    
-    /* Typography */
-    h1 { font-size: var(--xxxl); }
-    h2 { font-size: var(--xxl); }
-    h3 { font-size: var(--xl); }
-    h4 { font-size: var(--lg); }
-    
-    /* Sections */
-    .section {
-        padding: var(--xxl) 0;
-    }
-    
-    .section-with-divider {
-        padding-bottom: calc(var(--xxl) + var(--lg));
-    }
-    
-    .section-after-divider {
-        margin-top: calc(-1 * var(--lg) - 8px);
-    }
-    
-    .section-divider {
-        top: -8px;
-        height: var(--lg);
-    }
-    
-    .section-content {
-        width: 92%;
-        padding: 0 var(--sm);
-    }
-    
-    /* Components */
-    .card {
-        padding: var(--sm);
-    }
-    
-    .card .btn {
-        height: var(--xxl);
-    }
-    
     .grid {
-        grid-template-columns: 1fr;
-        gap: var(--xl);
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--lg); 
     }
+    oo squished */
     
-    .centred {
-        flex-wrap: wrap; 
+    .grid > * {
+        min-width: 0;
     }
 }
 /* #endregion */

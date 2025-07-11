@@ -168,6 +168,7 @@
   background: var(--accent);
   color: var(--primary-bg) !important;
   transition: var(--transition);
+  margin-top: 0;
 }
 
 .discord-btn:hover {
@@ -261,7 +262,7 @@
     font-size: calc(var(--sm) * var(--mobile-text-scale));
   }
   
-  .btn, .discord-btn {
+  .discord-btn {
     font-size: calc(var(--sm) * var(--mobile-text-scale));
   }
 

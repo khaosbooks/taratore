@@ -14,12 +14,57 @@ async function loadComponents() {
         initializeAccordions();
         initializeExcerptAccordions();
         initializeTooltips();
+        initializeLoadMore();
 
         document.body.classList.add('components-loaded');
     } catch (error) {
         console.error('Error loading components:', error);
     }
 }
+
+// ===== LOAD MORE FUNCTIONALITY =====
+function initializeLoadMore() {
+  const loadMoreBtn = document.querySelector('.load-more');
+  const masonryGrid = document.querySelector('.masonry-grid');
+  
+  if (!loadMoreBtn || !masonryGrid) return;
+
+  // Configuration
+  const BATCH_SIZE = 5; // Number of images to show per click
+  let visibleCount = 0;
+  const allImages = Array.from(masonryGrid.querySelectorAll('img'));
+
+  // Initialize - mark all images
+  allImages.forEach((img, index) => {
+    img.dataset.index = index;
+    img.dataset.loaded = index < BATCH_SIZE ? 'true' : 'false';
+    if (index >= BATCH_SIZE) img.style.display = 'none';
+  });
+
+  loadMoreBtn.addEventListener('click', () => {
+    // Calculate next batch
+    const nextBatch = allImages.slice(visibleCount, visibleCount + BATCH_SIZE);
+    
+    // Show next batch
+    nextBatch.forEach(img => {
+      img.dataset.loaded = 'true';
+      img.style.display = 'block';
+    });
+
+    visibleCount += BATCH_SIZE;
+
+    // Hide button if no more images
+    if (visibleCount >= allImages.length) {
+      loadMoreBtn.style.display = 'none';
+    }
+  });
+
+  // Hide button if all images are already visible
+  if (allImages.length <= BATCH_SIZE) {
+    loadMoreBtn.style.display = 'none';
+  }
+}
+
 
 // ===== EXCERPT ACCORDION =====
 function initializeExcerptAccordions() {
