@@ -439,12 +439,15 @@ a .card {
 @media (max-width: 900px) {
     .grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--lg); 
+        gap: var(--xs); 
     }
-    oo squished */
     
     .grid > * {
         min-width: 0;
+    }
+
+    .card {
+        padding: var(--xs);
     }
 }
 /* #endregion */
