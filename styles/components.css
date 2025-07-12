@@ -1,8 +1,6 @@
 /* #region - HEADER STYLES */
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   background-color: rgba(var(--primary-bg-rgb), var(--header-bg-opacity));
   backdrop-filter: blur(var(--header-blur));
@@ -19,7 +17,7 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--xxxs) var(--lg);
+  padding: var(--xs) 0;
 }
 
 .nav-menu {
@@ -214,6 +212,7 @@
 
 .header.scrolled .nav-link {
   color: var(--primary-bg);
+  padding: 0;
 }
 
 .header.scrolled .nav-link:hover {
@@ -426,9 +425,6 @@
   border-top: 1px solid var(--divider-color);
   text-align: center;
   margin-bottom: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
   width: 100vw;
   z-index: 9998;
 }
@@ -439,7 +435,6 @@
   gap: var(--xxl);
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--md);
 }
 
 .footer-col {

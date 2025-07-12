@@ -15,6 +15,7 @@ async function loadComponents() {
         initializeExcerptAccordions();
         initializeTooltips();
         initializeLoadMore();
+        initializeLoadMoreReviews();
 
         document.body.classList.add('components-loaded');
     } catch (error) {
@@ -22,7 +23,7 @@ async function loadComponents() {
     }
 }
 
-// ===== LOAD MORE FUNCTIONALITY =====
+// ===== LOAD MORE ART =====
 function initializeLoadMore() {
   const loadMoreBtn = document.querySelector('.load-more');
   const masonryGrid = document.querySelector('.masonry-grid');
@@ -30,30 +31,31 @@ function initializeLoadMore() {
   if (!loadMoreBtn || !masonryGrid) return;
 
   // Configuration
-  const BATCH_SIZE = 5; // Number of images to show per click
+  const BATCH_SIZE = 5;
   let visibleCount = 0;
   const allImages = Array.from(masonryGrid.querySelectorAll('img'));
 
-  // Initialize - mark all images
+  // Initialize: Show first batch immediately
   allImages.forEach((img, index) => {
-    img.dataset.index = index;
-    img.dataset.loaded = index < BATCH_SIZE ? 'true' : 'false';
-    if (index >= BATCH_SIZE) img.style.display = 'none';
+    if (index >= BATCH_SIZE) {
+      img.style.display = 'none'; // Hide rest
+    }
   });
+  visibleCount = BATCH_SIZE; // Track visible items
 
-  loadMoreBtn.addEventListener('click', () => {
-    // Calculate next batch
+  // Single-click handler
+  loadMoreBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent default if it's an `<a>` tag
+
     const nextBatch = allImages.slice(visibleCount, visibleCount + BATCH_SIZE);
     
-    // Show next batch
     nextBatch.forEach(img => {
-      img.dataset.loaded = 'true';
-      img.style.display = 'block';
+      img.style.display = 'block'; // Show next batch
     });
 
     visibleCount += BATCH_SIZE;
 
-    // Hide button if no more images
+    // Hide button if done
     if (visibleCount >= allImages.length) {
       loadMoreBtn.style.display = 'none';
     }
@@ -65,6 +67,47 @@ function initializeLoadMore() {
   }
 }
 
+// ===== LOAD MORE REVIEWS =====
+function initializeLoadMoreReviews() {
+  const loadMoreBtn = document.querySelector('.load-more-reviews');
+  const reviewsGrid = document.querySelector('.reviews-grid');
+  
+  if (!loadMoreBtn || !reviewsGrid) return;
+
+  // Configuration
+  const BATCH_SIZE = 2; // Load 2 reviews per click
+  let visibleCount = BATCH_SIZE; // Start with first batch visible
+  const allReviews = Array.from(reviewsGrid.querySelectorAll('.review-card'));
+
+  // Initialize - hide all except first batch
+  allReviews.forEach((review, index) => {
+    if (index >= BATCH_SIZE) {
+      review.style.display = 'none';
+    }
+  });
+
+  // Update button visibility
+  const updateButton = () => {
+    if (visibleCount >= allReviews.length) {
+      loadMoreBtn.style.display = 'none';
+    }
+  };
+
+  // Initial check
+  updateButton();
+
+  // Load more on click
+  loadMoreBtn.addEventListener('click', () => {
+    const nextBatch = allReviews.slice(visibleCount, visibleCount + BATCH_SIZE);
+    
+    nextBatch.forEach(review => {
+      review.style.display = 'block';
+    });
+
+    visibleCount += BATCH_SIZE;
+    updateButton();
+  });
+}
 
 // ===== EXCERPT ACCORDION =====
 function initializeExcerptAccordions() {
