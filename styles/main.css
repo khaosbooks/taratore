@@ -421,15 +421,21 @@ a .card {
 @media (max-width: 900px) {
   /* Base button adjustments */
   .btn .btn-secondary .btn-blocked .btn-black {
-    width: 100%;
     padding: var(--md) 0;
     font-size: var(--mobile-body-text);
-    white-space: nowrap;
   }
 
   .btn + .btn {
     margin-top: var(--md);
   }
+
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover, 
+  .btn-secondary:hover {
+    background-color: inherit !important;
+    transform: none !important;
+  }
+}
 
 @media (hover: hover) {
   .btn:hover {

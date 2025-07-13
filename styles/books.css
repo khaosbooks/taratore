@@ -141,6 +141,10 @@
     align-items: center !important;
   }
 
+  .hero-content .btn {
+    width: 80%;
+  }
+
   .cover-mockup {
     max-width: 60%;
     height: auto;
@@ -496,5 +500,12 @@
 .card-img-container:not(:has(img)) .initials,
 .card-img-container img[src=""] + .initials {
   display: block;
+}
+
+@media (max-width: 900px) {
+  .initials {
+    font-size: var(--lg);
+    line-height: var(--lg);
+  }
 }
 /* #endregion */

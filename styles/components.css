@@ -534,5 +534,17 @@
     align-items: center;
     padding: 0 var(--xxl);
   }
+
+  .footer-bottom-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: var(--sm);
+  }
+
+  .divider {
+    display: none;
+  }
 }
 /* #endregion */
