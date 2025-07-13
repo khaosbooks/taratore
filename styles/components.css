@@ -17,7 +17,27 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--xs) 0;
+  padding: var(--xs) var(--xxl);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sm);
+  text-decoration: none;
+}
+
+.logo-full {
+  height: var(--xxxl);
+  width: auto;
+  transition: var(--transition);
+  display: block;
+}
+
+.logo-compact {
+  display: none;
+  height: var(--xl);
+  width: auto;
 }
 
 .nav-menu {
@@ -256,6 +276,19 @@
     font-size: var(--mobile-body-text);
   }
 
+  .logo-full {
+    display: block !important;
+  }
+
+  .logo-compact {
+    display: none !important;
+    height: var(--xxxl);
+  }
+
+  .nav-container {
+    padding: var(--xxxs) var(--md);
+  }
+
   .nav-menu {
     font-size: calc(var(--sm) * var(--mobile-text-scale));
   }
@@ -265,7 +298,7 @@
   }
 
   .header {
-    padding: var(--sm) 0;
+    padding: var(--sm);
   }
   
   .hamburger {
@@ -434,6 +467,7 @@
   gap: var(--xxl);
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 var(--xxl);
 }
 
 .footer-col {
@@ -442,8 +476,8 @@
 }
 
 .footer-logo {
-  height: var(--xxxl);
-  width: auto;
+  height: auto;
+  width: 100%;
   margin: 0 auto var(--md);
   display: block;
 }
@@ -502,26 +536,23 @@
 }
 /* #endregion */
 /* #region - MOBILE */
-@media (max-width: 900px) {
-  .site-footer {
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0;
-  }
-
+@media (max-width: 900px) { 
   .footer-grid {
-    grid-template-columns: 1fr;
-    gap: var(--xl);
-    text-align: center;
-  }
-  
-  .footer-grid, .footer-bottom {
-    width: 100vw;
+    margin: 0 auto;
+    padding: 0 !important;
+    width: 90%;
+    padding-bottom: var(--xl) !important;
   }
   
   .footer-content {
     padding: 0 var(--md);
   }
+
+  .footer-logo {
+    width: 100%;
+    height: auto;
+  }
+
   .footer-links {
     margin-bottom: var(--md);
   }
@@ -532,15 +563,19 @@
   
   .footer-col {
     align-items: center;
-    padding: 0 var(--xxl);
+    padding: 0 !important;
+  }
+
+  .footer-bottom {
+    padding: var(--xs) 0;
+    margin-top: 0;
   }
 
   .footer-bottom-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    font-size: var(--sm);
+    font-size: var(--xs);
+    gap: 0;
   }
 
   .divider {

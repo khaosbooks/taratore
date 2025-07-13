@@ -99,10 +99,11 @@
     z-index: 5;
     max-width: 1200px !important;
     margin: 0 auto;
-    padding: var(--section-padding);
+    padding: var(--xxl);
     justify-content: space-between;
-    gap: var(--xxxl);
     text-align: left;
+    flex-wrap: wrap;
+    gap: var(--xl);
 }
 
 .hero-content > div:first-child {
@@ -142,7 +143,9 @@
   }
 
   .hero-content .btn {
-    width: 80%;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
   }
 
   .cover-mockup {
@@ -190,7 +193,8 @@
   margin: 0 0 var(--lg) 0;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--xl);
+  justify-content: space-between;
+  gap: var(--xs) var(--xl);
 }
 
 .details-list li {
@@ -248,6 +252,7 @@
   margin: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: var(--lg);
 }
 
@@ -328,6 +333,7 @@
   cursor: pointer;
   text-align: left;
   background: none !important;
+
 }
 
 .accordion-header:hover {

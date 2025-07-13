@@ -138,6 +138,7 @@ p {
 
 .ps {
     font-size: var(--xs);
+    margin-bottom: 0;
 }
 
 h1, h2, h3, h4, h5 {
@@ -159,7 +160,7 @@ h5 { font-size: var(--md);
     text-transform: uppercase;
     letter-spacing: var(--xxs);
     margin-bottom: 0;
-    margin-top: var(--xxl);
+    margin-top: 0;
     font-weight: normal;
 }
 
@@ -170,7 +171,7 @@ a {
 }
 
 a:hover {
-    color: var(--primary-bg);
+    color: var(--primary-bg) !important;
 }
 
 a .card {
@@ -205,44 +206,6 @@ a .card {
   transform: scale(1.1);
 }
 /* #endregion */
-/* #region - LOGO */
-.logo {
-    width: 320px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: var(--sm);
-  text-decoration: none;
-}
-
-.logo-full {
-  height: var(--xxl);
-  width: auto;
-  transition: var(--transition);
-  display: block;
-}
-
-.logo-compact {
-  display: none;
-  height: var(--xl);
-  width: auto;
-}
-
-@media (max-width: 900px) {
-    .logo {
-        width: auto;
-        max-width: 60%;
-    }
-  
-    .logo-full,
-    .mobile-logo {
-        height: var(--mobile-logo-height);
-    }
-}
-
-/* #endregion */
 /* #region - SECTIONS */
 .section {
     width: 100%;
@@ -250,6 +213,7 @@ a .card {
 
 .section-content {
     max-width: 1200px !important;
+    padding: 0 var(--xxl);
     margin: 0 auto;
 }
 
@@ -351,6 +315,7 @@ a .card {
 @media (max-width: 900px) {
   .section-content {
     max-width: 90% !important;
+    padding: 0 !important;
   }
 
   .two-column-section {
@@ -374,8 +339,6 @@ a .card {
 .btn {
     display: flex;
     padding: var(--padding-btn);
-    background-color: var(--accent);
-    color: var(--primary-bg) !important;
     border: none;
     cursor: pointer;
     text-transform: uppercase;
@@ -386,56 +349,85 @@ a .card {
     justify-content: center;
     text-align: center;
     margin-top: var(--md);
-    box-shadow: var(--shadow-default);
-}
-
-.btn:hover {
-    background-color: var(--dark-red) !important;
-    transform: var(--shift-up)
+    border: 1px solid var(--accent);
 }
 
 .btn-secondary {
-    background: transparent;
     border: 1px solid var(--primary-bg);
 }
 
-.btn-secondary:hover {
-    background: var(--secondary-bg) !important;
-    transform: var(--shift-up);
+.section-light .btn {
+    background: var(--accent);
+    color: var(--primary-bg);
 }
-
-.btn-blocked {
-    cursor: no-drop;
-}
-
-.btn-black {
+.section-light .btn-secondary {
+    background: none;
+    color: var(--primary-text);
     border: 1px solid var(--primary-text);
+}
+
+.section-light .btn:hover {
+    background-color: var(--dark-red) !important;
+    color: var(--primary-bg) !important;
+    transform: var(--shift-up) !important;
+}
+    
+.section-light .btn-secondary:hover {
+    background: var(--secondary-bg) !important;
+    transform: var(--shift-up) !important;
     color: var(--primary-text) !important;
 }
 
-.btn-bottom {
-    position: absolute;
-    bottom: 0;
+.section-dark .btn {
+    background: var(--accent);
+    color: var(--primary-bg);
+}
+.section-dark .btn-secondary {
+    background: none;
+    color: var(--primary-bg);
+}
+
+.section-dark .btn:hover {
+    background-color: var(--dark-red) !important;
+    color: var(--primary-bg) !important;
+    transform: var(--shift-up) !important;
+}
+    
+.section-dark .btn-secondary:hover {
+    background: var(--secondary-bg) !important;
+    transform: var(--shift-up) !important;
+    color: var(--primary-text) !important;
+}
+
+.section-red .btn {
+    background: var(--accent);
+    color: var(--primary-bg);
+}
+.section-red .btn-secondary {
+    background: none;
+    color: var(--primary-bg);
+}
+
+.section-red .btn:hover {
+    background-color: var(--primary-text) !important;
+    color: var(--primary-bg) !important;
+    transform: var(--shift-up) !important;
+}
+    
+.section-red .btn-secondary:hover {
+    background: var(--secondary-bg) !important;
+    transform: var(--shift-up) !important;
+    color: var(--primary-text) !important;
 }
 
 @media (max-width: 900px) {
-    .btn .btn-secondary .btn-blocked .btn-black {
+    .btn, .btn-secondary, .btn-blocked, .btn-black {
         padding: var(--md) 0;
         font-size: var(--mobile-body-text);
     }
 
     .btn + .btn {
         margin-top: var(--md);
-    }
-
-    .btn:hover {
-        background-color: var(--accent) !important;
-        transform: none !important;
-    }
-
-    .btn-secondary:hover {
-        background: transparent !important;
-        transform: none !important;
     }
 }
 

@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <script src="/js/main.js"></script>
+  <script src="/js/shared.js" defer></script>
   
-  <title>Header Test</title>
+  <title>Template for Individual Book Pages</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -29,8 +30,7 @@
   </div>
 
   <!--Hero header-->
-  <section class="section section-red">
-    <div class="spacer"></div>
+  <section class="section section-dark">
     <section class="book-hero">
       <div class="parallax-wrapper">
         <div class="parallax-bg" style="background-image: url('/images/books/LastSunrise/hero-bg.jpg')"></div>
@@ -38,8 +38,10 @@
         <div class="hero-bg-overlay"></div>
         <div class="parallax-glow" style="background-image: url('/images/books/LastSunrise/hero-glow.png')"></div>
       </div>
+    <div class="spacer"></div>
       <div class="hero-content">
         <div>
+            <div class="spacer"></div>
             <h1>Last Sunrise</h1>
             <p>Sinialli was the best courtesan in all of Trace, and she would make sure everyone remembered her.</p>
             <a href="https://books2read.com/lastsunrise" class="btn">Buy Now</a>
@@ -70,7 +72,7 @@
       <div class="content-column">
         <div class="metadata-card">
           <ul class="details-list">
-            <li><strong>Published:</strong> July 3, 2024</li>
+            <li><strong>Status:</strong> Published July 3, 2024</li>
             <li class="word-count">
               <strong>Length:</strong> <span class="word-count-number">18,571</span> words
               <span class="tooltip-icon" data-wordcount="18571">★
@@ -78,9 +80,6 @@
               </span>
             </li>
             <li><strong>Format:</strong> eBook</li>
-          </ul>
-          
-          <ul class="details-list">
             <li><strong>Written in:</strong> 3rd person</li>
             <li><strong>POVs:</strong> Single</li>
             <li><strong>Tense:</strong> Past</li>
@@ -97,7 +96,7 @@
         <h2>Last Sunrise</h2>
         <p>When the constant war between the two nations reaches the doorsteps of the Crescent Moon Pavilion, Sinialli's life is turned completely around and she is left with nothing but memories of better times. She prays for release and to join her family, to become one with them, but the gods have other plans.</p>
         <p>With the scents of magic surrounding her and guiding her, Sinialli knows what she has to do. She knows this would be the last sunset she would ever see, if she ever even makes it to sunrise. And she knows, as the best courtesan in all of Trace, what it would take to make sure she and her family would be remembered forever.</p>
-        <a href="#excerpt" class="btn btn-secondary btn-black">Read Excerpt</a>
+        <a href="#excerpt" class="btn btn-secondary">Read Excerpt</a>
         <a href="https://books2read.com/lastsunrise" class="btn">Buy Now</a>
       </div>
       
@@ -175,6 +174,7 @@
         <div class="accordion-content">
           <p>When the constant war between the two nations reaches the doorsteps of the Crescent Moon Pavilion, Sinialli's life is turned completely around and she is left with nothing but memories of better times.</p>
           <a href="https://books2read.com/lastsunrise" class="btn">Continue reading</a>
+          <a href="#series" class="btn btn-secondary">Learn more about the world</a>
           <a class="btn btn-secondary excerpt-close">Close Excerpt</a>
         </div>
       </div>
@@ -265,7 +265,11 @@
       <div class="spacer"></div>
       <h2>Characters</h2>
       <div class="grid two-column-grid">
-        <div class="card">
+        <div class="card"
+          data-character-id="sinialli" 
+          data-books="last-sunrise" 
+          data-role="mc"
+          data-series="shattered-realms">
           <div class="card-img-container">
             <img src="/images/books/LastSunrise/character_Sinialli.png" alt="Sinialli" class="card-img">
           </div>
@@ -323,48 +327,64 @@
 
   <div class="section-divider divider-down divider-dark"></div>
 
-  <!--Series cards-->
-  <section class="section section-red section-after-divider">
+  <!--Series section-->
+  <section class="section section-light section-after-divider" id="series">
     <div class="section-content">
-      <div class="spacer"></div>
-      <h2>The Shattered Series</h2>
-      <div class="grid two-column-grid">
-        <div class="card">
-          <div class="card-img-container">
-            <img src="/images/books/LastSunrise/clean-cover.png" alt="Last Sunrise" class="card-img">
-          </div>
-          <h3>Last Sunrise</h3>
-          <p>Book 1 • Standalone</p>
-          <a href="/books/shattered/last-sunrise" class="btn">Learn More</a>
-        </div>
-        
-        <div class="card">
-          <div class="card-img-container">
-            <span class="initials">Coming Soon</span>
-          </div>
-          <h3>Untitled Sequel</h3>
-          <p>Book 2</p>
-          <a class="btn btn-secondary btn-blocked">Coming Soon</a>
-        </div>
+      <div class="metadata-card">
+        <div class="spacer"></div>
+        <h3>The Shattered Realms</h3>
+        <p>A world where [1-sentence series logline]</p>
+        <div class="menu-divider"></div>
+        <p>The following info may contain spoilers.</p>
+        <ul class="details-list">
+          <li><strong>Start here?:</strong> Can (but best after Book 2)</li>
+          <li><strong>Needed context:</strong> None, but Book 2 helps</li>
+          <li><strong>Timeline:</strong> 2000 years after GoD</li>
+          <li><strong>Reading order:</strong> Standalone</li>
+          <li><strong>Series progress:</strong> 3 of 8
+            <span class="tooltip-icon">★
+              <span class="tooltip-text">3 released • 2 written • 3 planned</span>
+            </span>
+          </li>
+          <li><strong>Returning characters:</strong> 4
+            <span class="tooltip-icon">★
+              <span class="tooltip-text">Tassikar from GoD 2 • [spoiler] • Next • and another god</span>
+            </span>
+          </li>
+          <li><strong>Easter eggs:</strong> None</li>
+        </ul>
 
-        <div class="card">
-          <div class="card-img-container">
-            <span class="initials">Coming Soon</span>
-          </div>
-          <h3>Untitled Third book long title here</h3>
-          <p>Book 2</p>
-          <a class="btn btn-secondary btn-blocked">Coming Soon</a>
-        </div>
+        <ul class="genre-list">
+          <li>Serialized online</li>
+          <li>Patreon bonuses</li>
+          <li>Early access available</li>
+          <li>Reader input</li>
+          <li>Discord channel</li>
+        </ul>
 
-        <div class="card">
-          <div class="card-img-container">
-            <span class="initials">Coming Soon</span>
-          </div>
-          <h3>Untitled Sequel</h3>
-          <p>Book 2</p>
-          <a class="btn btn-secondary btn-blocked">Coming Soon</a>
+        <a href="/series/shattered-realms" class="btn btn-secondary">Explore Full Series</a>
+      </div>
+      <div class="menu-divider"></div>
+      <div class="accordion-item">
+        <a class="accordion-header" aria-expanded="false">
+          <h5>Recap of what happened before <span class="accordion-icon">▾</span></h5>
+        </a>
+        <div class="accordion-content">
+          <p>[Very brief 2-3 sentence spoiler-free setup]</p>
+          <a href="/book/previous" class="btn btn-secondary btn-black">Learn more</a>
         </div>
       </div>
+
+      <div class="accordion-item">
+        <a class="accordion-header" aria-expanded="false">
+          <h5>Continue the journey<span class="accordion-icon">▾</span></h5>
+        </a>
+        <div class="accordion-content">
+          <p>[Next book title] releases [date]. [1-sentence hook].</p>
+          <a href="/book/next" class="btn btn-secondary">About Next Book</a>
+        </div>
+      </div>
+      <a href="#buy" class="btn">Read Current Book</a>
       <div class="spacer"></div>
     </div>
   </section>
