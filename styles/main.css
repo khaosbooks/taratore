@@ -1,7 +1,7 @@
-/* {
-    outline: 1px solid limegreen !important;
+* {
+    outline: 1px solid red !important;
 }
-    */
+*
 
 /* #region - RESET & BASE STYLES */
 * {
@@ -330,9 +330,16 @@ a .card {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: var(--xl);
     margin: var(--md) 0;
+    align-items: stretch;
+}
+
+.two-column-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--xl);
     align-items: stretch;
 }
 
@@ -358,7 +365,7 @@ a .card {
 
   .two-column-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--md); 
+    gap: var(--md);
   }
 }
 
@@ -413,7 +420,7 @@ a .card {
 
 @media (max-width: 900px) {
   /* Base button adjustments */
-  .btn {
+  .btn .btn-secondary .btn-blocked .btn-black {
     width: 100%;
     padding: var(--md) 0;
     font-size: var(--mobile-body-text);
@@ -423,6 +430,18 @@ a .card {
   .btn + .btn {
     margin-top: var(--md);
   }
+
+@media (hover: hover) {
+  .btn:hover {
+    background-color: var(--dark-red) !important;
+    transform: var(--shift-up);
+  }
+  .btn-secondary:hover {
+    background: var(--secondary-bg) !important;
+    transform: var(--shift-up);
+  }
+}
+
 }
 /* #endregion */
 /* #region - CARDS */
@@ -438,6 +457,10 @@ a .card {
     overflow: hidden;
     margin-bottom: var(--md);
     background-color: var(--primary-bg);
+}
+
+.card a.btn {
+  margin-top: auto; 
 }
 
 .card-img {

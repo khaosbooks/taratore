@@ -1,7 +1,7 @@
 /* #region - STATUS BANNER */
 .status-banner-wrapper {
     position: fixed;
-    bottom: var(--xxxl);
+    bottom: calc(var(--xl)*1.7);
     left: 0;
     transform: rotate(35deg) translateX(-25px) translateY(-10px);
     transform-origin: left center;
@@ -19,6 +19,12 @@
     font-size: var(--sm);
     white-space: nowrap;
     text-align: center;
+}
+
+@media (max-width: 900px) {
+  .status-banner-wrapper {
+    bottom: calc(var(--xl)*1.5);
+  }
 }
 /* #endregion */
 /* #region - HERO PARALLAX */
@@ -118,7 +124,6 @@
 }
 
 .cover-mockup {
-    max-height: 50vh;
     margin-bottom: var(--md);
 }
 
@@ -306,7 +311,7 @@
 }
 
 .sticky-content {
-  padding: 0 var(--xl);
+  padding: 0 var(--xl) var(--xl) var(--xl);
 }
 
 /* Accordion Styles */
@@ -439,7 +444,7 @@
 /* #endregion */
 /* #region - ART GALLERY */
 .masonry-grid {
-  columns: 3;
+  columns: 4;
   column-gap: var(--xl);
   margin: var(--xl) 0;
 }

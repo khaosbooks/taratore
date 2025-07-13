@@ -212,7 +212,6 @@
 
 .header.scrolled .nav-link {
   color: var(--primary-bg);
-  padding: 0;
 }
 
 .header.scrolled .nav-link:hover {
@@ -421,7 +420,7 @@
 /* #region - FOOTER STYLES */
 .site-footer {
   background-color: var(--secondary-bg);
-  padding: var(--xl) 0 var(--md);
+  padding: var(--xl) 0 0 0;
   border-top: 1px solid var(--divider-color);
   text-align: center;
   margin-bottom: 0;
@@ -489,13 +488,17 @@
 .footer-bottom {
   text-align: center;
   margin-top: var(--xl);
-  padding: var(--md);
+  padding: var(--xs);
   border-top: 1px solid var(--divider-color);
   font-size: var(--sm);
   background-color: rgba(var(--primary-text-rgb), var(--header-scrolled-bg-opacity));
   color: var(--primary-bg);
   width: 100%;
   margin-bottom: 0;
+}
+
+.footer-bottom-content {
+  line-height: var(--md);
 }
 /* #endregion */
 /* #region - MOBILE */
@@ -514,7 +517,6 @@
   
   .footer-grid, .footer-bottom {
     width: 100vw;
-    margin-left: calc(-1 * var(--md));
   }
   
   .footer-content {
