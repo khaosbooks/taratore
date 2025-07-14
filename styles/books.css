@@ -515,3 +515,47 @@
   }
 }
 /* #endregion */
+/* #region - SERIES */
+.series-banner-container {
+  position: relative;
+  height: calc(var(--xxxl)*5);
+  overflow: hidden;
+  margin: calc(-1 * var(--lg)) calc(-1 * var(--lg)) var(--xl);
+  border-bottom: var(--red-border);
+}
+
+.series-banner-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.series-logo-overlay {
+  position: absolute;
+  bottom: var(--md);
+  left: 5%;
+  transform: translateX(-50%);
+  height: var(--xxxl);
+  z-index: 2;
+}
+
+.series-logo-overlay img {
+  height: 100%;
+  width: auto;
+}
+
+@media (max-width: 900px) {
+  .series-banner-container {
+    height: 150px;
+  }
+  
+  .series-logo-overlay {
+    height: 30px;
+  }
+}
+/* #endregion */
