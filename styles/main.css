@@ -170,10 +170,6 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    color: var(--primary-bg) !important;
-}
-
 a .card {
     color: var(--primary-bg)
 }

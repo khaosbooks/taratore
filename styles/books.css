@@ -551,11 +551,12 @@
 
 @media (max-width: 900px) {
   .series-banner-container {
-    height: 150px;
+    margin: calc(-1 * var(--sm)) calc(-1 * var(--sm)) var(--md);
+
   }
   
   .series-logo-overlay {
-    height: 30px;
+    left: 7%;
   }
 }
 /* #endregion */
