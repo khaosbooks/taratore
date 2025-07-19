@@ -163,14 +163,14 @@
             <span class="tooltip-text">This is Book 1 of the GoD trilogy.</span>
           </div>
           <div class="card-img-container">
-            <div class="progress-donut" style="--progress:65">
+            <div class="progress-donut">
               <svg viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="40" fill="none" 
-                        stroke="rgba(var(--primary-text-rgb), 0.2)" stroke-width="6" stroke-linecap="round"/>
+                        stroke="rgba(var(--primary-text-rgb), 0.2)" stroke-width="6"/>
                 <circle cx="50" cy="50" r="40" fill="none" 
                         stroke="var(--dark-red)" stroke-width="10" stroke-linecap="round"
                         stroke-dasharray="251" 
-                        stroke-dashoffset="calc(251 - (251 * var(--progress) / 100))"/>
+                        stroke-dashoffset="88"/> <!-- 251 - (251 * 0.65) = 88 -->
               </svg>
               <div class="donut-label">Draft 2<br><span>65%</span></div>
             </div>
@@ -187,14 +187,14 @@
             <span class="tooltip-text">This is an add-on story to give more context to the gods in Last Sunrise.</span>
           </div>
           <div class="card-img-container">
-            <div class="progress-donut" style="--progress:25">
+            <div class="progress-donut">
               <svg viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="40" fill="none" 
-                        stroke="rgba(var(--primary-text-rgb), 0.2)" stroke-width="6" stroke-linecap="round"/>
+                        stroke="rgba(var(--primary-text-rgb), 0.2)" stroke-width="6"/>
                 <circle cx="50" cy="50" r="40" fill="none" 
                         stroke="var(--dark-red)" stroke-width="10" stroke-linecap="round"
                         stroke-dasharray="251" 
-                        stroke-dashoffset="calc(251 - (251 * var(--progress) / 100))"/>
+                        stroke-dashoffset="188"/> <!-- 251 - (251 * 0.25) = 188 -->
               </svg>
               <div class="donut-label">Draft 2<br><span>25%</span></div>
             </div>
@@ -306,7 +306,6 @@
           <div class="tooltip-text">
             <h4>Northern Reaches</h4>
             <p>Click to explore this frozen wilderness</p>
-            <a href="#" class="btn btn-small" data-target="northern-reaches">View Map</a>
           </div>
         </button>
       

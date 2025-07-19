@@ -296,6 +296,18 @@
   .pill-list {
     gap: var(--md); 
   }
+
+  .tooltip-text {
+    visibility: hidden;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+    
+  .map-marker, .map-zoom {
+    position: relative;
+  }
 }
 /* #endregion */
 /* #region - STICKY SIDE COLUMN */
@@ -591,11 +603,6 @@
 .progress-donut .donut-label span {
   font-family: var(--font-heading);
   color: var(--accent);
-}
-
-.progress-donut circle:nth-child(2) {
-    stroke-dasharray: 251;
-    stroke-dashoffset: calc(251 - (251 * var(--progress) / 100));
 }
 
 .standalone {

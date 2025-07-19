@@ -40,6 +40,8 @@ async function loadComponents() {
             img.setAttribute('loading', 'lazy');
         });
 
+        
+
     } catch (error) {
         console.error('Error loading components:', error);
     }
@@ -194,67 +196,23 @@ function updateResourceCounts() {
 
 // ===== MAP INITIALIZATION =====
 function initializeMaps() {
-    let activeTooltip = null;
-    let lastScrollPosition = window.scrollY;
-
-    // Track scroll position
-    window.addEventListener('scroll', () => {
-        lastScrollPosition = window.scrollY;
+  // Handle map zoom buttons
+  document.querySelectorAll('.map-zoom').forEach(button => {
+    button.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      document.querySelector('.active-map').classList.remove('active-map');
+      document.getElementById(targetId).classList.add('active-map');
     });
+  });
 
-    // Handle map switching without scroll jump
-    function switchMap(targetId) {
-        const currentActive = document.querySelector('.active-map');
-        if (currentActive.id === targetId) return;
-        
-        currentActive.classList.remove('active-map');
-        document.getElementById(targetId).classList.add('active-map');
-        window.requestAnimationFrame(() => {
-            window.scrollTo({
-                top: lastScrollPosition,
-                behavior: 'instant'
-            });
-        });
-    }
-
-    // Handle zoom icon clicks
-    document.querySelectorAll('.map-zoom').forEach(zoom => {
-        const btn = zoom.querySelector('.btn[data-target]');
-        
-        zoom.addEventListener('click', function(e) {
-            if (window.innerWidth <= 900) {
-                e.preventDefault();
-                toggleTooltip(this);
-            }
-        });
-
-        if (btn) {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                switchMap(this.dataset.target);
-            });
-        }
+  // Handle back buttons
+  document.querySelectorAll('.map-back-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      document.querySelector('.active-map').classList.remove('active-map');
+      document.getElementById(targetId).classList.add('active-map');
     });
-
-    // Back button handler (unchanged)
-    document.querySelectorAll('.map-back-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            switchMap(this.dataset.target);
-        });
-    });
-
-    function toggleTooltip(element) {
-        const tooltip = element.querySelector('.tooltip-text');
-        if (activeTooltip === tooltip) {
-            tooltip.style.visibility = 'hidden';
-            activeTooltip = null;
-        } else {
-            if (activeTooltip) activeTooltip.style.visibility = 'hidden';
-            tooltip.style.visibility = 'visible';
-            activeTooltip = tooltip;
-        }
-    }
+  });
 }
 
 // ===== LOAD MORE ART =====
@@ -581,24 +539,5 @@ function initializeParallax() {
 document.addEventListener('DOMContentLoaded', () => {
     loadComponents().then(() => {
         initializeParallax();
-        
-        // Animate progress donuts on scroll
-        const progressDonuts = document.querySelectorAll('.progress-donut');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const circle = entry.target.querySelector('circle:nth-child(2)');
-                    const progress = entry.target.style.getPropertyValue('--progress') || 0;
-                    circle.style.strokeDashoffset = `calc(251 - (251 * ${progress} / 100))`;
-                    entry.target.style.opacity = 1;
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        progressDonuts.forEach(donut => {
-            donut.style.opacity = 0;
-            observer.observe(donut);
-        });
     });
 });
