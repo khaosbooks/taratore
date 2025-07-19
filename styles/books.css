@@ -231,7 +231,7 @@
   text-align: center;
   padding: var(--xs);
   position: absolute;
-  z-index: 1;
+  z-index: 20 !important;
   bottom: 125%;
   left: 50%;
   transform: translateX(-50%);
@@ -242,6 +242,7 @@
 .tooltip-icon:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
+  transition: var(--transition);
 }
 
 .pill-list {
@@ -555,12 +556,8 @@
 }
 
 @media (max-width: 900px) {
-  .series-banner-container {
-    margin: calc(-1 * var(--sm)) calc(-1 * var(--sm)) var(--md);
-
-  }
-  
   .series-logo-overlay {
+    width: 5%;
     left: 7%;
   }
 }
@@ -594,6 +591,11 @@
 .progress-donut .donut-label span {
   font-family: var(--font-heading);
   color: var(--accent);
+}
+
+.progress-donut circle:nth-child(2) {
+    stroke-dasharray: 251;
+    stroke-dashoffset: calc(251 - (251 * var(--progress) / 100));
 }
 
 .standalone {
@@ -641,6 +643,11 @@
   .add-on {
     border-top: var(--lg) solid var(--secondary-bg);
   }
+
+  .image-tag {
+    padding: var(--xs) var(--lg);
+    font-size: var(--md);
+  }
 }
 /* #endregion */
 /* #region - MAPS */
@@ -666,7 +673,7 @@
   border: none;
   padding: 0;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 10;
 }
 
 .marker-icon {
@@ -707,7 +714,7 @@
 /* Tooltips */
 .map-marker .tooltip-text,
 .map-zoom .tooltip-text {
-  z-index: 10;
+  z-index: 20 !important;
 }
 
 .map-marker .tooltip-text img,
@@ -716,7 +723,7 @@
   border-bottom: var(--red-border);
   width: calc(100% + var(--xs) * 2); 
   margin: calc(-1 * var(--sm)) calc(-1 * var(--sm)) var(--xs);
-  z-index: 10;
+  z-index: 10 !important;
 }
 
 .map-marker:hover .tooltip-text,
@@ -732,12 +739,17 @@
   .map-marker .tooltip-text,
   .map-zoom .tooltip-text {
     width: 200px;
-    font-size: var(--xs);
+    font-size: var(--mobile-body-text);
   }
 
   .map-marker .tooltip-text .btn,
   .map-zoom .tooltip-text .btn {
     padding: var(--md) 0;
+    font-size: var(--mobile-body-text);
+  }
+
+  .map-back-btn {
+    padding: var(--xs) var(--lg);
     font-size: var(--mobile-body-text);
   }
 }
