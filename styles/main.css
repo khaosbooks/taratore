@@ -3,6 +3,7 @@
 }
 */
 
+
 /* #region - RESET & BASE STYLES */
 * {
     margin: 0;
@@ -11,7 +12,10 @@
 }
 
 *, *:before, *:after { box-sizing: inherit; }
-html { overflow-x: hidden; }
+html { 
+    overflow-x: hidden; 
+    scroll-behavior: smooth;
+}
 
 @font-face {
     font-family: 'Analogist';
@@ -74,28 +78,30 @@ html { overflow-x: hidden; }
     --xxxl: 3.6rem;
 
     /* Effects */
-    --shadow-default: 0 0.2rem 0.4rem var(--dark-red);
+    --shadow-default: 0 0.2rem 0.4rem var(--primary-text);
     --shift-up: translateY(-2px);
     --transition: all 0.3s ease;
-    
+
+    /* Opacity and blur */
     --header-bg-opacity: 0.5;
     --header-scrolled-bg-opacity: 0.9;
     --dropdown-bg-opacity: 0.9;
     --dropdown-two-opacity: 0.95;
     --dropdown-low-opacity: 0.2;
-
     --header-blur: var(--xxs);
     --dropdown-blur: var(--sm);
+    --gradient-overlay: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%);
 
+    /* Padding */
     --padding-btn: var(--xs) var(--xl);
     --section-padding: var(--xxl) 0;
 
-    --gradient-overlay: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%);
-
+    /* Borders */
     --red-border: var(--xxxs) solid var(--accent);
     --light-border: var(--xxxs) solid var(--primary-bg);
     --black-border: var(--xxxs) solid var(--primary-text);
     --thick-border: var(--xxxl) solid var(--accent);
+    --tooltip-width: 250px;
 
     /* Logo */
     --mobile-logo-height: var(--xl);
@@ -130,10 +136,6 @@ p {
 
 .p-tight {
     margin-bottom: 0 !important;
-}
-
-.p-centred {
-    text-align: center;
 }
 
 .ps {
@@ -239,9 +241,6 @@ a .card {
     padding-top: 0 !important;
 }
 
-.spacer {
-    padding-top: var(--xxxl);
-}
 .section-light {
     background: var(--primary-bg);
     color: var(--primary-text);
@@ -267,7 +266,7 @@ a .card {
     width: 100%;
     height: var(--xl);
     position: relative;
-    z-index: 1;
+    z-index: 1000;
 }
 
 .divider-down {
@@ -286,21 +285,25 @@ a .card {
 
 .section-after-divider {
     margin-top: calc(-1 * var(--xl) + 1px);
+    padding-top: var(--xxxl);
+}
+
+.section-final {
+    padding-bottom: var(--xxxl);
+}
+
+.section-top {
+    padding-top: 0 !important;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-content: center;
     gap: var(--xl);
     margin: var(--md) 0;
     align-items: stretch;
-}
-
-.two-column-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: var(--xl);
-    align-items: stretch;
+    column-fill: balance;
 }
 
 .centred {
@@ -323,13 +326,29 @@ a .card {
     grid-template-columns: 1fr;
     gap: var(--lg);
   }
-
-  .two-column-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--md);
-  }
+}
+/* #endregion */
+/* #region - METACARD TEXT OVERRIDES */
+.section-dark .metadata-card,
+.section-red .metadata-card {
+  color: var(--primary-text) !important; /* Force text color */
 }
 
+.section-dark .metadata-card a:not(.btn),
+.section-red .metadata-card a:not(.btn) {
+  color: var(--accent) !important; /* Keep links visibly accented */
+}
+
+.section-dark .metadata-card strong,
+.section-red .metadata-card strong {
+  color: var(--accent) !important; /* Keep strong elements accented */
+}
+
+.section-dark .metadata-card .genre-list,
+.section-red .metadata-card .genre-list {
+  background-color: var(--primary-bg) !important;
+  color: var(--primary-text) !important;
+}
 /* #endregion */
 /* #region - BUTTONS */
 .btn {
@@ -434,6 +453,15 @@ a .card {
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.card ul {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: var(--sm);
 }
 
 .card-img-container {
@@ -441,7 +469,14 @@ a .card {
     aspect-ratio: 5/8; 
     overflow: hidden;
     margin-bottom: var(--md);
-    background-color: var(--primary-bg);
+    background-color: rgba(var(--primary-bg-rgb), var(--dropdown-bg-opacity));
+}
+
+.card-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This does the magic cropping */
+  object-position: center; /* Focuses on center of image */
 }
 
 .card a.btn {
@@ -454,7 +489,7 @@ a .card {
     object-fit: cover;
 }
 
-.card {
-    margin-top: auto;
+.card .btn + .btn {
+    margin-top: var(--xs);
 }
 /* #endregion */

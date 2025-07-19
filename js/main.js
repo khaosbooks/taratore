@@ -1,14 +1,28 @@
 // ===== COMPONENT LOADING =====
 async function loadComponents() {
     try {
+        // Preload hero image (must be first operation)
+        const heroBg = document.querySelector('.parallax-bg');
+        if (heroBg) {
+            const bgUrl = heroBg.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/)[1];
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = bgUrl;
+            document.head.appendChild(link);
+        }
+
+        // Load header/footer
         const [headerHtml, footerHtml] = await Promise.all([
             fetch('/includes/header.html').then(res => res.text()),
             fetch('/includes/footer.html').then(res => res.text())
         ]);
         
+        // Insert into DOM once
         document.body.insertAdjacentHTML('afterbegin', headerHtml);
         document.body.insertAdjacentHTML('beforeend', footerHtml);
         
+        // Initialize all components
         initializeHeader();
         initializeFooter();
         initializeAccordions();
@@ -16,11 +30,187 @@ async function loadComponents() {
         initializeTooltips();
         initializeLoadMore();
         initializeLoadMoreReviews();
+        initializeMaps();
+        initializeResourceTabs();
 
         document.body.classList.add('components-loaded');
+
+        // Lazy-load non-critical images
+        document.querySelectorAll('img:not([loading])').forEach(img => {
+            img.setAttribute('loading', 'lazy');
+        });
+
     } catch (error) {
         console.error('Error loading components:', error);
     }
+}
+
+// ===== GLOSSARY & DOWNLOADS TABS =====
+function initializeResourceTabs() {
+  const glossaryFilters = document.querySelector('.glossary-filters');
+  const downloadFilters = document.querySelector('.download-filters');
+  
+  if (glossaryFilters) glossaryFilters.classList.add('active-filters');
+  if (downloadFilters) downloadFilters.classList.remove('active-filters');
+
+  const tabs = document.querySelectorAll('.tab-nav a');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      tabs.forEach(t => t.classList.remove('current'));
+      const glossaryCard = document.querySelector('.glossary-filters');
+      const downloadsCard = document.querySelector('.download-filters');
+      
+      if (glossaryCard) glossaryCard.classList.remove('active-filters');
+      if (downloadsCard) downloadsCard.classList.remove('active-filters');
+      
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active-tab');
+      });
+      
+      this.classList.add('current');
+      
+      const targetTab = this.getAttribute('href').replace('#', '');
+      
+      if (targetTab === 'glossary') {
+        document.getElementById('glossary').classList.add('active-tab');
+        if (glossaryFilters) glossaryFilters.classList.add('active-filters');
+      } 
+      else if (targetTab === 'downloads') {
+        document.getElementById('downloads').classList.add('active-tab');
+        if (downloadFilters) downloadFilters.classList.add('active-filters');
+      }
+      
+      updateResourceCounts();
+    });
+  });
+
+  setupGlossaryFilters();
+  setupDownloadFilters();
+  updateResourceCounts();
+}
+
+function setupGlossaryFilters() {
+  const glossarySearch = document.querySelector('.glossary-filters .search-input');
+  const glossaryFilters = document.querySelectorAll('.glossary-filters .pill-list li');
+  
+  if (!glossarySearch) return;
+  
+  // Search functionality
+  glossarySearch.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const terms = document.querySelectorAll('#glossary .glossary-term');
+    
+    terms.forEach(term => {
+      const text = term.textContent.toLowerCase();
+      const isVisible = text.includes(searchTerm) && checkGlossaryFilter(term);
+      term.style.display = isVisible ? 'block' : 'none';
+    });
+    
+    updateResourceCounts();
+  });
+  
+  // Filter functionality
+  glossaryFilters.forEach(filter => {
+    filter.addEventListener('click', function() {
+      glossaryFilters.forEach(f => f.classList.remove('current'));
+      this.classList.add('current');
+      
+      const terms = document.querySelectorAll('#glossary .glossary-term');
+      terms.forEach(term => {
+        const isVisible = checkGlossaryFilter(term);
+        term.style.display = isVisible ? 'block' : 'none';
+      });
+      
+      updateResourceCounts();
+    });
+  });
+}
+
+function setupDownloadFilters() {
+  const downloadSearch = document.querySelector('.download-filters .search-input');
+  const downloadFilters = document.querySelectorAll('.download-filters .pill-list li');
+  
+  if (!downloadSearch) return;
+  
+  // Search functionality
+  downloadSearch.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const downloads = document.querySelectorAll('#downloads .card');
+    
+    downloads.forEach(download => {
+      const text = download.textContent.toLowerCase();
+      const isVisible = text.includes(searchTerm) && checkDownloadFilter(download);
+      download.style.display = isVisible ? 'block' : 'none';
+    });
+    
+    updateResourceCounts();
+  });
+  
+  // Filter functionality
+  downloadFilters.forEach(filter => {
+    filter.addEventListener('click', function() {
+      downloadFilters.forEach(f => f.classList.remove('current'));
+      this.classList.add('current');
+      
+      const downloads = document.querySelectorAll('#downloads .card');
+      downloads.forEach(download => {
+        const isVisible = checkDownloadFilter(download);
+        download.style.display = isVisible ? 'block' : 'none';
+      });
+      
+      updateResourceCounts();
+    });
+  });
+}
+
+function checkGlossaryFilter(term) {
+  const activeFilter = document.querySelector('.glossary-filters .pill-list .current')?.dataset.filter;
+  if (activeFilter === 'all') return true;
+  const termTypes = term.dataset.types?.split(' ') || [];
+  return termTypes.includes(activeFilter);
+}
+
+function checkDownloadFilter(download) {
+  const activeFilter = document.querySelector('.download-filters .pill-list .current')?.dataset.filter;
+  if (activeFilter === 'all') return true;
+  const downloadTypes = download.dataset.types?.split(' ') || [];
+  return downloadTypes.includes(activeFilter);
+}
+
+function updateResourceCounts() {
+  // Glossary count
+  const visibleTerms = document.querySelectorAll('#glossary .glossary-term[style*="block"], #glossary .glossary-term:not([style])').length;
+  const glossaryCount = document.getElementById('glossary-count');
+  if (glossaryCount) glossaryCount.textContent = visibleTerms;
+  
+  // Downloads count
+  const visibleDownloads = document.querySelectorAll('#downloads .card[style*="block"], #downloads .card:not([style])').length;
+  const downloadCount = document.getElementById('download-count');
+  if (downloadCount) downloadCount.textContent = visibleDownloads;
+}
+
+
+// ===== MAP INITIALIZATION =====
+function initializeMaps() {
+  // Handle map zoom buttons
+  document.querySelectorAll('.map-zoom').forEach(button => {
+    button.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      document.querySelector('.active-map').classList.remove('active-map');
+      document.getElementById(targetId).classList.add('active-map');
+    });
+  });
+
+  // Handle back buttons
+  document.querySelectorAll('.map-back-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      document.querySelector('.active-map').classList.remove('active-map');
+      document.getElementById(targetId).classList.add('active-map');
+    });
+  });
 }
 
 // ===== LOAD MORE ART =====
@@ -45,7 +235,7 @@ function initializeLoadMore() {
 
   // Single-click handler
   loadMoreBtn.addEventListener('click', (e) => {
-    e.preventDefault(); // Prevent default if it's an `<a>` tag
+    e.preventDefault(); 
 
     const nextBatch = allImages.slice(visibleCount, visibleCount + BATCH_SIZE);
     
@@ -346,6 +536,25 @@ function initializeParallax() {
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
     loadComponents().then(() => {
-        initializeParallax(); 
+        initializeParallax();
+        
+        // Animate progress donuts on scroll
+        const progressDonuts = document.querySelectorAll('.progress-donut');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const circle = entry.target.querySelector('circle:nth-child(2)');
+                    const progress = entry.target.style.getPropertyValue('--progress') || 0;
+                    circle.style.strokeDashoffset = `calc(251 - (251 * ${progress} / 100))`;
+                    entry.target.style.opacity = 1;
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        progressDonuts.forEach(donut => {
+            donut.style.opacity = 0;
+            observer.observe(donut);
+        });
     });
 });
