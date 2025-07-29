@@ -87,7 +87,7 @@ html {
   --full-width: 100% !important;
   --padded-width: 90% !important;
   --max-width: 1200px !important;
-  --hero-height: 50vh;
+  --hero-height: 70vh;
   --rounding: 50%;
   --minus-50: translateX(-50%);
   --small-size1: 200px;
@@ -706,4 +706,20 @@ select.form-input {
   transition: var(--transition);
 }
 /* #endregion */
+/* #region - DOWNLOADS CARDS */
+.downloads-image-container {
+  aspect-ratio: 8/5; /* Perfect square */
+  width: var(--full-width);
+  overflow: hidden;
+  margin-bottom: var(--md);
+  background: var(--secondary-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.downloads-image-container img:hover {
+  transform: var(--scale);
+  transition: var(--transition);
+}
+/* #endregion */
