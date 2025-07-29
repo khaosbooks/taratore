@@ -1,384 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <script src="/js/main.js"></script>
-  
-  <title>Template for Individual Book Pages</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore the Shattered Realms series—epic fantasy with gods, fractured destinies, and queer romance. Start reading today.">
-  <meta property="og:title" content="Shattered Realms Series | Epic Fantasy Books">
-  <meta property="og:image" content="/images/series/shattered-realms/hero-bg.jpg">
-  
-  <link rel="stylesheet" href="/styles/main.css">
-  <link rel="stylesheet" href="/styles/components.css">
-  <link rel="stylesheet" href="/styles/books.css">
-  
-  <style>
-    body { 
-      background: var(--primary-bg); 
-      margin: 0;
-      padding: 0;
-      font-family: var(--font-body);
-    }
-  </style>
-</head>
-
-<body>
-  <div class="status-banner-wrapper">
-    <div class="status-banner">
-      Coming Soon!
+  <head>
+    <script src="/js/main.js"></script>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/components.css">
+    <link rel="stylesheet" href="/styles/books.css">
+    <meta charset="UTF-8">
+    <title>Template for Series/World Pages</title>
+    <meta name="description" content="Explore the Shattered Realms series - epic fantasy books with gods, fractured destinies, and queer romance. Start reading today.">
+    <meta name="keywords" content="fantasy books, shattered realms, epic fantasy, queer romance, fantasy series">
+    <meta name="author" content="Your Name">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/series/shattered-realms">
+    <meta property="og:title" content="Shattered Realms Series | Epic Fantasy Books">
+    <meta property="og:description" content="Where gods walk among mortals and every choice fractures destiny. Start reading the Shattered Realms series today.">
+    <meta property="og:image" content="https://yourwebsite.com/images/series/shattered-realms/hero-bg.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shattered Realms Series | Epic Fantasy Books">
+    <meta name="twitter:description" content="Epic fantasy series with gods, fractured destinies, and queer romance.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/series/shattered-realms/hero-bg.jpg">
+    <link rel="canonical" href="https://yourwebsite.com/series/shattered-realms">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+      body {
+        background: var(--primary-bg);
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-body);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="status-banner-wrapper">
+      <div class="status-banner"> Coming Soon! </div>
     </div>
-  </div>
-
-  <!--Hero header-->
-  <section class="section section-dark">
-    <section class="book-hero">
-      <div class="parallax-wrapper">
-        <div class="parallax-bg" style="background-image: url('/images/books/LastSunrise/hero-bg.jpg')"></div>
-        <div class="parallax-foreground" style="background-image: url('/images/books/LastSunrise/hero-fg.png')"></div>
-        <div class="hero-bg-overlay"></div>
-        <div class="parallax-glow" style="background-image: url('/images/books/LastSunrise/hero-glow.png')"></div>
-      </div>
-      <div class="hero-content">
-        <div>
+    
+    <!--Hero header-->
+    <section class="section section-dark">
+      <section class="book-hero">
+        <div class="parallax-wrapper">
+          <div class="parallax-bg" style="background-image: url('/images/books/LastSunrise/hero-bg.jpg')"></div>
+          <div class="parallax-foreground" style="background-image: url('/images/books/LastSunrise/hero-fg.webp')"></div>
+          <div class="hero-bg-overlay"></div>
+          <div class="parallax-glow" style="background-image: url('/images/books/LastSunrise/hero-glow.webp')"></div>
+        </div>
+        <div class="hero-content">
+          <div>
             <h1>Last Sunrise</h1>
             <p>Sinialli was the best courtesan in all of Trace, and she would make sure everyone remembered her.</p>
             <a href="https://books2read.com/lastsunrise" class="btn">Buy Now</a>
+          </div>
+          <div class="mockup-container">
+            <img src="/images/books/LastSunrise/mockup_ebook.webp" alt="3D Mockup of Last Sunrise" class="cover-mockup">
+            <a href="#excerpt" class="btn btn-secondary">Read Excerpt</a>
+          </div>
         </div>
-        <div class="mockup-container">
-          <img src="/images/books/LastSunrise/mockup_ebook.png" alt="3D Mockup of Last Sunrise" class="cover-mockup">
-          <a href="#excerpt" class="btn btn-secondary">Read Excerpt</a>
+      </section>
+    </section>
+
+    <!--Series navigation-->
+    <section class="section section-dark section-tight">
+      <div class="section-content section-tight">
+        <h5>
+          <a href="#">Shattered Realms Series</a>
+        </h5>
+        <div class="series-links">
+          <a href="#">God of Discovery</a> | <a class="current">Last Sunrise</a> | <a href="#">Untitled Sequel</a>
         </div>
       </div>
     </section>
-  </section>
 
-  <!--Series navigation-->
-  <section class="section section-dark section-tight">
-    <div class="section-content section-tight">
-      <h5><a href="#">Shattered Realms Series</a></h5>
-      <div class="series-links">
-        <a href="#">God of Discovery</a> | 
-        <a class="current">Last Sunrise</a> | 
-        <a href="#">Untitled Sequel</a>
+    <!--Side column-->
+    <section class="section section-light section-with-divider no-top">
+      <section class="section-content two-column-section">
+        <div class="content-column">
+          <div class="metadata-card active-filters">
+            <ul class="details-list">
+              <li>
+                <strong>Status:</strong> Published July 3, 2024
+              </li>
+              <li class="word-count">
+                <strong>Length:</strong>
+                <span class="word-count-number">18,571</span> words <span class="tooltip-icon" data-wordcount="18571">★ <span class="tooltip-text"></span>
+                </span>
+              </li>
+              <li>
+                <strong>Format:</strong> eBook
+              </li>
+              <li>
+                <strong>Written in:</strong> 3rd person
+              </li>
+              <li>
+                <strong>POVs:</strong> Single
+              </li>
+              <li>
+                <strong>Tense:</strong> Past
+              </li>
+            </ul>
+            <ul class="pill-list">
+              <li>Fantasy</li>
+              <li>Dark Fantasy</li>
+              <li>Standalone</li>
+              <li class="queer">Pansexual MC</li>
+            </ul>
+          </div>
+          <h2>Last Sunrise</h2>
+          <p>When the constant war between the two nations reaches the doorsteps of the Crescent Moon Pavilion, Sinialli's life is turned completely around and she is left with nothing but memories of better times. She prays for release and to join her family, to become one with them, but the gods have other plans.</p>
+          <p>With the scents of magic surrounding her and guiding her, Sinialli knows what she has to do. She knows this would be the last sunset she would ever see, if she ever even makes it to sunrise. And she knows, as the best courtesan in all of Trace, what it would take to make sure she and her family would be remembered forever.</p>
+          <a href="#excerpt" class="btn btn-secondary">Read Excerpt</a>
+          <a href="https://books2read.com/lastsunrise" class="btn">Buy Now</a>
+        </div>
+        <div class="sticky-side-column">
+          <div class="sticky-content">
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Content warnings</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <ul>
+                  <li>blood</li>
+                  <li>death</li>
+                  <li>war</li>
+                  <li>sexual content</li>
+                  <li>coercion</li>
+                  <li>suicidal thoughts</li>
+                </ul>
+              </div>
+            </div>
+            <div class="menu-divider"></div>
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Tropes</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <ul>
+                  <li>magical elements</li>
+                  <li>courtesan as protagonist</li>
+                  <li>divine intervention</li>
+                  <li>the truth behind the lore</li>
+                </ul>
+              </div>
+            </div>
+            <div class="menu-divider"></div>
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Keywords</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <ul>
+                  <li>strong female protagonist</li>
+                  <li>courtesan heroine</li>
+                  <li>gods and destiny</li>
+                  <li>tragic heroine</li>
+                  <li>standalone fantasy</li>
+                  <li>last stand story</li>
+                  <li>sacrifice and redemption</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <div class="section-divider divider-down divider-light"></div>
+
+    <!--Excerpt-->
+    <section class="section section-dark section-after-divider section-with-divider" id="excerpt">
+      <section class="section-content">
+        <div class="accordion-item">
+          <h3>Excerpt</h3>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+          <a class="accordion-header" aria-expanded="false">
+            <h5>Read more... <span class="accordion-icon">▾</span>
+            </h5>
+          </a>
+          <div class="accordion-content">
+            <p>When the constant war between the two nations reaches the doorsteps of the Crescent Moon Pavilion, Sinialli's life is turned completely around and she is left with nothing but memories of better times.</p>
+            <a href="https://books2read.com/lastsunrise" class="btn">Continue reading</a>
+            <a href="#series" class="btn btn-secondary">Learn more about the world</a>
+            <a class="btn btn-secondary excerpt-close">Close Excerpt</a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <div class="section-divider divider-down divider-dark"></div>
+
+    <!--Reviews-->
+    <section class="section section-red section-after-divider section-with-divider">
+      <section class="section-content">
+        <h2>What Readers Say</h2>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <blockquote class="review-text"> "The prose wrapped around me like silk and the characters felt more real than people I know." </blockquote>
+            <div class="review-author">- Goodreads Reviewer</div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <blockquote class="review-text"> "I couldn't put it down. The perfect blend of poetic language and raw emotion that left me in tears by the end." </blockquote>
+            <div class="review-author">- Amazon Customer</div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <blockquote class="review-text"> "I couldn't put it down. The perfect blend of poetic language and raw emotion that left me in tears by the end." </blockquote>
+            <div class="review-author">- Amazon Customer</div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <blockquote class="review-text"> "I couldn't put it down. The perfect blend of poetic language and raw emotion that left me in tears by the end." </blockquote>
+            <div class="review-author">- Amazon Customer</div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <blockquote class="review-text"> "I couldn't put it down. The perfect blend of poetic language and raw emotion that left me in tears by the end." </blockquote>
+            <div class="review-author">- Amazon Customer</div>
+          </div>
+        </div>
+        <a class="load-more-reviews btn">Load More Reviews</a>
+      </section>
+    </section>
+
+    <div class="section-divider divider-down divider-red"></div>
+
+    <!--Art gallery-->
+    <section class="section section-light section-after-divider section-with-divider">
+      <div class="section-content">
+        <h2>Art Gallery</h2>
+        <div class="masonry-grid">
+          <img src="/images/books/LastSunrise/character_Sinialli.webp" alt="Sinialli">
+          <img src="/images/books/LastSunrise/clean-cover.webp" alt="Book Cover">
+          <img src="/images/books/LastSunrise/hero-bg.jpg" alt="Background Art">
+          <img src="/images/books/LastSunrise/hero-fg.webp" alt="Foreground Art">
+          <img src="/images/books/LastSunrise/mockup_ebook.webp" alt="Ebook Mockup">
+          <img src="/images/books/LastSunrise/character_Sinialli.webp" alt="Sinialli Portrait">
+          <img src="/images/books/LastSunrise/clean-cover.webp" alt="Book Cover">
+          <img src="/images/books/LastSunrise/hero-bg.jpg" alt="Background Art">
+          <img src="/images/books/LastSunrise/hero-fg.webp" alt="Foreground Art">
+          <img src="/images/books/LastSunrise/mockup_ebook.webp" alt="Ebook Mockup">
+        </div>
+        <a class="btn load-more">Load More Art </a>
       </div>
-    </div>
-  </section>
-  
-  <!--Side column-->
-  <section class="section section-light section-with-divider no-top">
-    <section class="section-content two-column-section">
-      <div class="content-column">
+    </section>
+
+    <div class="section-divider divider-down divider-light"></div>
+
+    <!--Character cards-->
+    <section class="section section-dark section-after-divider section-with-divider">
+      <div class="section-content">
+        <h2>Characters</h2>
+        <div class="grid">
+          <div class="card" data-character-id="sinialli" data-books="last-sunrise" data-role="mc" data-series="shattered-realms">
+            <div id="character-sinialli" class="card-img-container">
+              <span class="initials">Sinialli</span>
+              <img src="/images/books/LastSunrise/character_Sinialli.webp" alt="Sinialli" class="card-img">
+            </div>
+            <h3>Sinialli</h3>
+            <p>The best courtesan in Trace, known for her sharp wit and sharper knives.</p>
+            <div class="menu-divider"></div>
+            <!--Stats-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Stats</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <ul>
+                  <li><strong>Full Name:</strong> Sinialli Verithani</li>
+                  <li><strong>Title(s):</strong> The Jewel of Trace, First Courtesan of Crescent Moon Pavilion</li>
+                  <li><strong>Age:</strong> 28</li>
+                  <li><strong>Species/Race:</strong> Human (Tracean)</li>
+                  <li><strong>Gender/Pronouns:</strong> Female (she/her)</li>
+                  <li><strong>Sexuality:</strong> Pansexual</li>
+                  <li><strong>Role:</strong> Protagonist</li>
+                  <li><strong>First Appearance:</strong> <a href="/books/last-sunrise">Last Sunrise</a></li>
+                  <li><strong>Key Relationships:</strong> 
+                    <ul>
+                      <li><strong>Tassikar:</strong> Former patron, god in disguise</li>
+                      <li><strong>Marith:</strong> Rival courtesan turned ally</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!--Biography-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Biography</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <p>Once the most sought-after courtesan in Trace, Sinialli's life unravels when war reaches the Crescent Moon Pavilion. Trained in poetry, politics, and six forms of combat disguised as dance, she uses her skills to navigate a world where gods manipulate mortal lives. Her journey transforms from a quest for personal legacy to a divine reckoning.</p>
+                <p>A master of calculated charm with a razor-sharp wit. Though she projects confidence, years in the Pavilion left her with deep loneliness. Her most dangerous trait isn't her knives—it's her ability to make powerful people reveal their truths.</p>
+              </div>
+            </div>
+
+            <!--Key moments-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Key moments</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <ul class="timeline">
+                  <li><strong>Prologue:</strong> Performs the Sunset Dance for Tassikar</li>
+                  <li><strong>Chapter 3:</strong> Discovers the Pavilion's destruction</li>
+                  <li><strong>Chapter 7:</strong> Bargains with the War God using forbidden knowledge</li>
+                  <li><strong>Finale:</strong> <span class="spoiler">checking if spoiled text works</span> and then regular text</li>
+                </ul>
+              </div>
+            </div>
+
+            <!--Background-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Background</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <p>Courtisans in Trace occupy a unique social stratum—neither nobility nor commoners. Their training includes:</p>
+                <ul>
+                  <li>Memory techniques to retain political secrets</li>
+                  <li>Sacred dances that mirror divine rituals</li>
+                  <li>The art of "scent magic" (perfume-based communication)</li>
+                </ul>
+              </div>
+            </div>
+
+            <!--Design and concept-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Design and concept</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <p>Initial design notes: "Her hairpins should look decorative but function as weapons"</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-character-id="sinialli" data-books="last-sunrise" data-role="mc" data-series="shattered-realms">
+            <div class="card-img-container">
+              <span class="initials">Sinialli</span>
+              <img src="/images/books/LastSunrise/character_Sinialli.webp" alt="Sinialli" class="card-img">
+            </div>
+            <h3>Sinialli</h3>
+            <p>The best courtesan in Trace, known for her sharp wit and sharper knives.</p>
+            <div class="menu-divider"></div>
+            <!--Stats-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Stats</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <ul>
+                  <li><strong>Full Name:</strong> Sinialli Verithani</li>
+                  <li><strong>Title(s):</strong> The Jewel of Trace, First Courtesan of Crescent Moon Pavilion</li>
+                  <li><strong>Age:</strong> 28</li>
+                  <li><strong>Species/Race:</strong> Human (Tracean)</li>
+                  <li><strong>Gender/Pronouns:</strong> Female (she/her)</li>
+                  <li><strong>Sexuality:</strong> Pansexual</li>
+                  <li><strong>Role:</strong> Protagonist</li>
+                  <li><strong>First Appearance:</strong> <a href="/books/last-sunrise">Last Sunrise</a></li>
+                  <li><strong>Key Relationships:</strong> 
+                    <ul>
+                      <li><strong>Tassikar:</strong> Former patron, god in disguise</li>
+                      <li><strong>Marith:</strong> Rival courtesan turned ally</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!--Biography-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Biography</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <p>Once the most sought-after courtesan in Trace, Sinialli's life unravels when war reaches the Crescent Moon Pavilion. Trained in poetry, politics, and six forms of combat disguised as dance, she uses her skills to navigate a world where gods manipulate mortal lives. Her journey transforms from a quest for personal legacy to a divine reckoning.</p>
+                <p>A master of calculated charm with a razor-sharp wit. Though she projects confidence, years in the Pavilion left her with deep loneliness. Her most dangerous trait isn't her knives—it's her ability to make powerful people reveal their truths.</p>
+              </div>
+            </div>
+
+            <!--Key moments-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Key moments</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <ul class="timeline">
+                  <li><strong>Prologue:</strong> Performs the Sunset Dance for Tassikar</li>
+                  <li><strong>Chapter 3:</strong> Discovers the Pavilion's destruction</li>
+                  <li><strong>Chapter 7:</strong> Bargains with the War God using forbidden knowledge</li>
+                  <li><strong>Finale:</strong> <span class="spoiler">checking if spoiled text works</span> and then regular text</li>
+                </ul>
+              </div>
+            </div>
+
+            <!--Background-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Background</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <p>Courtisans in Trace occupy a unique social stratum—neither nobility nor commoners. Their training includes:</p>
+                <ul>
+                  <li>Memory techniques to retain political secrets</li>
+                  <li>Sacred dances that mirror divine rituals</li>
+                  <li>The art of "scent magic" (perfume-based communication)</li>
+                </ul>
+              </div>
+            </div>
+
+            <!--Design and concept-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Design and concept</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <p>Initial design notes: "Her hairpins should look decorative but function as weapons"</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-character-id="sinialli" data-books="last-sunrise" data-role="mc" data-series="shattered-realms">
+            <div class="card-img-container">
+              <span class="initials">Sinialli</span>
+              <img src="/images/books/LastSunrise/character_Sinialli.webp" alt="Sinialli" class="card-img">
+            </div>
+            <h3>Sinialli</h3>
+            <p>The best courtesan in Trace, known for her sharp wit and sharper knives.</p>
+            <div class="menu-divider"></div>
+            <!--Stats-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Stats</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <ul>
+                  <li><strong>Full Name:</strong> Sinialli Verithani</li>
+                  <li><strong>Title(s):</strong> The Jewel of Trace, First Courtesan of Crescent Moon Pavilion</li>
+                  <li><strong>Age:</strong> 28</li>
+                  <li><strong>Species/Race:</strong> Human (Tracean)</li>
+                  <li><strong>Gender/Pronouns:</strong> Female (she/her)</li>
+                  <li><strong>Sexuality:</strong> Pansexual</li>
+                  <li><strong>Role:</strong> Protagonist</li>
+                  <li><strong>First Appearance:</strong> <a href="/books/last-sunrise">Last Sunrise</a></li>
+                  <li><strong>Key Relationships:</strong> 
+                    <ul>
+                      <li><strong>Tassikar:</strong> Former patron, god in disguise</li>
+                      <li><strong>Marith:</strong> Rival courtesan turned ally</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!--Biography-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Biography</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <p>Once the most sought-after courtesan in Trace, Sinialli's life unravels when war reaches the Crescent Moon Pavilion. Trained in poetry, politics, and six forms of combat disguised as dance, she uses her skills to navigate a world where gods manipulate mortal lives. Her journey transforms from a quest for personal legacy to a divine reckoning.</p>
+                <p>A master of calculated charm with a razor-sharp wit. Though she projects confidence, years in the Pavilion left her with deep loneliness. Her most dangerous trait isn't her knives—it's her ability to make powerful people reveal their truths.</p>
+              </div>
+            </div>
+
+            <!--Key moments-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Key moments</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <ul class="timeline">
+                  <li><strong>Prologue:</strong> Performs the Sunset Dance for Tassikar</li>
+                  <li><strong>Chapter 3:</strong> Discovers the Pavilion's destruction</li>
+                  <li><strong>Chapter 7:</strong> Bargains with the War God using forbidden knowledge</li>
+                  <li><strong>Finale:</strong> <span class="spoiler">checking if spoiled text works</span> and then regular text</li>
+                </ul>
+              </div>
+            </div>
+
+            <!--Background-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Background</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <p>Courtisans in Trace occupy a unique social stratum—neither nobility nor commoners. Their training includes:</p>
+                <ul>
+                  <li>Memory techniques to retain political secrets</li>
+                  <li>Sacred dances that mirror divine rituals</li>
+                  <li>The art of "scent magic" (perfume-based communication)</li>
+                </ul>
+              </div>
+            </div>
+
+            <!--Design and concept-->
+            <div class="accordion-item">
+              <a class="accordion-header" aria-expanded="false">
+                <span class="footer-heading">Design and concept</span>
+                <span class="accordion-icon">▾</span>
+              </a>
+              <div class="accordion-content">
+                <p>Initial design notes: "Her hairpins should look decorative but function as weapons"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider divider-down divider-dark"></div>
+    
+    <!--Series section-->
+    <section class="section section-light section-after-divider section-final section-top" id="series">
+      <div class="section-content">
         <div class="metadata-card active-filters">
+          <div class="series-banner-container">
+            <div class="series-banner-image" style="background-image: url('/images/series/shattered-realms/hero-bg.jpg')"></div>
+            <div class="series-logo-overlay">
+              <img src="/images/series/shattered-realms/logo.webp" alt="Shattered Realms">
+            </div>
+          </div>
+          <h3>The Shattered Realms</h3>
+          <p>A world where [1-sentence series logline]</p>
+          <div class="menu-divider"></div>
+          <p>The following info may contain spoilers.</p>
           <ul class="details-list">
-            <li><strong>Status:</strong> Published July 3, 2024</li>
-            <li class="word-count">
-              <strong>Length:</strong> <span class="word-count-number">18,571</span> words
-              <span class="tooltip-icon" data-wordcount="18571">★
-                <span class="tooltip-text"></span>
+            <li>
+              <strong>Start here?:</strong> Can (but best after Book 2)
+            </li>
+            <li>
+              <strong>Needed context:</strong> None, but Book 2 helps
+            </li>
+            <li>
+              <strong>Timeline:</strong> 2000 years after GoD
+            </li>
+            <li>
+              <strong>Reading order:</strong> Standalone
+            </li>
+            <li>
+              <strong>Series progress:</strong> 3 of 8 <span class="tooltip-icon">★ <span class="tooltip-text">3 released • 2 written • 3 planned</span>
               </span>
             </li>
-            <li><strong>Format:</strong> eBook</li>
-            <li><strong>Written in:</strong> 3rd person</li>
-            <li><strong>POVs:</strong> Single</li>
-            <li><strong>Tense:</strong> Past</li>
+            <li>
+              <strong>Returning characters:</strong> 4 <span class="tooltip-icon">★ <span class="tooltip-text">Tassikar from GoD 2 • [spoiler] • Next • and another god</span>
+              </span>
+            </li>
+            <li>
+              <strong>Easter eggs:</strong> None
+            </li>
           </ul>
-          
           <ul class="pill-list">
-            <li>Fantasy</li>
-            <li>Dark Fantasy</li>
-            <li>Standalone</li>
-            <li class="queer">Pansexual MC</li>
+            <li>Serialized online</li>
+            <li>Patreon bonuses</li>
+            <li>Early access available</li>
+            <li>Reader input</li>
+            <li>Discord channel</li>
           </ul>
+          <a href="/series/shattered-realms" class="btn">Explore Full Series</a>
         </div>
-
-        <h2>Last Sunrise</h2>
-        <p>When the constant war between the two nations reaches the doorsteps of the Crescent Moon Pavilion, Sinialli's life is turned completely around and she is left with nothing but memories of better times. She prays for release and to join her family, to become one with them, but the gods have other plans.</p>
-        <p>With the scents of magic surrounding her and guiding her, Sinialli knows what she has to do. She knows this would be the last sunset she would ever see, if she ever even makes it to sunrise. And she knows, as the best courtesan in all of Trace, what it would take to make sure she and her family would be remembered forever.</p>
-        <a href="#excerpt" class="btn btn-secondary">Read Excerpt</a>
-        <a href="https://books2read.com/lastsunrise" class="btn">Buy Now</a>
-      </div>
-      
-      <div class="sticky-side-column">
-        <div class="sticky-content">
-          <div class="accordion-item">
-            <a class="accordion-header" aria-expanded="false">
-              <span class="footer-heading">Content warnings</span>
-              <span class="accordion-icon">▾</span>
-            </a>
-            <div class="accordion-content">
-              <ul>
-                <li>blood</li>
-                <li>death</li>
-                <li>war</li>
-                <li>sexual content</li>
-                <li>coercion</li>
-                <li>suicidal thoughts</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="menu-divider"></div>
-
-          <div class="accordion-item">
-            <a class="accordion-header" aria-expanded="false">
-              <span class="footer-heading">Tropes</span>
-              <span class="accordion-icon">▾</span>
-            </a>
-            <div class="accordion-content">
-              <ul>
-                <li>magical elements</li>
-                <li>courtesan as protagonist</li>
-                <li>divine intervention</li>
-                <li>the truth behind the lore</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="menu-divider"></div>
-
-          <div class="accordion-item">
-            <a class="accordion-header" aria-expanded="false">
-              <span class="footer-heading">Keywords</span>
-              <span class="accordion-icon">▾</span>
-            </a>
-            <div class="accordion-content">
-              <ul>
-                <li>strong female protagonist</li>
-                <li>courtesan heroine</li>
-                <li>gods and destiny</li>
-                <li>tragic heroine</li>
-                <li>standalone fantasy</li>
-                <li>last stand story</li>
-                <li>sacrifice and redemption</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </section>
-
-  <div class="section-divider divider-down divider-light"></div>
-
-  <!--Excerpt-->
-  <section class="section section-dark section-after-divider section-with-divider" id="excerpt">
-    <section class="section-content">
-      <div class="accordion-item">
-        <h3>Excerpt</h3>  
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <a class="accordion-header" aria-expanded="false">
-          <h5>Read more...<span class="accordion-icon">▾</span></h5>
-        </a>
-        <div class="accordion-content">
-          <p>When the constant war between the two nations reaches the doorsteps of the Crescent Moon Pavilion, Sinialli's life is turned completely around and she is left with nothing but memories of better times.</p>
-          <a href="https://books2read.com/lastsunrise" class="btn">Continue reading</a>
-          <a href="#series" class="btn btn-secondary">Learn more about the world</a>
-          <a class="btn btn-secondary excerpt-close">Close Excerpt</a>
-        </div>
-      </div>
-    </section>
-  </section>
-
-  <div class="section-divider divider-down divider-dark"></div>
-
-  <!--Reviews-->
-  <section class="section section-red section-after-divider section-with-divider">
-    <section class="section-content">
-      <h2>What Readers Say</h2>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="review-stars" aria-label="5 stars">★★★★★</div>
-          <blockquote class="review-text">
-            "The prose wrapped around me like silk and the characters felt more real than people I know."
-          </blockquote>
-          <div class="review-author">- Goodreads Reviewer</div>
-        </div>
-        
-        <div class="review-card">
-          <div class="review-stars" aria-label="5 stars">★★★★★</div>
-          <blockquote class="review-text">
-            "I couldn't put it down. The perfect blend of poetic language and raw emotion that left me in tears by the end."
-          </blockquote>
-          <div class="review-author">- Amazon Customer</div>
-        </div>
-        
-        <div class="review-card">
-          <div class="review-stars" aria-label="5 stars">★★★★★</div>
-          <blockquote class="review-text">
-            "I couldn't put it down. The perfect blend of poetic language and raw emotion that left me in tears by the end."
-          </blockquote>
-          <div class="review-author">- Amazon Customer</div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars" aria-label="5 stars">★★★★★</div>
-          <blockquote class="review-text">
-            "I couldn't put it down. The perfect blend of poetic language and raw emotion that left me in tears by the end."
-          </blockquote>
-          <div class="review-author">- Amazon Customer</div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars" aria-label="5 stars">★★★★★</div>
-          <blockquote class="review-text">
-            "I couldn't put it down. The perfect blend of poetic language and raw emotion that left me in tears by the end."
-          </blockquote>
-          <div class="review-author">- Amazon Customer</div>
-        </div>
-      </div>
-      <a class="load-more-reviews btn">Load More Reviews</a>
-    </section>
-  </section>
-
-  <div class="section-divider divider-down divider-red"></div>
-
-  <!--Art gallery-->
-  <section class="section section-light section-after-divider section-with-divider">
-     <div class="section-content">
-      <h2>Art Gallery</h2>
-      <div class="masonry-grid">
-        <img src="/images/books/LastSunrise/character_Sinialli.png" alt="Sinialli">
-        <img src="/images/books/LastSunrise/clean-cover.png" alt="Book Cover">
-        <img src="/images/books/LastSunrise/hero-bg.jpg" alt="Background Art">
-        <img src="/images/books/LastSunrise/hero-fg.png" alt="Foreground Art">
-        <img src="/images/books/LastSunrise/mockup_ebook.png" alt="Ebook Mockup">
-        <img src="/images/books/LastSunrise/character_Sinialli.png" alt="Sinialli Portrait">
-        <img src="/images/books/LastSunrise/clean-cover.png" alt="Book Cover">
-        <img src="/images/books/LastSunrise/hero-bg.jpg" alt="Background Art">
-        <img src="/images/books/LastSunrise/hero-fg.png" alt="Foreground Art">
-        <img src="/images/books/LastSunrise/mockup_ebook.png" alt="Ebook Mockup">
-      </div>
-      <a class="btn load-more">Load More Art
-      </a>
-    </div>
-  </section>
-
-  <div class="section-divider divider-down divider-light"></div>
-
-  <!--Character cards-->
-  <section class="section section-dark section-after-divider section-with-divider">
-    <div class="section-content">
-      <h2>Characters</h2>
-      <div class="grid">
-        <div class="card"
-          data-character-id="sinialli" 
-          data-books="last-sunrise" 
-          data-role="mc"
-          data-series="shattered-realms">
-          <div class="card-img-container">
-            <span class="initials">Sinialli</span>
-            <img src="/images/books/LastSunrise/character_Sinialli.png" alt="Sinialli" class="card-img">
-          </div>
-          <h3>Sinialli</h3>
-          <p>The best courtesan in Trace, known for her sharp wit and sharper knives.</p>
-          <div class="menu-divider"></div>
-          <ul class="accordion-content">
-            <li>Connection to: The Crescent Moon</li>
-            <li>Connection to: The War</li>
-            <li>Connection to: The Gods</li>
-          </ul>
-        </div>
-        
-
-        <div class="card">
-          <div class="card-img-container">
-            <span class="initials">TS</span>
-          </div>
-          <h3>The Stranger</h3>
-          <p>A shadowy figure who appears at pivotal moments, their motives unclear.</p>
-          <div class="menu-divider"></div>
-          <ul class="accordion-content">
-            <li>Connection to: The War</li>
-            <li>Connection to: Ancient Prophecies</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="card-img-container">
-            <span class="initials">TS</span>
-          </div>
-          <h3>The Stranger</h3>
-          <p>A shadowy figure who appears at pivotal moments, their motives unclear.</p>
-          <div class="menu-divider"></div>
-          <ul class="accordion-content">
-            <li>Connection to: The War</li>
-            <li>Connection to: Ancient Prophecies</li>
-          </ul>
-        </div>   
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider divider-down divider-dark"></div>
-
-  <!--Series section-->
-  <section class="section section-light section-after-divider section-final section-top" id="series">
-    <div class="section-content">
-      <div class="metadata-card active-filters">
-        <div class="series-banner-container">
-          <div class="series-banner-image" 
-              style="background-image: url('/images/series/shattered-realms/hero-bg.jpg')">
-          </div>
-          <div class="series-logo-overlay">
-            <img src="/images/series/shattered-realms/logo.png" alt="Shattered Realms">
-          </div>
-        </div>
-        <h3>The Shattered Realms</h3>
-        <p>A world where [1-sentence series logline]</p>
         <div class="menu-divider"></div>
-        <p>The following info may contain spoilers.</p>
-        <ul class="details-list">
-          <li><strong>Start here?:</strong> Can (but best after Book 2)</li>
-          <li><strong>Needed context:</strong> None, but Book 2 helps</li>
-          <li><strong>Timeline:</strong> 2000 years after GoD</li>
-          <li><strong>Reading order:</strong> Standalone</li>
-          <li><strong>Series progress:</strong> 3 of 8
-            <span class="tooltip-icon">★
-              <span class="tooltip-text">3 released • 2 written • 3 planned</span>
-            </span>
-          </li>
-          <li><strong>Returning characters:</strong> 4
-            <span class="tooltip-icon">★
-              <span class="tooltip-text">Tassikar from GoD 2 • [spoiler] • Next • and another god</span>
-            </span>
-          </li>
-          <li><strong>Easter eggs:</strong> None</li>
-        </ul>
-
-        <ul class="pill-list">
-          <li>Serialized online</li>
-          <li>Patreon bonuses</li>
-          <li>Early access available</li>
-          <li>Reader input</li>
-          <li>Discord channel</li>
-        </ul>
-
-        <a href="/series/shattered-realms" class="btn">Explore Full Series</a>
-      </div>
-      <div class="menu-divider"></div>
-      <div class="accordion-item">
-        <a class="accordion-header" aria-expanded="false">
-          <h5>Recap of what happened before <span class="accordion-icon">▾</span></h5>
-        </a>
-        <div class="accordion-content">
-          <p>[Very brief 2-3 sentence spoiler-free setup]</p>
-          <a href="/book/previous" class="btn btn-secondary btn-black">Learn more</a>
+        <div class="accordion-item">
+          <a class="accordion-header" aria-expanded="false">
+            <h5>Recap of what happened before <span class="accordion-icon">▾</span>
+            </h5>
+          </a>
+          <div class="accordion-content">
+            <p>[Very brief 2-3 sentence spoiler-free setup]</p>
+            <a href="/book/previous" class="btn btn-secondary btn-black">Learn more</a>
+          </div>
         </div>
-      </div>
-
-      <div class="accordion-item">
-        <a class="accordion-header" aria-expanded="false">
-          <h5>Continue the journey<span class="accordion-icon">▾</span></h5>
-        </a>
-        <div class="accordion-content">
-          <p>[Next book title] releases [date]. [1-sentence hook].</p>
-          <a href="/book/next" class="btn btn-secondary">About Next Book</a>
+        <div class="accordion-item">
+          <a class="accordion-header" aria-expanded="false">
+            <h5>Continue the journey <span class="accordion-icon">▾</span>
+            </h5>
+          </a>
+          <div class="accordion-content">
+            <p>[Next book title] releases [date]. [1-sentence hook].</p>
+            <a href="/book/next" class="btn btn-secondary">About Next Book</a>
+          </div>
         </div>
+        <a href="#buy" class="btn">Read Current Book</a>
       </div>
-      <a href="#buy" class="btn">Read Current Book</a>
-    </div>
-  </section>
-</body>
+    </section>
+  </body>
 </html>
