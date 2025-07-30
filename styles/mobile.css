@@ -43,7 +43,6 @@
     margin-bottom: var(--xs) !important;
   }
   /* #endregion */
-
   /* #region - LAYOUT STRUCTURE */
   .section-content {
     padding: var(--md) !important;
@@ -71,7 +70,6 @@
     padding-top: var(--tight-zero) !important;
   }
   /* #endregion */
-
   /* #region - HERO SECTION */
   .homepage-hero {
     height: auto;
@@ -108,7 +106,6 @@
     bottom: var(--md);
   }
   /* #endregion */
-
   /* #region - CARDS & GRIDS */
   .grid {
     grid-template-columns: 1fr !important;
@@ -140,7 +137,6 @@
   }
 
   /* #endregion */
-
   /* #region - SERIES SECTIONS */
   .series-info {
     margin-bottom: var(--tight-zero) !important;
@@ -169,7 +165,6 @@
     max-width: 80%;
   }
   /* #endregion */
-
   /* #region - REVIEWS & ACCORDION */
   .reviews-grid {
     grid-template-columns: 1fr !important;
@@ -188,7 +183,6 @@
     margin-bottom: var(--md);
   }
   /* #endregion */
-
   /* #region - UTILITY CLASSES */
   .section-with-divider {
     padding-bottom: var(--xl);
@@ -207,7 +201,6 @@
     margin-top: calc(var(--negative) * var(--md) + 1px);
   }
   /* #endregion */
-
   /* #region - IMAGE TAGS */
   .image-tag {
     font-size: var(--xs);
@@ -220,6 +213,7 @@
     padding: var(--tight-zero);
     width: var(--padded-width);
     padding-bottom: var(--xl) !important;
+    grid-template-columns: 1fr;
   }
 
   .footer-content {
