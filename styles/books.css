@@ -119,7 +119,8 @@
 
 .cover-mockup {
   margin-bottom: var(--md);
-  max-height: 300px;
+  max-height: 300px !important;
+  width: auto !important;
 }
 /* #endregion */
 /* #region - SERIES NAV */
