@@ -382,7 +382,10 @@ a .card {
 }
 
 .form-btn {
+  display: flex;
   width: calc(var(--full-width) - var(--xl) * 2);
+  padding: var(--padding-btn);
+  border: none;
   cursor: pointer;
   text-transform: uppercase;
   transition: var(--transition);
