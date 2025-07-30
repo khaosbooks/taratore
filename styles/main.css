@@ -61,13 +61,13 @@ html {
   --letter-spacing: 0.2em;
 
   /* Headings for mobile */
-  --mobile-text-scale: 0.9;
+  --mobile-text-scale: 0.6;
   --mobile-heading1: calc(var(--xxxl) * var(--mobile-text-scale));
   --mobile-heading2: calc(var(--xxl) * var(--mobile-text-scale));
   --mobile-heading3: calc(var(--xl) * var(--mobile-text-scale));
   --mobile-heading4: calc(var(--lg) * var(--mobile-text-scale));
   --mobile-heading5: calc(var(--md) * var(--mobile-text-scale));
-  --mobile-body-text: calc(1rem * var(--mobile-text-scale));
+  --mobile-body-text: var(--mobile-text-scale);
 
   /* Spacing */
   --xxxs: 0.2rem;
@@ -85,7 +85,7 @@ html {
   /* Sizes */
   --view-height: 100vh !important;
   --full-width: 100% !important;
-  --padded-width: 90% !important;
+  --padded-width: 80% !important;
   --max-width: 1200px !important;
   --hero-height: 70vh;
   --rounding: 50%;
@@ -167,11 +167,7 @@ p {
   margin-top: var(--lg);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+h1, h2, h3, h4, h5 {
   font-family: var(--font-heading);
   margin: var(--xs) var(--tight-zero);
   line-height: var(--mdem);
@@ -341,6 +337,10 @@ a .card {
   column-fill: balance;
 }
 
+.mobile-divider {
+  visibility: hidden;
+}
+
 .centred {
   display: flex;
   justify-content: center;
@@ -383,6 +383,34 @@ a .card {
   text-align: center;
   margin-top: var(--md);
   border: var(--tiny-red-border);
+}
+
+.form-btn {
+  width: calc(var(--full-width) - var(--xl) * 2);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: var(--transition);
+  align-items: center;
+  gap: var(--sm);
+  font-size: var(--sm);
+  justify-content: center;
+  text-align: center;
+  margin-top: var(--md);
+  border: var(--tiny-red-border);
+  background: var(--accent);
+  color: var(--primary-bg);
+  font-family: var(--font-body);
+}
+
+.form-btn:hover {
+  background-color: var(--dark-red) !important;
+  color: var(--primary-bg) !important;
+  transform: var(--shift-up) !important;
+}
+
+button[type="submit"],
+button[type="button"] {
+  font-family: var(--font-body);
 }
 
 .btn-secondary {
@@ -520,6 +548,7 @@ a .card {
   position: relative;
   min-height: var(--hero-height);
   overflow: hidden;
+  height: 100vh;
 }
 
 .homepage-hero .book-hero {
@@ -611,10 +640,6 @@ a .card {
 }
 /* #endregion */
 /* #region - FORM */
-.feedback-form {
-  padding-top: var(--lg);
-}
-
 .form-group {
   margin-bottom: var(--lg);
 }
