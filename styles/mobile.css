@@ -116,10 +116,6 @@
     margin: var(--tight-zero) !important;
   }
 
-  .mobile-divider {
-    visibility: visible !important;
-    border-top: var(--red-border) !important;
-  }
   .card {
     margin-bottom: var(--md);
   }
