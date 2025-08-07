@@ -57,7 +57,7 @@ html {
   font-size: 18px;
   --font-body: "Forum PS", sans-serif;
   --font-heading: "Analogist", serif;
-  --line-height: 1;
+  --line-height: 1.2;
   --letter-spacing: 0.2em;
 
   /* Headings for mobile */
@@ -95,7 +95,7 @@ html {
   /* Effects */
   --shadow-default: 0 0.2rem 0.4rem var(--primary-text);
   --shift-up: translateY(-2px);
-  --transition: all 0.5s ease;
+  --transition: all 0.3s ease;
   --scale: scale(1.1);
   --negative: -1;
 
@@ -130,11 +130,6 @@ html {
 
   /* Logo */
   --mobile-logo-height: var(--xl);
-
-  /* Z-index */
-  --front-most: 9999;
-  --mid-point: 5000;
-  --at-the-back: 1000;
 }
 /* #endregion */
 /* #region - TYPOGRAPHY */
@@ -241,7 +236,6 @@ a .card {
   width: var(--full-width);
   max-width: var(--max-width);
   margin: var(--tight-zero) auto;
-  z-index: 5;
   justify-content: space-between;
   gap: var(--xxxl);
 }
@@ -291,7 +285,7 @@ a .card {
   width: var(--full-width);
   height: var(--xl);
   position: relative;
-  z-index: 1000;
+  z-index: 8000;
 }
 
 .divider-down {
@@ -366,7 +360,9 @@ a .card {
 /* #endregion */
 /* #region - BUTTONS */
 .btn {
-  display: flex;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   padding: var(--padding-btn);
   border: none;
   cursor: pointer;
@@ -573,7 +569,7 @@ button[type="button"] {
   transform: var(--minus-50);
   display: flex;
   gap: var(--sm);
-  z-index: 10;
+  z-index: 5;
 }
 
 .homepage-hero .indicator {

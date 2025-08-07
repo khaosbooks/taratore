@@ -10,7 +10,6 @@
     overflow-x: hidden;
   }
   /* #endregion */
-
   /* #region - TYPOGRAPHY */
   h1, h2, h3, h4, h5 {
     line-height: 1.2 !important;
@@ -44,8 +43,12 @@
   }
   /* #endregion */
   /* #region - LAYOUT STRUCTURE */
+  .status-banner-wrapper {
+    bottom: calc(var(--xl) * 1.5);
+  }
+  
   .section-content {
-    padding: var(--md) !important;
+    padding: 0 var(--md) var(--md) !important;
     width: var(--padded-width) !important;
   }
 
@@ -66,10 +69,9 @@
     padding-right: 0 !important;
   }
 
-  .intro-content {
+  .content-column {
     padding-top: var(--tight-zero) !important;
   }
-
   .sticky-content {
     padding-top: var(--tight-zero);
   }
@@ -100,6 +102,7 @@
     gap: var(--md);
     align-items: center;
     text-align: center;
+    width: var(--padded-width) !important;
   }
 
   .hero-content > div {
@@ -113,11 +116,13 @@
 
   .mockup-container {
     padding-top: var(--md);
+    width: var(--full-width);
+    height: auto;
   }
 
   .cover-mockup {
     max-height: 200px;
-    width: 100% !important;
+    width: auto;
   }
 
   .slider-indicators {
@@ -139,14 +144,23 @@
     margin-bottom: var(--sm);
   }
 
-  .btn {
-    margin-top: var(--sm);
-    padding: var(--sm) var(--md);
-  }
-
   .form-btn {
     margin: var(--sm) auto 0;
     padding: var(--sm) var(--md);
+  }
+
+  .social-links-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: var(--xxxs) !important;
+  }
+  
+  .social-card img {
+    height: var(--xl) !important;
+  }
+
+  .social-card span {
+    font-size: var(--sm) !important;
+    line-height: 1.2 !important;
   }
 
   button[type="submit"],
@@ -192,10 +206,19 @@
     border: var(--red-border);
   }
 
-  .sticky-content {
-    padding-bottom: var(--lg);
+  .sticky-side-column .footer-heading,
+  .sticky-side-column .accordion-icon {
+    font-size: var(--md) !important;
   }
 
+  .sticky-side-column .accordion-item {
+    padding-top: var(--md);
+  }
+
+  .sticky-content {
+    margin-right: var(--tight-zero) !important;
+    padding-bottom: var(--md);
+  }
   /* #endregion */
   /* #region - REVIEWS & ACCORDION */
   .reviews-grid {
@@ -216,6 +239,21 @@
   }
   /* #endregion */
   /* #region - UTILITY CLASSES */
+  .series-links {
+    flex-direction: column;
+    gap: var(--xs);
+    align-items: flex-start;
+  }
+  
+  
+  .series-links a::before {
+    content: none !important;
+  }
+  
+  .series-links a {
+    padding: 0;
+  }
+  
   .section-with-divider {
     padding-bottom: var(--xl);
   }
@@ -232,6 +270,78 @@
   .divider-down {
     margin-top: calc(var(--negative) * var(--md) + 1px);
   }
+
+  .series-logo-overlay {
+    width: 5%;
+    left: 7%;
+  }
+
+  #downloads .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important; /* 2 columns */
+  }
+
+  #downloads .image-tag {
+    height: auto !important;
+    line-height: 1 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+  }
+  
+  #downloads .downloads-image-container {
+    position: relative !important;
+  }
+
+  #downloads .downloads-image-container img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important;
+    object-position: center !important;
+  }
+
+  .locked-card-grid .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  
+  .exclusive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .locked-overlay {
+    text-align: center;
+    font-size: var(--sm) !important;
+  }
+
+  /* #endregion */
+  /* #region - PILLS, TOOLTIPS*/
+  .pill-list {
+    gap: var(--sm);
+  }
+
+  .pill-list li {
+    padding: calc(.05 * var(--xxxs)) !important;
+    font-size: var(--xxs);
+    border: var(--xxs) solid transparent;
+  }
+
+  .map-back-btn {
+    width: var(--padded-width) !important;
+  }
+
+  .tooltip-icon {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip-text {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    margin-left: 0 !important;
+    width: 150px !important;
+    line-height: var(--line-height);
+    position: absolute !important;
+  }  
   /* #endregion */
   /* #region - IMAGE TAGS */
   .image-tag {
@@ -473,4 +583,5 @@
     color: var(--primary-bg) !important;
   }
   /* #endregion */
+  
 }
