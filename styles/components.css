@@ -37,8 +37,6 @@
 
 .logo-compact {
   display: none;
-  height: var(--xl);
-  width: auto;
 }
 
 .nav-menu {
@@ -49,6 +47,10 @@
   align-items: center;
   text-transform: uppercase;
   font-size: var(--sm);
+}
+
+.nav-menu a[href="#"] {
+  pointer-events: none;
 }
 
 .nav-item {
@@ -226,10 +228,12 @@
 
 .header.scrolled .logo-full {
   display: none;
+  height: var(--lg) !important;
 }
 
 .header.scrolled .logo-compact {
   display: block;
+  height: var(--xxxl);
 }
 
 .header.scrolled .nav-link {

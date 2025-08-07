@@ -59,14 +59,30 @@
     <section class="section section-light section-after-divider section-final">
       <div class="section-content">
         <h2>Blog articles</h2>
-        <div class="accordion-item">
+
+        <div class="metadata-card blog-filters active-filters">
+          <div class="search-wrapper">
+            <input type="text" placeholder="Search blog posts..." class="search-input">
+            <div class="result-count">
+              <span>0</span> posts found
+            </div>
+          </div>
+          <ul class="pill-list">
+            <li data-filter="all" class="current">All</li>
+            <li data-filter="writing-tips">Writing tips</li>
+            <li data-filter="behind-scenes">Behind-the-scenes</li>
+            <li data-filter="updates">Regular updates</li>
+            <li data-filter="queer" class="queer">Queer rant</li>
+          </ul>
+        </div>
+
+        <div class="accordion-item" data-categories="writing-tips updates queer">
           <a class="accordion-header" aria-expanded="false">
             <h4>Blog article title (pub date) <span class="accordion-icon">▾</span>
             </h4>
           </a>
           <ul class="pill-list">
             <li>Writing tips</li>
-            <li>Behind-the-scenes</li>
             <li>Regular-updates</li>
             <li class="queer">Queer rant</li>
           </ul>
@@ -74,17 +90,16 @@
             <p>[Here]</p>
           </div>
         </div>
-        <div class="menu-divider" style="margin-top:var(--xxl)"></div>
-        <div class="accordion-item">
+        
+        <div class="menu-divider"></div>
+
+        <div class="accordion-item" data-categories="writing-tips behind-scenes">
           <a class="accordion-header" aria-expanded="false">
-            <h4>Blog article title (pub date) <span class="accordion-icon">▾</span>
+            <h4>Blog article (pub date) <span class="accordion-icon">▾</span>
             </h4>
           </a>
           <ul class="pill-list">
             <li>Writing tips</li>
-            <li>Behind-the-scenes</li>
-            <li>Regular-updates</li>
-            <li class="queer">Queer rant</li>
           </ul>
           <div class="accordion-content">
             <p>[Here]</p>

@@ -291,7 +291,6 @@
   margin-right: var(--xl);
 }
 
-/* Accordion Styles */
 .accordion-item {
   padding-top: var(--xl);
 }
@@ -322,8 +321,9 @@
 }
 
 .accordion-content {
-  overflow: hidden;
+  overflow-y: hidden !important;
   transition: var(--transition);
+  max-height: 0;
 }
 
 .accordion-content ul {
@@ -611,8 +611,12 @@
 
 .map-back-btn {
   position: absolute;
+  left: var(--md); 
+  right: auto; 
   bottom: var(--md);
-  left: var(--sm);
+  z-index: 10;
+  width: auto !important;
+  padding: var(--xs) var(--md);
 }
 
 /* Tooltips */
@@ -817,3 +821,56 @@ span.spoiler.revealed::after {
   display: none;
 }
 /* #endregion */
+/* #region - BLOG STUFF */
+.blog-filters {
+  margin-bottom: var(--xl);
+}
+
+#blog-categories {
+  margin: var(--md) 0;
+}
+
+#blog-categories li.current {
+  background: var(--accent);
+  color: var(--primary-bg);
+}
+
+#reset-filters {
+  margin-top: var(--sm);
+  width: auto;
+  display: inline-block;
+}
+/* #endregion */
+
+.section-light .accordion-item {
+  position: relative;
+  margin-bottom: var(--xl);
+  padding-bottom: var(--lg); 
+}
+
+.section-light .accordion-item:not(:last-child)::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: var(--divider-color);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.section-light .accordion-item .pill-list {
+  margin-bottom: var(--sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--xs);
+  position: relative;
+  padding-bottom: var(--xs); /* Extra space for multi-line pills */
+}
+
+
+.section-light .accordion-content {
+  margin-top: var(--xs);
+  padding-top: var(--sm);
+  clear: both;
+}

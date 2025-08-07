@@ -126,11 +126,16 @@ html {
   --light-border: var(--xxxs) solid var(--primary-bg);
   --black-border: var(--xxxs) solid var(--primary-text);
   --thick-border: var(--xxxl) solid var(--accent);
-  --tooltip-width: 250px;
+  --tooltip-width: 90vw;
 
   /* Logo */
   --mobile-logo-height: var(--xl);
 }
+
+:target {
+  scroll-margin-top: 200px; /* Adjust based on your header height */
+}
+
 /* #endregion */
 /* #region - TYPOGRAPHY */
 body {
@@ -375,6 +380,7 @@ a .card {
   text-align: center;
   margin-top: var(--md);
   border: var(--tiny-red-border);
+  line-height: var(--line-height);
 }
 
 .form-btn {
@@ -651,7 +657,7 @@ button[type="button"] {
   padding: var(--sm);
   font-size: var(--md);
   font-family: var(--font-body);
-  border: var(--black-border);
+  border: var(--tiny-black-border);
   background: var(--secondary-bg);
   color: var(--primary-text);
   transition: var(--transition);

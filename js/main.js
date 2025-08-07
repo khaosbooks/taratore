@@ -36,6 +36,7 @@ async function loadComponents() {
 		initializeHeroSlider();
 		initializeSpoilers();
 		initializeCharacterDeepLinks();
+		initializeBlogComponents();
 
 		document.body.classList.add('components-loaded');
 
@@ -51,8 +52,87 @@ async function loadComponents() {
 	}
 }
 
+// ===== BLOG ACCORDION & FILTER FIX =====
+function initializeBlogComponents() {
+  const blogSearch = document.querySelector('.blog-filters .search-input');
+  const blogFilters = document.querySelectorAll('.blog-filters .pill-list li');
+  const resultCount = document.querySelector('.blog-filters .result-count span');
+  const blogArticles = document.querySelectorAll('.section-light .accordion-item');
 
-// ANCHOR TO CHARACTER CARDS
+  if (!blogArticles.length) return;
+
+  // Initialize all accordions
+  function initAccordions() {
+    blogArticles.forEach(article => {
+      const header = article.querySelector('.accordion-header');
+      const content = article.querySelector('.accordion-content');
+      const pills = article.querySelector('.pill-list');
+
+      // Set initial state
+      header.setAttribute('aria-expanded', 'false');
+      content.style.maxHeight = '0';
+      if (pills) pills.style.display = 'flex';
+
+      // Remove any existing listeners to prevent duplicates
+      header.replaceWith(header.cloneNode(true));
+      const newHeader = article.querySelector('.accordion-header');
+      
+      newHeader.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        this.setAttribute('aria-expanded', !isExpanded);
+        content.style.maxHeight = isExpanded ? '0' : content.scrollHeight + 'px';
+      });
+    });
+  }
+
+  // Filter function
+  function filterArticles() {
+    const searchTerm = blogSearch?.value.toLowerCase() || '';
+    const activeFilter = document.querySelector('.blog-filters .pill-list .current')?.dataset.filter || 'all';
+    let visibleCount = 0;
+
+    blogArticles.forEach(article => {
+      const matchesSearch = article.textContent.toLowerCase().includes(searchTerm);
+      const matchesCategory = activeFilter === 'all' || 
+                           article.dataset.categories.includes(activeFilter);
+      
+      if (matchesSearch && matchesCategory) {
+        article.style.display = 'block';
+        visibleCount++;
+        
+        // Reset accordion state but preserve current open/close
+        const header = article.querySelector('.accordion-header');
+        const content = article.querySelector('.accordion-content');
+        const isCurrentlyExpanded = header.getAttribute('aria-expanded') === 'true';
+        
+        content.style.maxHeight = isCurrentlyExpanded ? content.scrollHeight + 'px' : '0';
+      } else {
+        article.style.display = 'none';
+      }
+    });
+
+    if (resultCount) resultCount.textContent = visibleCount;
+  }
+
+  // Initialize everything
+  initAccordions();
+  filterArticles();
+
+  // Event listeners
+  if (blogSearch) blogSearch.addEventListener('input', filterArticles);
+  blogFilters.forEach(filter => {
+    filter.addEventListener('click', function() {
+      blogFilters.forEach(f => f.classList.remove('current'));
+      this.classList.add('current');
+      filterArticles();
+    });
+  });
+}
+
+
+// ===== ANCHOR TO CHARACTER CARDS =====
 function initializeCharacterDeepLinks() {
   // Check if URL has a character hash
   if (window.location.hash.startsWith('#character-')) {
@@ -83,7 +163,6 @@ function initializeCharacterDeepLinks() {
   }
 }
 
-
 // ===== SPOILER TAGS =====
 function initializeSpoilers() {
   document.addEventListener('click', function(e) {
@@ -93,7 +172,6 @@ function initializeSpoilers() {
     }
   });
 }
-
 
 // ===== HERO SLIDER =====
 function initializeHeroSlider() {
@@ -139,7 +217,6 @@ function initializeHeroSlider() {
 		});
 	});
 }
-
 
 // ===== COUNTDOWN TIMER =====
 function initializeCountdown() {
@@ -190,7 +267,6 @@ function initializeCountdown() {
 	timer();
 }
 
-
 // ===== GLOSSARY & DOWNLOADS TABS =====
 function initializeResourceTabs() {
 	const glossaryFilters = document.querySelector('.glossary-filters');
@@ -235,7 +311,6 @@ function initializeResourceTabs() {
 	setupDownloadFilters();
 	updateResourceCounts();
 }
-
 function setupGlossaryFilters() {
 	const glossarySearch = document.querySelector('.glossary-filters .search-input');
 	const glossaryFilters = document.querySelectorAll('.glossary-filters .pill-list li');
@@ -272,7 +347,6 @@ function setupGlossaryFilters() {
 		});
 	});
 }
-
 function setupDownloadFilters() {
 	const downloadSearch = document.querySelector('.download-filters .search-input');
 	const downloadFilters = document.querySelectorAll('.download-filters .pill-list li');
@@ -309,21 +383,18 @@ function setupDownloadFilters() {
 		});
 	});
 }
-
 function checkGlossaryFilter(term) {
 	const activeFilter = document.querySelector('.glossary-filters .pill-list .current')?.dataset.filter;
 	if (activeFilter === 'all') return true;
 	const termTypes = term.dataset.types?.split(' ') || [];
 	return termTypes.includes(activeFilter);
 }
-
 function checkDownloadFilter(download) {
 	const activeFilter = document.querySelector('.download-filters .pill-list .current')?.dataset.filter;
 	if (activeFilter === 'all') return true;
 	const downloadTypes = download.dataset.types?.split(' ') || [];
 	return downloadTypes.includes(activeFilter);
 }
-
 function updateResourceCounts() {
 	// Glossary count
 	const visibleTerms = document.querySelectorAll('#glossary .glossary-term[style*="block"], #glossary .glossary-term:not([style])').length;
@@ -335,7 +406,6 @@ function updateResourceCounts() {
 	const downloadCount = document.getElementById('download-count');
 	if (downloadCount) downloadCount.textContent = visibleDownloads;
 }
-
 
 // ===== MAP INITIALIZATION =====
 function initializeMaps() {
@@ -357,7 +427,6 @@ function initializeMaps() {
 		});
 	});
 }
-
 
 // ===== LOAD MORE ART =====
 function initializeLoadMore() {
@@ -403,7 +472,6 @@ function initializeLoadMore() {
 	}
 }
 
-
 // ===== LOAD MORE REVIEWS =====
 function initializeLoadMoreReviews() {
 	const loadMoreBtn = document.querySelector('.load-more-reviews');
@@ -446,7 +514,6 @@ function initializeLoadMoreReviews() {
 	});
 }
 
-
 // ===== EXCERPT ACCORDION =====
 function initializeExcerptAccordions() {
 	document.querySelectorAll('.accordion-item .excerpt-close').forEach(btn => {
@@ -461,7 +528,6 @@ function initializeExcerptAccordions() {
 		});
 	});
 }
-
 
 // ===== TOOLTIP INITIALIZATION =====
 function initializeTooltips() {
@@ -481,24 +547,42 @@ function initializeTooltips() {
 	});
 }
 
-
 // ===== ACCORDION INITIALIZATION =====
 function initializeAccordions() {
-	document.querySelectorAll('.accordion-item').forEach(item => {
-		const header = item.querySelector('.accordion-header');
-		const content = item.querySelector('.accordion-content');
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    // Initialize state
+    header.setAttribute('aria-expanded', 'false');
+    const content = header.nextElementSibling;
+    content.style.maxHeight = '0';
+    
+    header.addEventListener('click', function(e) {
+      e.preventDefault(); 
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !isExpanded);
+      
+      // Desktop-specific: Ensure full content height
+      if (!isExpanded && window.innerWidth > 900) {
+        // Temporarily make visible to measure
+        content.style.display = 'block';
+        content.style.visibility = 'hidden';
+        const fullHeight = content.scrollHeight + 'px';
+        content.style.visibility = '';
+        
+        // Apply calculated height
+        content.style.maxHeight = 'none';
+        content.style.height = fullHeight;
+        setTimeout(() => {
+          content.style.height = 'auto'; 
+        }, 10);
+      }
 
-		header.setAttribute('aria-expanded', 'false');
-		content.style.maxHeight = '0';
-
-		header.addEventListener('click', () => {
-			const isExpanded = header.getAttribute('aria-expanded') === 'true';
-			header.setAttribute('aria-expanded', !isExpanded);
-			content.style.maxHeight = isExpanded ? '0' : `${content.scrollHeight}px`;
-		});
-	});
+      // Mobile - instant toggle (no animation)
+      else {
+        content.style.maxHeight = isExpanded ? '0' : 'none';
+      }
+    });
+  });
 }
-
 
 // ===== HEADER INITIALIZATION =====
 function initializeHeader() {
@@ -660,7 +744,6 @@ function initializeHeader() {
   });
 }
 
-
 // ===== FOOTER INITIALIZATION =====
 function initializeFooter() {
 	// Update copyright year
@@ -693,7 +776,6 @@ function initializeMailerLite() {
 		}, 500);
 	}
 }
-
 
 // ===== PARALLAX EFFECT =====
 function initializeParallax() {
@@ -737,10 +819,12 @@ function initializeParallax() {
 	}
 }
 
-
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
 	loadComponents().then(() => {
 		initializeParallax();
 	});
+});
+document.querySelectorAll('img:not([loading])').forEach(img => {
+  img.setAttribute('loading', 'lazy');
 });

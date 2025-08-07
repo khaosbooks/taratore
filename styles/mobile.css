@@ -88,6 +88,19 @@
     columns: 2;
     column-gap: var(--md);
   }
+    .section-light .accordion-item {
+    margin-bottom: var(--lg);
+    padding-bottom: var(--md);
+  }
+  
+  .section-light .accordion-item .pill-list {
+    margin-bottom: var(--xs);
+    row-gap: var(--xxs); /* Tighter vertical spacing */
+  }
+  
+  .section-light .accordion-content {
+    margin-top: var(--xs);
+  }
   /* #endregion */
   /* #region - HERO SECTION */
   .homepage-hero {
@@ -245,7 +258,6 @@
     align-items: flex-start;
   }
   
-  
   .series-links a::before {
     content: none !important;
   }
@@ -299,6 +311,14 @@
     object-position: center !important;
   }
 
+  #downloads .btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--sm) var(--md);
+  }
+
   .locked-card-grid .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
@@ -312,6 +332,11 @@
     font-size: var(--sm) !important;
   }
 
+  .accordion-content .social-links-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    margin: 0 !important; 
+  }
+
   /* #endregion */
   /* #region - PILLS, TOOLTIPS*/
   .pill-list {
@@ -319,13 +344,8 @@
   }
 
   .pill-list li {
-    padding: calc(.05 * var(--xxxs)) !important;
+    padding: var(--xxxs) var(--xs);
     font-size: var(--xxs);
-    border: var(--xxs) solid transparent;
-  }
-
-  .map-back-btn {
-    width: var(--padded-width) !important;
   }
 
   .tooltip-icon {
@@ -341,6 +361,7 @@
     width: 150px !important;
     line-height: var(--line-height);
     position: absolute !important;
+    max-width: 90vw;
   }  
   /* #endregion */
   /* #region - IMAGE TAGS */
@@ -408,6 +429,16 @@
 
   .nav-menu {
     font-size: calc(var(--sm) * var(--mobile-text-scale));
+  }
+
+  .nav-menu a[href="#"] {
+    pointer-events: none;
+    cursor: default; 
+  }
+
+  .nav-menu .with-arrow[href="#"] {
+    pointer-events: auto !important; 
+    cursor: pointer !important;
   }
 
   .discord-btn {
@@ -569,8 +600,6 @@
 
   .header.scrolled .nested-dropdown {
     background: rgba(var(--primary-bg-rgb), var(--dropdown-low-opacity));
-    border-top: 1px solid var(--divider-scrolled-color);
-    border-bottom: 1px solid var(--divider-scrolled-color);
   }
 
   .header.scrolled .nav-link,
@@ -583,5 +612,5 @@
     color: var(--primary-bg) !important;
   }
   /* #endregion */
-  
+
 }
