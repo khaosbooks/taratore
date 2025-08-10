@@ -131,7 +131,6 @@ function initializeBlogComponents() {
   });
 }
 
-
 // ===== ANCHOR TO CHARACTER CARDS =====
 function initializeCharacterDeepLinks() {
   // Check if URL has a character hash
@@ -227,11 +226,13 @@ function initializeCountdown() {
 	const style = document.createElement('style');
 	style.textContent = `
     .countdown-timer span:not([class^="countdown-"]) {
-      color: #666; /* or any color you prefer for the labels */
-      font-size: 0.8em;
-      margin: 0 2px;
+      color: rgba(var(--primary-bg-rgb), var(--dropdown-bg-opacity));;
     }
     .countdown-days, .countdown-hours, .countdown-minutes, .countdown-seconds { color: var(--accent); }
+
+		.countdown-done {
+		  color: rgba(var(--primary-bg-rgb), var(--dropdown-bg-opacity));;
+		}
   `;
 	document.head.appendChild(style);
 
@@ -259,7 +260,7 @@ function initializeCountdown() {
 		} else {
 			// If the countdown is finished
 			clearInterval(timer);
-			countdownElement.innerHTML = 'There is no current promo sale!';
+			countdownElement.innerHTML = '<span class="countdown-done">There is no current promo sale!</span>';
 		}
 	}, 1000);
 
@@ -426,6 +427,33 @@ function initializeMaps() {
 			document.getElementById(targetId).classList.add('active-map');
 		});
 	});
+
+	// Mobile-specific behavior for zoom icons
+  if (window.innerWidth <= 900) {
+    document.querySelectorAll('.map-zoom').forEach(zoom => {
+      let clicked = false;
+      
+      zoom.addEventListener('click', function(e) {
+        if (!clicked) {
+          // First click - show tooltip
+          e.preventDefault();
+          e.stopPropagation();
+          clicked = true;
+          
+          // Hide tooltip after delay if not clicked again
+          setTimeout(() => {
+            if (clicked) {
+              this.querySelector('.tooltip-text').style.visibility = 'hidden';
+              clicked = false;
+            }
+          }, 3000);
+        } else {
+          // Second click - allow default navigation
+          clicked = false;
+        }
+      });
+    });
+  }
 }
 
 // ===== LOAD MORE ART =====

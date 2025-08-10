@@ -5,7 +5,7 @@
   left: var(--tight-zero);
   transform: rotate(35deg) translateX(-25px) translateY(-10px);
   transform-origin: left center;
-  z-index: 9999;
+  z-index: 9000;
   filter: drop-shadow(0 0 6px var(--primary-text));
 }
 
@@ -290,30 +290,68 @@
   padding: var(--xl);
   margin-right: var(--xl);
 }
-
+/* #endregion */
+/* #region - ACCORDIONS */
 .accordion-item {
-  padding-top: var(--xl);
+  padding: var(--md) var(--tight-zero);
+  border-bottom: var(--tiny-red-border);
+  transition: var(--transition);
+}
+
+.accordion-item:first-child {
+  border-top: none;
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+
+
+.accordion-content ul {
+  list-style: none;
+  padding: var(--tight-zero);
+  margin: var(--sm) var(--tight-zero) var(--tight-zero);
+}
+
+.accordion-content li {
+  position: relative;
+  padding-left: var(--lg);
+  margin-bottom: var(--xs);
+  transition: var(--transition);
+}
+
+.accordion-content li::before {
+  content: "▸";
+  position: absolute;
+  left: var(--tight-zero);
+  color: inherit;
+  transition: var(--transition);
 }
 
 .accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--full-width);
   border: none;
-  cursor: pointer;
-  text-align: left;
-  background: none !important;
-}
-
-.section-light .accordion-header h4 {
-  color: var(--primary-text) !important;
-}
-
-.accordion-header:hover {
-  color: var(--accent);
   background: none;
+  cursor: pointer;
+  padding: var(--tight-zero);
+  text-align: left;
+  transition: var(--transition);
+}
+
+.accordion-header h4 {
+  margin: var(--tight-zero);
+  transition: var(--transition);
 }
 
 .accordion-icon {
   display: inline-block;
   transition: var(--transition);
+  color: inherit;
+  margin-left: var(--sm);
 }
 
 .accordion-header[aria-expanded="true"] .accordion-icon {
@@ -321,38 +359,46 @@
 }
 
 .accordion-content {
-  overflow-y: hidden !important;
+  overflow: hidden;
   transition: var(--transition);
-  max-height: 0;
+  padding-top: var(--sm);
 }
 
-.accordion-content ul {
-  list-style: none;
-  padding: var(--tight-zero);
-  margin: var(--xs) var(--tight-zero) var(--tight-zero);
+.accordion-header {
+  font-size: var(--md);
 }
 
-.accordion-content li {
-  padding: var(--xxs) var(--tight-zero);
-  position: relative;
-  padding-left: var(--sm);
-  background: none;
+.sticky-side-column .accordion-header,
+.footer-accordion .accordion-header {
+  font-size: var(--sm);
 }
 
-.accordion-content li::before {
-  content: "•";
-  position: absolute;
-  left: var(--tight-zero);
+.large-accordion .accordion-header {
+  font-size: var(--lg);
+}
+
+.section-dark .accordion-header,
+.section-red .accordion-header {
+  color: var(--primary-bg);
+}
+
+.section-dark .accordion-header:hover,
+.section-red .accordion-header:hover {
   color: var(--accent);
 }
-/* #endregion */
-/* #region - EXCERPT */
-.accordion-header h4 {
-  color: var(--primary-bg) !important;
+
+.section-light .accordion-header {
+  color: var(--primary-text);
 }
 
-.accordion-header h4:hover {
-  color: var(--accent) !important;
+.section-light .accordion-header:hover {
+  color: var(--accent);
+}
+
+.section-dark .grid > .accordion-item:last-child,
+.section-dark .grid > .accordion-item:nth-last-child(2):nth-child(odd),
+.section-dark .grid > .accordion-item:nth-last-child(3):nth-child(3n) {
+  border-bottom: none;
 }
 /* #endregion */
 /* #region - REVIEWS */
@@ -610,6 +656,7 @@
 }
 
 .map-back-btn {
+  content: "Back";
   position: absolute;
   left: var(--md); 
   right: auto; 
@@ -747,10 +794,25 @@
   display: block;
 }
 
+#downloads .downloads-image-container {
+  position: relative;
+  width: var(--full-width);
+  overflow: hidden;
+}
+
+#downloads .downloads-image-container img {
+  width: var(--full-width);
+  height: var(--full-width);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 .image-tag-high {
   top: 20%;
   right: var(--tight-zero);
 }
+
 /* #endregion */
 /* #region - PATREON */
 .locked-card {
@@ -777,7 +839,6 @@
 
 .locked-card:hover .locked-overlay {
   opacity: 1;
-  transform: translateY(-5px);
 }
 /* #endregion */
 /* #region - SPOILER TAGS */
@@ -800,16 +861,8 @@ span.spoiler::after {
   font-size: 0.7em;
   letter-spacing: 0.05em;
   color: var(--primary-text);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-span.spoiler:hover {
-  background-color: rgba(var(--accent-rgb), var(--header-bg-opacity));
-}
-
-span.spoiler:hover::after {
   opacity: 1;
+  transition: opacity 0.2s ease;
 }
 
 span.spoiler.revealed {
@@ -840,37 +893,9 @@ span.spoiler.revealed::after {
   width: auto;
   display: inline-block;
 }
+
+.accordion-item .pill-list {
+  padding-bottom: var(--xs);
+}
+
 /* #endregion */
-
-.section-light .accordion-item {
-  position: relative;
-  margin-bottom: var(--xl);
-  padding-bottom: var(--lg); 
-}
-
-.section-light .accordion-item:not(:last-child)::after {
-  content: "";
-  display: block;
-  height: 1px;
-  background: var(--divider-color);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.section-light .accordion-item .pill-list {
-  margin-bottom: var(--sm);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--xs);
-  position: relative;
-  padding-bottom: var(--xs); /* Extra space for multi-line pills */
-}
-
-
-.section-light .accordion-content {
-  margin-top: var(--xs);
-  padding-top: var(--sm);
-  clear: both;
-}

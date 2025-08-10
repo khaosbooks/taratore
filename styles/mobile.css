@@ -88,34 +88,26 @@
     columns: 2;
     column-gap: var(--md);
   }
-    .section-light .accordion-item {
-    margin-bottom: var(--lg);
-    padding-bottom: var(--md);
-  }
-  
-  .section-light .accordion-item .pill-list {
-    margin-bottom: var(--xs);
-    row-gap: var(--xxs); /* Tighter vertical spacing */
-  }
-  
-  .section-light .accordion-content {
-    margin-top: var(--xs);
-  }
   /* #endregion */
   /* #region - HERO SECTION */
   .homepage-hero {
-    height: auto;
-    min-height: 100vh;
-    padding-top: var(--xxxl);
+    height: 100vh;
+    min-height: -webkit-fill-available;
+    padding-top: 0; /*make this double xxxl if not working now*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .hero-content {
-    flex-direction: column;
     padding: var(--xl) var(--md);
+    margin-top: 0;
     gap: var(--md);
     align-items: center;
     text-align: center;
     width: var(--padded-width) !important;
+    height: auto;
+    min-height: 0; 
   }
 
   .hero-content > div {
@@ -219,13 +211,8 @@
     border: var(--red-border);
   }
 
-  .sticky-side-column .footer-heading,
-  .sticky-side-column .accordion-icon {
+  .sticky-side-column .footer-heading {
     font-size: var(--md) !important;
-  }
-
-  .sticky-side-column .accordion-item {
-    padding-top: var(--md);
   }
 
   .sticky-content {
@@ -233,7 +220,7 @@
     padding-bottom: var(--md);
   }
   /* #endregion */
-  /* #region - REVIEWS & ACCORDION */
+  /* #region - REVIEWS */
   .reviews-grid {
     grid-template-columns: 1fr !important;
     gap: var(--md);
@@ -299,17 +286,6 @@
     transform: translateY(-50%) !important;
     margin: 0 !important;
   }
-  
-  #downloads .downloads-image-container {
-    position: relative !important;
-  }
-
-  #downloads .downloads-image-container img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: fill !important;
-    object-position: center !important;
-  }
 
   #downloads .btn {
     display: flex !important;
@@ -335,6 +311,10 @@
   .accordion-content .social-links-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     margin: 0 !important; 
+  }
+
+  .metadata-card .details-list a {
+    text-align: right;
   }
 
   /* #endregion */

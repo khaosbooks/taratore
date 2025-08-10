@@ -283,7 +283,7 @@
   text-align: center;
   margin-bottom: var(--tight-zero);
   width: var(--full-width);
-  z-index: 7000;
+  z-index: 9100;
 }
 
 .footer-grid {

@@ -126,14 +126,14 @@ html {
   --light-border: var(--xxxs) solid var(--primary-bg);
   --black-border: var(--xxxs) solid var(--primary-text);
   --thick-border: var(--xxxl) solid var(--accent);
-  --tooltip-width: 90vw;
+  --tooltip-width: 250px;
 
   /* Logo */
   --mobile-logo-height: var(--xl);
 }
 
 :target {
-  scroll-margin-top: 200px; /* Adjust based on your header height */
+  scroll-margin-top: 100px !important;
 }
 
 /* #endregion */
@@ -246,14 +246,13 @@ a .card {
 }
 
 .section-tight {
-  padding: var(--xxs) var(--tight-zero);
-  margin: var(--tight-zero);
+  padding: var(--xxxs) var(--tight-zero) !important;
   margin: var(--tight-zero) auto;
   text-align: center;
 }
 
 .section-tight h5 {
-  margin-top: var(--tight-zero);
+  margin: var(--tight-zero);
 }
 
 .no-top {
@@ -385,7 +384,7 @@ a .card {
 
 .form-btn {
   display: flex;
-  width: calc(var(--full-width) - var(--xl) * 2);
+  width: var(--full-width);
   padding: var(--padding-btn);
   border: none;
   cursor: pointer;
@@ -525,7 +524,7 @@ button[type="button"] {
 }
 
 .card-img-container.blurred-image img {
-  filter: blur(calc(var(--xxxl) * var(--dropdown-low-opacity)));
+  filter: blur(var(--xxs));
   transform: var(--scale);
   transition: var(--transition);
 }
@@ -656,7 +655,6 @@ button[type="button"] {
   width: var(--full-width);
   padding: var(--sm);
   font-size: var(--md);
-  font-family: var(--font-body);
   border: var(--tiny-black-border);
   background: var(--secondary-bg);
   color: var(--primary-text);
@@ -682,8 +680,14 @@ select.form-input {
   background-size: var(--md);
 }
 
+.feedback-form {
+  width: var(--full-width);
+  box-sizing: border-box;
+}
+
 .feedback-form .btn {
   width: var(--full-width);
+  box-sizing: border-box;
   padding: var(--padding-btn);
 }
 /* #endregion */
