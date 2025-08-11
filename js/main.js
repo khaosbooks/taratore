@@ -34,9 +34,11 @@ async function loadComponents() {
 		initializeResourceTabs();
 		initializeCountdown();
 		initializeHeroSlider();
+		normalizeHeroHeights();
 		initializeSpoilers();
 		initializeCharacterDeepLinks();
 		initializeBlogComponents();
+		initializeLoadMoreBooks(); 
 
 		document.body.classList.add('components-loaded');
 
@@ -50,6 +52,59 @@ async function loadComponents() {
 	} catch (error) {
 		console.error('Error loading components:', error);
 	}
+}
+
+// ===== LOAD MORE BOOKS =====
+// ===== LOAD MORE BOOKS (MULTIPLE SECTIONS) =====
+function initializeLoadMoreBooks() {
+  const bookSections = document.querySelectorAll('.series-books');
+
+  bookSections.forEach(section => {
+    const loadMoreBtn = section.querySelector('.load-more-books');
+    const booksGrid = section.querySelector('.grid');
+    if (!loadMoreBtn || !booksGrid) return;
+
+    // Configuration
+    const DESKTOP_BATCH_SIZE = 4;
+    const MOBILE_BATCH_SIZE = 2;
+    let visibleCount = 0;
+    const allBooks = Array.from(booksGrid.querySelectorAll('.card'));
+
+    // Get batch size based on screen width
+    const getBatchSize = () => window.innerWidth > 900 ? DESKTOP_BATCH_SIZE : MOBILE_BATCH_SIZE;
+
+    // Initialize books visibility
+    const initializeBooks = () => {
+      const initialBatchSize = getBatchSize() * 2; // 8 on desktop, 4 on mobile
+      allBooks.forEach((book, index) => {
+        book.style.display = index < initialBatchSize ? 'block' : 'none';
+      });
+      visibleCount = Math.min(initialBatchSize, allBooks.length);
+      updateButtonVisibility();
+    };
+
+    // Update button visibility
+    const updateButtonVisibility = () => {
+      loadMoreBtn.style.display = visibleCount >= allBooks.length ? 'none' : 'block';
+    };
+
+    // Load more books
+    loadMoreBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const nextBatch = allBooks.slice(visibleCount, visibleCount + getBatchSize());
+      
+      nextBatch.forEach(book => {
+        book.style.display = 'block';
+      });
+
+      visibleCount += getBatchSize();
+      updateButtonVisibility();
+    });
+
+    // Initialize and handle resize
+    initializeBooks();
+    window.addEventListener('resize', initializeBooks);
+  });
 }
 
 // ===== BLOG ACCORDION & FILTER FIX =====
@@ -216,6 +271,29 @@ function initializeHeroSlider() {
 		});
 	});
 }
+
+// ===== HERO HEIGHT FIXES =====
+function normalizeHeroHeights() {
+  if (window.innerWidth <= 900) {
+    const heroes = document.querySelectorAll('.book-hero');
+    let maxHeight = 0;
+    
+    // Find the tallest hero
+    heroes.forEach(hero => {
+      hero.style.height = 'auto';
+      maxHeight = Math.max(maxHeight, hero.offsetHeight);
+    });
+    
+    // Apply to all heroes
+    heroes.forEach(hero => {
+      hero.style.height = `${maxHeight}px`;
+    });
+  }
+}
+
+// Run on load and resize
+window.addEventListener('load', normalizeHeroHeights);
+window.addEventListener('resize', normalizeHeroHeights);
 
 // ===== COUNTDOWN TIMER =====
 function initializeCountdown() {
@@ -410,50 +488,56 @@ function updateResourceCounts() {
 
 // ===== MAP INITIALIZATION =====
 function initializeMaps() {
-	// Handle map zoom buttons
-	document.querySelectorAll('.map-zoom').forEach(button => {
-		button.addEventListener('click', function() {
-			const targetId = this.getAttribute('data-target');
-			document.querySelector('.active-map').classList.remove('active-map');
-			document.getElementById(targetId).classList.add('active-map');
-		});
-	});
-
-	// Handle back buttons
-	document.querySelectorAll('.map-back-btn').forEach(button => {
-		button.addEventListener('click', function() {
-			const targetId = this.getAttribute('data-target');
-			document.querySelector('.active-map').classList.remove('active-map');
-			document.getElementById(targetId).classList.add('active-map');
-		});
-	});
-
-	// Mobile-specific behavior for zoom icons
-  if (window.innerWidth <= 900) {
-    document.querySelectorAll('.map-zoom').forEach(zoom => {
-      let clicked = false;
-      
-      zoom.addEventListener('click', function(e) {
-        if (!clicked) {
-          // First click - show tooltip
+  // Handle all map icons (both zoom and markers)
+  document.querySelectorAll('.map-zoom, .map-marker').forEach(button => {
+    button.addEventListener('click', function(e) {
+      // On mobile, show tooltip on first tap for ALL icons
+      if (window.innerWidth <= 900) {
+        // If this is a zoom button with data-target
+        const isZoomButton = this.classList.contains('map-zoom');
+        const tooltip = this.querySelector('.tooltip-text');
+        
+        if (!this.classList.contains('show-tooltip')) {
           e.preventDefault();
           e.stopPropagation();
-          clicked = true;
+          this.classList.add('show-tooltip');
           
-          // Hide tooltip after delay if not clicked again
+          // Hide tooltip after delay
           setTimeout(() => {
-            if (clicked) {
-              this.querySelector('.tooltip-text').style.visibility = 'hidden';
-              clicked = false;
+            if (this.classList.contains('show-tooltip')) {
+              this.classList.remove('show-tooltip');
             }
           }, 3000);
-        } else {
-          // Second click - allow default navigation
-          clicked = false;
+          return;
         }
-      });
+        
+        // For zoom buttons only - second tap performs action
+        if (isZoomButton) {
+          this.classList.remove('show-tooltip');
+          const targetId = this.getAttribute('data-target');
+          document.querySelector('.active-map').classList.remove('active-map');
+          document.getElementById(targetId).classList.add('active-map');
+        }
+        return;
+      }
+      
+      // Desktop behavior - only handle zoom buttons
+      if (this.classList.contains('map-zoom')) {
+        const targetId = this.getAttribute('data-target');
+        document.querySelector('.active-map').classList.remove('active-map');
+        document.getElementById(targetId).classList.add('active-map');
+      }
     });
-  }
+  });
+
+  // Handle back buttons 
+  document.querySelectorAll('.map-back-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      document.querySelector('.active-map').classList.remove('active-map');
+      document.getElementById(targetId).classList.add('active-map');
+    });
+  });
 }
 
 // ===== LOAD MORE ART =====
@@ -544,17 +628,30 @@ function initializeLoadMoreReviews() {
 
 // ===== EXCERPT ACCORDION =====
 function initializeExcerptAccordions() {
-	document.querySelectorAll('.accordion-item .excerpt-close').forEach(btn => {
-		btn.addEventListener('click', (e) => {
-			e.stopPropagation();
-			const accordion = btn.closest('.accordion-item');
-			const header = accordion.querySelector('.accordion-header');
-			const content = accordion.querySelector('.accordion-content');
-
-			header.setAttribute('aria-expanded', 'false');
-			content.style.maxHeight = '0';
-		});
-	});
+  document.querySelectorAll('.excerpt-close').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // 1. Close the current accordion
+      const accordion = this.closest('.accordion-item');
+      const header = accordion.querySelector('.accordion-header');
+      header.setAttribute('aria-expanded', 'false');
+      accordion.querySelector('.accordion-content').style.maxHeight = '0';
+      
+      // 2. Add temporary ID for scrolling
+      const scrollTargetId = 'temp-scroll-target';
+      header.id = scrollTargetId;
+      
+      // 3. Scroll to header with your CSS margin
+      setTimeout(() => {
+        location.hash = '#' + scrollTargetId;
+        
+        // 4. Clean up the ID after scrolling
+        setTimeout(() => header.removeAttribute('id'), 1000);
+      }, 10);
+    });
+  });
 }
 
 // ===== TOOLTIP INITIALIZATION =====

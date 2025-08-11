@@ -327,7 +327,7 @@ a .card {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   justify-content: center;
   gap: var(--xl);
   margin: var(--md) var(--tight-zero);
@@ -487,6 +487,7 @@ button[type="button"] {
   display: flex;
   flex-direction: column;
   position: relative;
+  min-width: 0 !important;
 }
 
 .card ul {
@@ -524,7 +525,7 @@ button[type="button"] {
 }
 
 .card-img-container.blurred-image img {
-  filter: blur(var(--xxs));
+  filter: blur(var(--xxxs));
   transform: var(--scale);
   transition: var(--transition);
 }
@@ -548,7 +549,8 @@ button[type="button"] {
   position: relative;
   min-height: var(--hero-height);
   overflow: hidden;
-  height: 100vh;
+  height: 80vh;
+  max-height: 800px; 
 }
 
 .homepage-hero .book-hero {
@@ -694,7 +696,7 @@ select.form-input {
 /* #region - LOGO LINKS GRID */
 .social-links-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(8, 1fr);
   gap: var(--md);
   margin: var(--md) 0;
 }

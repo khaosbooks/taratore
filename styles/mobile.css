@@ -65,7 +65,7 @@
   .series-info,
   .hero-content > div:first-child,
   .hero-content > div:last-child {
-    max-width: 100% !important;
+    max-width: var(--full-width) !important;
     padding-right: 0 !important;
   }
 
@@ -91,10 +91,17 @@
   /* #endregion */
   /* #region - HERO SECTION */
   .homepage-hero {
-    height: 100vh;
-    min-height: -webkit-fill-available;
-    padding-top: 0; /*make this double xxxl if not working now*/
+    height: auto !important;
+    min-height: 100vh !important;
+    max-height: none !important;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .book-hero {
+    min-height: 90vh;
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
   }
@@ -107,16 +114,39 @@
     text-align: center;
     width: var(--padded-width) !important;
     height: auto;
-    min-height: 0; 
+    flex-direction: column;
+    min-height: 90vh;
+    justify-content: center;
   }
 
   .hero-content > div {
-    max-width: 100% !important;
+    max-width: var(--full-width) !important;
   }
 
+  .hero-content > div:first-child {
+    max-width: var(--full-width) !important;
+    margin-bottom: var(--xl);
+  }
+
+  .hero-content > div:last-child {
+    max-width: var(--full-width) !important;
+  }
+
+  .hero-content h1,
+  .hero-content p {
+    max-width: var(--full-width) !important;
+    overflow-wrap: break-word;
+  }
   .hero-content h1 {
     text-align: center !important;
     padding-top: calc(var(--xxxl) * 2) !important;
+    font-size: clamp(1.5rem, 6vw, 2.5rem); 
+    line-height: 1.2;
+  }
+
+  .hero-content p {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: var(--md);
   }
 
   .mockup-container {
@@ -126,8 +156,9 @@
   }
 
   .cover-mockup {
-    max-height: 200px;
-    width: auto;
+    max-height: 40vh !important;
+    width: auto !important;
+    margin: var(--tight-zero) auto !important;
   }
 
   .slider-indicators {
@@ -172,6 +203,10 @@
   button[type="button"] {
     font-family: var(--font-body);
     width: var(--padded-width) !important;
+  }
+
+  .map-back-btn {
+    padding: var(--xxxs) var(--xs) !important;
   }
   /* #endregion */
   /* #region - SERIES SECTIONS */
@@ -237,6 +272,24 @@
   .form-group {
     margin-bottom: var(--md);
   }
+
+  .feedback-form .form-btn {
+    width: var(--full-width) !important;
+    max-width: var(--full-width) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: var(--sm) var(--md) !important;
+  }
+
+  .feedback-form .form-input {
+    width: var(--full-width) !important;
+    box-sizing: border-box;
+  }
+
+  .feedback-form {
+    padding: 0 var(--xs);
+  }
+
   /* #endregion */
   /* #region - UTILITY CLASSES */
   .series-links {
@@ -275,10 +328,6 @@
     left: 7%;
   }
 
-  #downloads .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important; /* 2 columns */
-  }
-
   #downloads .image-tag {
     height: auto !important;
     line-height: 1 !important;
@@ -295,11 +344,9 @@
     padding: var(--sm) var(--md);
   }
 
-  .locked-card-grid .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-  
-  .exclusive-grid {
+  .locked-card-grid,  
+  .exclusive-grid,
+  #downloads .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
@@ -539,7 +586,7 @@
 
   .nested-dropdown {
     position: static;
-    width: 100%;
+    width: var(--full-width);
     transform: none;
     background: rgba(var(--primary-text-rgb), var(--dropdown-low-opacity));
     box-shadow: none;
@@ -592,5 +639,30 @@
     color: var(--primary-bg) !important;
   }
   /* #endregion */
+  /* #region - MAP TOOLTIPS MOBILE FIX */
+  .map-marker .tooltip-text,
+  .map-zoom .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--transition);
+  }
+  
+  .map-marker.show-tooltip .tooltip-text,
+  .map-zoom.show-tooltip .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    z-index: 1000;
+  }
+/* #endregion */
 
+
+  .load-more-books {
+    margin-top: var(--md);
+    width: 100%;
+  }
+  
+  .series-books .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
 }
