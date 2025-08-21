@@ -95,7 +95,7 @@
   top: var(--padded-width);
   left: var(--rounding);
   transform: var(--minus-50);
-  min-width: var(--small-size1);
+  min-width: 250px;
   background-color: rgba(var(--primary-bg-rgb), var(--dropdown-bg-opacity));
   backdrop-filter: blur(var(--dropdown-blur));
   -webkit-backdrop-filter: blur(var(--dropdown-blur));
@@ -124,7 +124,7 @@
   position: absolute;
   left: var(--padded-width);
   top: var(--tight-zero);
-  min-width: var(--small-size1);
+  min-width: 250px;
   background-color: rgba(var(--primary-bg-rgb), var(--dropdown-two-opacity));
   backdrop-filter: blur(var(--dropdown-blur));
   -webkit-backdrop-filter: blur(var(--dropdown-blur));
