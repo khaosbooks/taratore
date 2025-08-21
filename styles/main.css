@@ -926,6 +926,10 @@ select.form-input {
   transition: var(--transition);
 }
 
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
 .accordion-header {
   display: flex;
   justify-content: space-between;
