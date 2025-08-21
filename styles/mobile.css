@@ -44,7 +44,7 @@
   /* #endregion */
   /* #region - LAYOUT STRUCTURE */
   .status-banner-wrapper {
-    bottom: calc(var(--xl) * 1.5);
+    bottom: calc(var(--xxl) * 1.5);
   }
   
   .section-content {
@@ -70,8 +70,9 @@
   .content-column {
     padding-top: var(--tight-zero) !important;
   }
+
   .sticky-content {
-    padding-top: var(--tight-zero);
+    padding: var(--xl) !important;
   }
 
   .masonry-grid {
@@ -82,8 +83,9 @@
   .masonry-grid img {
     margin-bottom: var(--sm);
   }
+
   .masonry-grid {
-    columns: 2;
+    columns: 2 !important;
     column-gap: var(--md);
   }
   /* #endregion */
@@ -164,8 +166,8 @@
   }
 
   .sticky-side-column {
-    max-width: var(--full-width);
-    border: var(--red-border);
+    max-width: var(--full-width) !important;
+    border: var(--thick-border);
   }
 
   .sticky-side-column .footer-heading {
@@ -266,9 +268,19 @@
     padding: var(--sm) var(--md);
   }
 
-  .locked-card-grid,  
-  .exclusive-grid,
+  .spacer {
+    padding-top:50px;
+  }
+
   #downloads .grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+  }
+
+  .grid.social-links-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  
+  .grid.exclusive-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
@@ -282,6 +294,14 @@
     margin: 0 !important; 
   }
 
+  .section-dark .grid > .accordion-item {
+    border-bottom: var(--tiny-red-border) !important;
+  }
+
+  .section-dark .grid > .accordion-item:last-child {
+    border-bottom: none !important;
+  }
+
   .metadata-card .details-list a {
     text-align: right;
   }
@@ -293,6 +313,13 @@
 
   .series-books .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .series-banner-heading {
+    padding-left: 50%;
+    bottom: 0 !important;
+    text-align: right;
+    text-shadow: 0 0px 10px var(--primary-bg);
   }
   /* #endregion */
   /* #region - PILLS, TOOLTIPS*/
@@ -346,10 +373,22 @@
   }
 
   .footer-social-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
-    width: 100% !important;
+    grid-template-columns: repeat(4, 40px) !important;
+    gap: var(--sm) !important;
   }
 
+    .footer-social-grid .social-card {
+    width: 60px !important;
+    height: 60px !important;
+    padding: var(--xxs) !important;
+  }
+
+  .footer-social-grid .social-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+  }
+  
   .footer-links {
     margin-bottom: var(--md);
   }
@@ -360,7 +399,8 @@
 
   .footer-col {
     align-items: center;
-    padding: var(--tight-zero);
+    padding: var(--tight-zero) !important;
+    box-sizing: border-box;
   }
 
   .footer-bottom {

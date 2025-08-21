@@ -30,7 +30,7 @@
   --mobile-heading2: calc(var(--xxl) * var(--mobile-text-scale));
   --mobile-heading3: calc(var(--xl) * var(--mobile-text-scale));
   --mobile-heading4: calc(var(--lg) * var(--mobile-text-scale));
-  --mobile-heading5: calc(var(--md) * var(--mobile-text-scale));
+  --mobile-heading5: calc(var(--lg) * var(--mobile-text-scale));
   --mobile-body-text: var(--mobile-text-scale);
 
   /* Spacing */
@@ -177,6 +177,13 @@ html {
 .masonry-grid img[data-loaded="false"] {
   display: none;
 }
+
+.exclusive-grid {
+  display: grid;
+  grid-template-columns: var(--four-grid);
+  gap: var(--xl);
+}
+
 /* #endregion */
 /* #region - SECTIONS */
 .section {

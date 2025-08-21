@@ -24,6 +24,7 @@ async function loadComponents() {
     initializeCharacterDeepLinks();
     initializeBlogComponents();
     initializeLoadMoreBooks();
+    initializeLoadMoreCharacters();
     disableHashLinks('.nav-menu');
     initializeHeroSlider();
     initializeHeroParallax();
@@ -869,11 +870,6 @@ function initializeHeroSlider() {
     touchStartX = e.changedTouches[0].screenX;
   };
 
-  const handleTouchMove = (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    e.preventDefault(); // Prevent vertical scroll
-  };
-
   const handleTouchEnd = () => {
     if (touchEndX < touchStartX - 50) goToSlide(currentIndex + 1); // Swipe right
     if (touchEndX > touchStartX + 50) goToSlide(currentIndex - 1); // Swipe left
@@ -1057,6 +1053,70 @@ function initializeHeroParallax() {
       observer.disconnect();
       window.removeEventListener('resize', handleResize);
     };
+  });
+}
+
+// ===== LOAD MORE CHARACTERS =====
+function initializeLoadMoreCharacters() {
+  const characterSections = document.querySelectorAll('.series-characters');
+
+  characterSections.forEach(section => {
+    const loadMoreBtn = section.querySelector('.load-more-characters');
+    const charactersGrid = section.querySelector('.grid');
+    if (!loadMoreBtn || !charactersGrid) return;
+
+    // Configuration
+    const DESKTOP_BATCH_SIZE = 4;
+    const MOBILE_BATCH_SIZE = 2;
+    let visibleCount = 0;
+    const allCharacters = Array.from(charactersGrid.querySelectorAll('.card'));
+
+    // Get batch size based on screen width
+    const getBatchSize = () => window.innerWidth > 900 ? DESKTOP_BATCH_SIZE : MOBILE_BATCH_SIZE;
+    const getInitialCount = () => window.innerWidth > 900 ? 8 : 4;
+
+    // Initialize characters visibility
+    const initializeCharacters = () => {
+      const initialCount = getInitialCount();
+      allCharacters.forEach((character, index) => {
+        if (index < initialCount) {
+          character.style.display = 'block';
+        } else {
+          character.style.display = 'none';
+        }
+      });
+      visibleCount = initialCount;
+      updateButtonVisibility();
+    };
+
+    // Update button visibility
+    const updateButtonVisibility = () => {
+      loadMoreBtn.style.display = visibleCount >= allCharacters.length ? 'none' : 'block';
+    };
+
+    // Load more characters
+    loadMoreBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // This prevents the scroll to top
+      const batchSize = getBatchSize();
+      const nextBatch = allCharacters.slice(visibleCount, visibleCount + batchSize);
+      
+      nextBatch.forEach(character => {
+        character.style.display = 'block';
+      });
+
+      visibleCount += batchSize;
+      updateButtonVisibility();
+    });
+
+    // Initialize and handle resize
+    initializeCharacters();
+    
+    // Reinitialize on resize with debounce
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(initializeCharacters, 250);
+    });
   });
 }
 
