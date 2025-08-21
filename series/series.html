@@ -35,30 +35,33 @@
     </style>
   </head>
   <body>
+    
     <!--Hero header-->
-    <section class="section section-dark">
-      <section class="section section-red">
-        <section class="book-hero">
-          <div class="parallax-wrapper">
-            <div class="parallax-bg" style="background-image: url('/images/series/shattered-realms/hero-bg.jpg')"></div>
-            <div class="parallax-foreground" style="background-image: url('/images/series/shattered-realms/hero-fg.webp')"></div>
-            <div class="hero-bg-overlay"></div>
+    <section class="hero-section" data-hero>
+      <div class="hero-slides" data-slides>
+        <div class="hero-slide" data-slide="2" data-slide-type="series" data-slide-bg="/images/series/shattered-realms/hero-bg.jpg">
+          <div class="hero-parallax">
+            <div class="parallax-layer bg-layer" style="background-image: url(/images/series/shattered-realms/hero-bg.jpg);" data-depth="0.5"></div>
+            <div class="parallax-layer fg-layer" style="background-image: url(/images/series/shattered-realms/hero-fg.webp);" data-depth="0.3"></div>
           </div>
+          
           <div class="hero-content">
-            <div>
-              <h1>Shattered Realms</h1>
-              <p>Where gods walk among mortals and every choice fractures destiny</p>
-              <a href=#start-here class="btn">Start the reading journey</a>
+            <div class="hero-column text-column">
+              <h1 class="hero-title">Shattered Realms</h1>
+              <p class="hero-text">Where gods walk among mortals and every choice fractures destiny...</p>
+              <div class="hero-buttons">
+                <a href="/series/shattered-realms" class="btn">Learn More</a>
+              </div>
             </div>
-            <div class="mockup-container">
-              <img src="/images/books/LastSunrise/mockup_ebook.webp" alt="3D Mockup of Last Sunrise" class="cover-mockup">
-              <a href="/books/books.html#excerpt" class="btn btn-secondary">Read an excerpt</a>
+            
+            <div class="hero-column image-column">
+              <img src="/images/series/shattered-realms/logo.webp" alt="Shattered Realms Series" class="hero-featured-image">
+              <a href="/series/shattered-realms#excerpts" class="btn btn-secondary">Read Excerpt</a>
             </div>
           </div>
-        </section>
-      </section>
+        </div>
     </section>
-
+    
     <!--Series info-->
     <section class="section section-light section-with-divider no-top" id="start-here">
       <div class="section-content two-column-section">
@@ -91,7 +94,7 @@
           <div class="sticky-content">
             <div class="accordion-item">
               <a class="accordion-header" aria-expanded="true">
-                <span class="footer-heading">The books</span>
+                The books
                 <span class="accordion-icon">▾</span>
               </a>
               <div class="accordion-content">
@@ -110,7 +113,7 @@
             </div>
             <div class="accordion-item">
               <a class="accordion-header" aria-expanded="false">
-                <span class="footer-heading">Content warnings</span>
+                Content warnings
                 <span class="accordion-icon">▾</span>
               </a>
               <div class="accordion-content">
@@ -124,7 +127,7 @@
             </div>
             <div class="accordion-item">
               <a class="accordion-header" aria-expanded="false">
-                <span class="footer-heading">Tropes</span>
+                Tropes
                 <span class="accordion-icon">▾</span>
               </a>
               <div class="accordion-content">
@@ -143,7 +146,7 @@
 
     <div class="section-divider divider-down divider-light"></div>
 
-    <!--Series timeline-->
+    <!--Series list-->
     <section class="section section-dark section-after-divider section-with-divider">
       <div class="section-content">
         <h2 id="books">All books in the series</h2>
@@ -279,6 +282,69 @@
             <a href="#" class="btn btn-secondary">Full profile</a>
             <a href="#" class="btn">First appearance</a>
           </div>
+
+          <div class="card">
+            <div class="card-img-container">
+              <span class="initials">General of the Aranian Army</span>
+              <span class="image-tag image-tag-white">New</span>
+            </div>
+            <h3>Next Character</h3>
+            <p>Random text.</p>
+            <div>
+              <ul class="accordion-content">
+                <li>
+                  <strong>First appears:</strong> Last Sunrise
+                </li>
+                <li>
+                  <strong>Also in:</strong> God of Discovery (cameo)
+                </li>
+              </ul>
+            </div>
+            <a href="#" class="btn btn-secondary">Full profile</a>
+            <a href="#" class="btn">First appearance</a>
+          </div>
+
+          <div class="card">
+            <div class="card-img-container">
+              <span class="initials">General of the Aranian Army</span>
+              <span class="image-tag image-tag-white">New</span>
+            </div>
+            <h3>Next Character</h3>
+            <p>Random text.</p>
+            <div>
+              <ul class="accordion-content">
+                <li>
+                  <strong>First appears:</strong> Last Sunrise
+                </li>
+                <li>
+                  <strong>Also in:</strong> God of Discovery (cameo)
+                </li>
+              </ul>
+            </div>
+            <a href="#" class="btn btn-secondary">Full profile</a>
+            <a href="#" class="btn">First appearance</a>
+          </div>
+
+          <div class="card">
+            <div class="card-img-container">
+              <span class="initials">General of the Aranian Army</span>
+              <span class="image-tag image-tag-white">New</span>
+            </div>
+            <h3>Next Character</h3>
+            <p>Random text.</p>
+            <div>
+              <ul class="accordion-content">
+                <li>
+                  <strong>First appears:</strong> Last Sunrise
+                </li>
+                <li>
+                  <strong>Also in:</strong> God of Discovery (cameo)
+                </li>
+              </ul>
+            </div>
+            <a href="#" class="btn btn-secondary">Full profile</a>
+            <a href="#" class="btn">First appearance</a>
+          </div>
         </div>
       </div>
     </section>
@@ -350,7 +416,7 @@
     <div class="section-divider divider-down divider-light"></div>
 
     <!--Glossary and downloads-->
-    <section class="section section-red section-after-divider" id="resources">
+    <section class="section section-red section-after-divider section-with-divider" id="resources">
       <div class="section-content">
         <h2>World resources</h2>
         <div class="section-content section-tight">
@@ -445,13 +511,34 @@
               </div>
               <a href="#" class="btn">Download</a>
             </div>
+            <div class="card" data-types="art wallpaper">
+              <div class="downloads-image-container">
+                <img src="/images/series/shattered-realms/hero-bg.jpg" alt="Wallpaper">
+                <span class="image-tag image-tag-white image-tag-high">PDF</span>
+              </div>
+              <h3>Mobile wallpaper</h3>
+              <p>Random text.</p>
+              <div>
+                <ul class="accordion-content">
+                  <li>
+                    <strong>File size:</strong> 2.4MB
+                  </li>
+                  <li>
+                    <strong>Includes:</strong> 3 images
+                  </li>
+                </ul>
+              </div>
+              <a href="#" class="btn">Download</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <div class="section-divider divider-down divider-red"></div>
+
     <!--Patreon-->
-    <section class="section section-light section-with-divider no-top" id="start-here">
+    <section class="section section-light section-after-divider section-top section-final" id="start-here">
       <div class="section-content two-column-section">
         <div class="content-column">
           <h2>Exclusive content</h2>
@@ -495,7 +582,7 @@
           <div class="sticky-content">
             <div class="accordion-item">
               <a class="accordion-header" aria-expanded="true">
-                <span class="footer-heading">Tier 1</span>
+                Tier 1
                 <span class="accordion-icon">▾</span>
               </a>
               <div class="accordion-content">
@@ -506,7 +593,7 @@
             </div>
             <div class="accordion-item">
               <a class="accordion-header" aria-expanded="true">
-                <span class="footer-heading">Tier 1</span>
+                Tier 2
                 <span class="accordion-icon">▾</span>
               </a>
               <div class="accordion-content">
@@ -517,7 +604,7 @@
             </div>
             <div class="accordion-item">
               <a class="accordion-header" aria-expanded="true">
-                <span class="footer-heading">Tier 1</span>
+                Tier 3
                 <span class="accordion-icon">▾</span>
               </a>
               <div class="accordion-content">

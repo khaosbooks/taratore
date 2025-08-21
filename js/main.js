@@ -1,61 +1,62 @@
 // ===== COMPONENT LOADING =====
 async function loadComponents() {
-	try {
-		// Preload hero image (must be first operation)
-		const heroBg = document.querySelector('.parallax-bg');
-		if (heroBg) {
-			const bgUrl = heroBg.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/)[1];
-			const link = document.createElement('link');
-			link.rel = 'preload';
-			link.as = 'image';
-			link.href = bgUrl;
-			document.head.appendChild(link);
-		}
+  try {
+    const [headerHtml, footerHtml] = await Promise.all([
+      fetch('/includes/header.html').then(res => res.text()),
+      fetch('/includes/footer.html').then(res => res.text())
+    ]);
 
-		// Load header/footer
-		const [headerHtml, footerHtml] = await Promise.all([
-			fetch('/includes/header.html').then(res => res.text()),
-			fetch('/includes/footer.html').then(res => res.text())
-		]);
+    document.body.insertAdjacentHTML('afterbegin', headerHtml);
+    document.body.insertAdjacentHTML('beforeend', footerHtml);
 
-		// Insert into DOM once
-		document.body.insertAdjacentHTML('afterbegin', headerHtml);
-		document.body.insertAdjacentHTML('beforeend', footerHtml);
+    // Initialize components in order
+    initializeHeader(); 
+    initializeFooter();
+    initializeAccordions();
+    initializeExcerptAccordions();
+    initializeTooltips();
+    initializeLoadMore();
+    initializeLoadMoreReviews();
+    initializeMaps();
+    initializeResourceTabs();
+    initializeCountdown();
+    initializeSpoilers();
+    initializeCharacterDeepLinks();
+    initializeBlogComponents();
+    initializeLoadMoreBooks();
+    disableHashLinks('.nav-menu');
+    initializeHeroSlider();
+    initializeHeroParallax();
 
-		// Initialize all components
-		initializeHeader();
-		initializeFooter();
-		initializeAccordions();
-		initializeExcerptAccordions();
-		initializeTooltips();
-		initializeLoadMore();
-		initializeLoadMoreReviews();
-		initializeMaps();
-		initializeResourceTabs();
-		initializeCountdown();
-		initializeHeroSlider();
-		normalizeHeroHeights();
-		initializeSpoilers();
-		initializeCharacterDeepLinks();
-		initializeBlogComponents();
-		initializeLoadMoreBooks(); 
+    document.body.classList.add('components-loaded');
 
-		document.body.classList.add('components-loaded');
+    document.querySelectorAll('img:not([loading])').forEach(img => {
+      img.setAttribute('loading', 'lazy');
+    });
 
-		// Lazy-load non-critical images
-		document.querySelectorAll('img:not([loading])').forEach(img => {
-			img.setAttribute('loading', 'lazy');
-		});
+  } catch (error) {
+    console.error('Error loading components:', error);
+  }
+}
 
-
-
-	} catch (error) {
-		console.error('Error loading components:', error);
-	}
+// ===== PREVENT HASH LINKS =====
+function disableHashLinks(parentSelector = '.nav-menu') {
+  document.querySelectorAll(`${parentSelector} a[href="#"]`).forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Manually trigger hover effects for accessibility
+      link.classList.add('forced-hover');
+      setTimeout(() => link.classList.remove('forced-hover'), 300);
+    });
+    
+    // Ensure CSS hover states still work
+    link.style.pointerEvents = 'auto'; 
+  });
 }
 
 // ===== LOAD MORE BOOKS =====
-// ===== LOAD MORE BOOKS (MULTIPLE SECTIONS) =====
 function initializeLoadMoreBooks() {
   const bookSections = document.querySelectorAll('.series-books');
 
@@ -226,74 +227,6 @@ function initializeSpoilers() {
     }
   });
 }
-
-// ===== HERO SLIDER =====
-function initializeHeroSlider() {
-	const homepageHero = document.querySelector('.homepage-hero');
-	if (!homepageHero) return;
-
-	const slides = homepageHero.querySelectorAll('.book-hero');
-	const indicators = homepageHero.querySelectorAll('.indicator');
-	if (slides.length < 2) return;
-
-	let currentSlide = 0;
-	const SLIDE_INTERVAL = 7000;
-	let slideshowTimer;
-
-	function showSlide(index) {
-		slides.forEach(slide => slide.classList.remove('active-slide'));
-		indicators.forEach(indicator => indicator.classList.remove('active'));
-
-		slides[index].classList.add('active-slide');
-		indicators[index].classList.add('active');
-		currentSlide = index;
-
-		initializeParallax();
-	}
-
-	function showNextSlide() {
-		const nextSlide = (currentSlide + 1) % slides.length;
-		showSlide(nextSlide);
-	}
-
-	function startSlideshow() {
-		slideshowTimer = setInterval(showNextSlide, SLIDE_INTERVAL);
-	}
-
-	showSlide(0);
-	startSlideshow();
-
-	indicators.forEach((indicator, index) => {
-		indicator.addEventListener('click', () => {
-			clearInterval(slideshowTimer);
-			showSlide(index);
-			startSlideshow();
-		});
-	});
-}
-
-// ===== HERO HEIGHT FIXES =====
-function normalizeHeroHeights() {
-  if (window.innerWidth <= 900) {
-    const heroes = document.querySelectorAll('.book-hero');
-    let maxHeight = 0;
-    
-    // Find the tallest hero
-    heroes.forEach(hero => {
-      hero.style.height = 'auto';
-      maxHeight = Math.max(maxHeight, hero.offsetHeight);
-    });
-    
-    // Apply to all heroes
-    heroes.forEach(hero => {
-      hero.style.height = `${maxHeight}px`;
-    });
-  }
-}
-
-// Run on load and resize
-window.addEventListener('load', normalizeHeroHeights);
-window.addEventListener('resize', normalizeHeroHeights);
 
 // ===== COUNTDOWN TIMER =====
 function initializeCountdown() {
@@ -902,54 +835,232 @@ function initializeMailerLite() {
 	}
 }
 
-// ===== PARALLAX EFFECT =====
-function initializeParallax() {
-	const layers = [{
-			element: document.querySelector('.parallax-bg'),
-			speed: 0.5
-		},
-		{
-			element: document.querySelector('.parallax-glow'),
-			speed: 0.1
-		},
-		{
-			element: document.querySelector('.parallax-foreground'),
-			speed: 0.3
-		}
-	].filter(layer => layer.element);
+// ===== HERO SLIDER =====
+function initializeHeroSlider() {
+  const heroSection = document.querySelector('[data-hero]');
+  if (!heroSection) return;
 
-	if (layers.length) {
-		let lastScrollPosition = 0;
-		let ticking = false;
+  const slidesContainer = heroSection.querySelector('[data-slides]');
+  const slides = Array.from(heroSection.querySelectorAll('[data-slide]'));
+  const indicators = Array.from(heroSection.querySelectorAll('[data-indicators] .indicator'));
+  let currentIndex = 0;
+  let autoSlideInterval;
 
-		const updateParallax = () => {
-			layers.forEach(layer => {
-				layer.element.style.transform = `translateY(${lastScrollPosition * layer.speed}px)`;
-			});
-			ticking = false;
-		};
+  // Set initial active slide
+  updateSlider();
 
-		const onScroll = () => {
-			lastScrollPosition = window.pageYOffset;
-			if (!ticking) {
-				window.requestAnimationFrame(updateParallax);
-				ticking = true;
-			}
-		};
+  // Auto-rotation with pause on hover
+  const startAutoSlide = () => {
+    autoSlideInterval = setInterval(() => {
+      goToSlide((currentIndex + 1) % slides.length);
+    }, 5000);
+  };
 
-		window.addEventListener('scroll', onScroll, {
-			passive: true
-		});
-		updateParallax();
-	}
+  const stopAutoSlide = () => clearInterval(autoSlideInterval);
+
+  heroSection.addEventListener('mouseenter', stopAutoSlide);
+  heroSection.addEventListener('mouseleave', startAutoSlide);
+
+  // Touch events for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  const handleTouchStart = (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    e.preventDefault(); // Prevent vertical scroll
+  };
+
+  const handleTouchEnd = () => {
+    if (touchEndX < touchStartX - 50) goToSlide(currentIndex + 1); // Swipe right
+    if (touchEndX > touchStartX + 50) goToSlide(currentIndex - 1); // Swipe left
+  };
+
+  slidesContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+  slidesContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+  slidesContainer.addEventListener('touchend', handleTouchEnd);
+
+  // Mouse drag for desktop
+  let mouseStartX = 0;
+  let isDragging = false;
+
+  const handleMouseDown = (e) => {
+    isDragging = true;
+    mouseStartX = e.clientX;
+    slidesContainer.style.transition = 'none';
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    const currentX = e.clientX;
+    const diff = mouseStartX - currentX;
+    slidesContainer.style.transform = `translateX(calc(-${currentIndex * 100}% - ${diff}px))`;
+  };
+
+  const handleMouseUp = (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    const currentX = e.clientX;
+    const diff = mouseStartX - currentX;
+    
+    slidesContainer.style.transition = 'transform 0.5s ease';
+    if (diff > 100) goToSlide(currentIndex + 1);
+    else if (diff < -100) goToSlide(currentIndex - 1);
+    else goToSlide(currentIndex);
+  };
+
+  slidesContainer.addEventListener('mousedown', handleMouseDown);
+  slidesContainer.addEventListener('mousemove', handleMouseMove);
+  slidesContainer.addEventListener('mouseup', handleMouseUp);
+  slidesContainer.addEventListener('mouseleave', () => {
+    if (isDragging) {
+      isDragging = false;
+      goToSlide(currentIndex);
+    }
+  });
+
+  // Indicator clicks
+  indicators.forEach(indicator => {
+    indicator.addEventListener('click', () => {
+      const slideIndex = parseInt(indicator.dataset.slideTo) - 1;
+      goToSlide(slideIndex);
+    });
+  });
+
+  // Core functions
+  function goToSlide(index) {
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+    
+    currentIndex = index;
+    updateSlider();
+  }
+
+  function updateSlider() {
+    slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    slidesContainer.style.transition = 'transform 0.5s ease';
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[currentIndex].classList.add('active');
+    
+    indicators.forEach((indicator, i) => {
+      indicator.setAttribute('aria-current', i === currentIndex);
+    });
+  }
+
+  // Start auto-rotation
+  startAutoSlide();
+}
+
+// ===== HERO PARALLAX EFFECT =====
+function initializeHeroParallax() {
+  const heroParallaxContainers = document.querySelectorAll('.hero-parallax');
+  if (!heroParallaxContainers.length) return;
+
+  heroParallaxContainers.forEach(container => {
+    const layers = container.querySelectorAll('.parallax-layer');
+    if (!layers.length) return;
+
+    let isMobile = window.innerWidth <= 900;
+    let lastScrollPosition = window.scrollY;
+    let animationFrameId = null;
+
+    // Reset all layers to initial position
+    function resetLayers() {
+      layers.forEach(layer => {
+        layer.style.transform = 'translateY(0)';
+      });
+    }
+
+    // Create smooth parallax effect
+    function updateParallax() {
+      const scrollPosition = window.scrollY;
+      const scrollDelta = scrollPosition - lastScrollPosition;
+      lastScrollPosition = scrollPosition;
+
+      layers.forEach(layer => {
+        const depth = parseFloat(layer.dataset.depth) || 0.5;
+        // Get current transform value safely
+        const currentTransform = getCurrentTransformValue(layer);
+        
+        // Calculate target position based on scroll
+        const targetPosition = scrollPosition * depth * 0.3; // Reduced intensity
+        
+        // Apply smooth transition to the target position
+        const newPosition = currentTransform + (targetPosition - currentTransform) * 0.08;
+        
+        layer.style.transform = `translateY(${newPosition}px)`;
+      });
+
+      animationFrameId = requestAnimationFrame(updateParallax);
+    }
+
+    // Helper function to safely get current transform value
+    function getCurrentTransformValue(element) {
+      const style = window.getComputedStyle(element);
+      const matrix = new DOMMatrix(style.transform);
+      return matrix.m42; // Returns the translateY value
+    }
+
+    // Start/stop parallax based on visibility
+    function handleIntersection(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isMobile) {
+          if (!animationFrameId) {
+            lastScrollPosition = window.scrollY;
+            animationFrameId = requestAnimationFrame(updateParallax);
+          }
+        } else {
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+            resetLayers();
+          }
+        }
+      });
+    }
+
+    // Set up Intersection Observer
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.1
+    });
+
+    observer.observe(container);
+
+    // Handle resize
+    function handleResize() {
+      const nowMobile = window.innerWidth <= 900;
+      if (nowMobile !== isMobile) {
+        isMobile = nowMobile;
+        if (isMobile) {
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+          }
+          resetLayers();
+        } else if (container.getBoundingClientRect().top < window.innerHeight * 0.9) {
+          // If not mobile and hero is visible
+          lastScrollPosition = window.scrollY;
+          animationFrameId = requestAnimationFrame(updateParallax);
+        }
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup function
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
+      window.removeEventListener('resize', handleResize);
+    };
+  });
 }
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
-	loadComponents().then(() => {
-		initializeParallax();
-	});
-});
-document.querySelectorAll('img:not([loading])').forEach(img => {
-  img.setAttribute('loading', 'lazy');
+	loadComponents();
 });

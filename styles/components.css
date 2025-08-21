@@ -288,7 +288,7 @@
 
 .footer-grid {
   display: grid;
-  grid-template-columns: var(--equal-grid);
+  grid-template-columns: var(--four-grid);
   gap: var(--xxl);
   max-width: var(--max-width);
   margin: var(--tight-zero) auto;
@@ -313,6 +313,30 @@
   margin-bottom: var(--md);
   color: var(--primary-text);
   line-height: var(--line-height);
+}
+
+.footer-social-grid {
+  --social-icon-size: var(--xxl);
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start;
+}
+
+.footer-social-grid .social-card {
+  width: var(--social-icon-size);
+  height: var(--social-icon-size);
+  flex-shrink: var(--tight-zero);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.footer-social-grid .social-card img {
+  width: var(--full-width);
+  height: var(--full-width);
+  object-fit: contain;
+  transition: var(--transition);
 }
 
 .footer-heading {

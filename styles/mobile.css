@@ -62,9 +62,7 @@
   }
 
   .intro-content,
-  .series-info,
-  .hero-content > div:first-child,
-  .hero-content > div:last-child {
+  .series-info {
     max-width: var(--full-width) !important;
     padding-right: 0 !important;
   }
@@ -87,82 +85,6 @@
   .masonry-grid {
     columns: 2;
     column-gap: var(--md);
-  }
-  /* #endregion */
-  /* #region - HERO SECTION */
-  .homepage-hero {
-    height: auto !important;
-    min-height: 100vh !important;
-    max-height: none !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .book-hero {
-    min-height: 90vh;
-    display: flex !important;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .hero-content {
-    padding: var(--xl) var(--md);
-    margin-top: 0;
-    gap: var(--md);
-    align-items: center;
-    text-align: center;
-    width: var(--padded-width) !important;
-    height: auto;
-    flex-direction: column;
-    min-height: 90vh;
-    justify-content: center;
-  }
-
-  .hero-content > div {
-    max-width: var(--full-width) !important;
-  }
-
-  .hero-content > div:first-child {
-    max-width: var(--full-width) !important;
-    margin-bottom: var(--xl);
-  }
-
-  .hero-content > div:last-child {
-    max-width: var(--full-width) !important;
-  }
-
-  .hero-content h1,
-  .hero-content p {
-    max-width: var(--full-width) !important;
-    overflow-wrap: break-word;
-  }
-  .hero-content h1 {
-    text-align: center !important;
-    padding-top: calc(var(--xxxl) * 2) !important;
-    font-size: clamp(1.5rem, 6vw, 2.5rem); 
-    line-height: 1.2;
-  }
-
-  .hero-content p {
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    margin-bottom: var(--md);
-  }
-
-  .mockup-container {
-    padding-top: var(--md);
-    width: var(--full-width);
-    height: auto;
-  }
-
-  .cover-mockup {
-    max-height: 40vh !important;
-    width: auto !important;
-    margin: var(--tight-zero) auto !important;
-  }
-
-  .slider-indicators {
-    bottom: var(--md);
   }
   /* #endregion */
   /* #region - CARDS & GRIDS */
@@ -234,7 +156,7 @@
   }
 
   .intro-image img {
-    max-width: 80%;
+    max-width: var(--padded-width);
   }
 
   .sticky-side-column::before {
@@ -364,6 +286,14 @@
     text-align: right;
   }
 
+  .load-more-books {
+    margin-top: var(--md);
+    width: 100%;
+  }
+
+  .series-books .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   /* #endregion */
   /* #region - PILLS, TOOLTIPS*/
   .pill-list {
@@ -413,6 +343,11 @@
   .footer-logo {
     width: var(--full-width);
     height: auto;
+  }
+
+  .footer-social-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+    width: 100% !important;
   }
 
   .footer-links {
@@ -654,15 +589,84 @@
     z-index: 1000;
   }
 /* #endregion */
+  /* #region - MOBILE HEROES */
+  .hero-section {
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible;
+  }
 
+  .hero-slides {
+    height: auto;
+  }
 
-  .load-more-books {
-    margin-top: var(--md);
+  .hero-slide {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .hero-parallax::after {
+    background: linear-gradient(
+      to bottom, 
+      rgba(var(--primary-text-rgb), 0.8) 0%, 
+      rgba(var(--primary-text-rgb), 0.5) 30%, 
+      rgba(var(--primary-text-rgb), 0.2) 60%, 
+      transparent 80%
+    ) !important;
+    mix-blend-mode: multiply;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    gap: var(--xxxs) !important;
+    align-items: center;
+    width: var(--padded-width) !important;
+    margin: 0 auto;
+  }
+
+  .hero-column,
+  .text-column,
+  .image-column {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-column {
+    order: 1;
+    text-align: center;
+    margin-bottom: var(--md);
+  }
+
+  .image-column {
+    order: 2;
+    margin: var(--tight-zero) auto var(--xl);
+  }
+
+  .hero-title {
+    text-align: center;
+    font-size: var(--mobile-heading2);
+    text-align: center !important;
+  }
+
+  .hero-text {
+    text-align: center;
+    font-size: var(--md);
+    margin-bottom: var(--xxs) !important;
+  }
+
+  .hero-featured-image {
+    max-width: var(--padded-width) !important;
+    margin-bottom: var(--xxs) !important;
+  }
+
+  .hero-buttons {
     width: 100%;
   }
-  
-  .series-books .grid {
-    grid-template-columns: repeat(2, 1fr);
+
+  .fg-layer {
+    background-position: 70% center !important;
   }
-  
+/* #endregion */
 }

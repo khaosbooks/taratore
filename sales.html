@@ -37,25 +37,29 @@
   <body>
 
     <!--Hero header-->
-    <section class="section section-dark">
-      <section class="book-hero">
-        <div class="parallax-wrapper">
-          <div class="parallax-bg" style="background-image: url('/images/books/LastSunrise/hero-bg.jpg')"></div>
-          <div class="parallax-foreground" style="background-image: url('/images/books/LastSunrise/hero-fg.webp')"></div>
-          <div class="hero-bg-overlay"></div>
-          <div class="parallax-glow" style="background-image: url('/images/books/LastSunrise/hero-glow.webp')"></div>
-        </div>
-        <div class="hero-content">
-          <div>
-            <h1>Current promo name</h1>
-            <p>Includes 100+ fantasy books by indie authors.</p>
-            <a href="#" class="btn">View sale</a>
+    <section class="hero-section" data-hero>
+      <div class="hero-slides" data-slides>
+        <div class="hero-slide" data-slide="3" data-slide-type="author" data-slide-bg="/images/author/hero-bg.jpg">
+          <div class="hero-parallax">
+            <div class="parallax-layer bg-layer" style="background-image: url(/images/author/hero-bg.jpg);" data-depth="0.5"></div>
+            <div class="parallax-layer fg-layer" style="background-image: url(/images/author/hero-fg.webp);" data-depth="0.3"></div>
           </div>
-          <div class="mockup-container">
-            <img src="/images/books/LastSunrise/mockup_ebook.webp" alt="Some type of author photo" class="cover-mockup">
+          
+          <div class="hero-content">
+            <div class="hero-column text-column">
+              <h1 class="hero-title">Current/coming promo</h1>
+              <p class="hero-text">Coming [date] this promo is all about queer books by indie authors.</p>
+              <div class="hero-buttons">
+                <a href="/about" class="btn">View promo</a>
+              </div>
+            </div>
+            
+            <div class="hero-column image-column">
+              <img src="/images/author/TarAtore_headshot.webp" alt="Tar Atore" class="hero-featured-image">
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </section>
 
     <!--Counter-->
@@ -117,7 +121,7 @@
         </div>
         <div class="accordion-item">
           <a class="accordion-header" aria-expanded="false">
-            <span class="footer-heading">Friendly reminder for those of you getting your $0.99 books</span>
+            Friendly reminder for those of you getting your $0.99 books
             <span class="accordion-icon">▾</span>
           </a>
           <div class="accordion-content">
@@ -145,6 +149,14 @@
       <div class="section-content">
         <h2>Currently running indie sales</h2>
         <div class="grid">
+          <div class="card">
+            <div class="sales-promo-image-container">
+              <img src="/images/books/LastSunrise/clean-cover.webp" alt="Last Sunrise" class="card-img">
+            </div>
+            <h3>Ends 31 Jul</h3>
+            <p class="tagline">Sale name and details</p>
+            <a href="https://books2read.com/lastsunrise" class="btn">View sale</a>
+          </div>
           <div class="card">
             <div class="sales-promo-image-container">
               <img src="/images/books/LastSunrise/clean-cover.webp" alt="Last Sunrise" class="card-img">

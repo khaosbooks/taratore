@@ -35,22 +35,31 @@
     </style>
   </head>
   <body>
+    
     <!--Hero header-->
-    <section class="section section-dark">
-      <section class="book-hero">
-        <div class="parallax-wrapper">
-          <div class="parallax-bg" style="background-image: url('/images/books/LastSunrise/hero-bg.jpg')"></div>
-          <div class="parallax-foreground" style="background-image: url('/images/books/LastSunrise/hero-fg.png')"></div>
-          <div class="hero-bg-overlay"></div>
-          <div class="parallax-glow" style="background-image: url('/images/books/LastSunrise/hero-glow.png')"></div>
-        </div>
-        <div class="hero-content">
-          <div>
-            <h1>Tar Atore</h1>
-            <p>Sci-fi and fantasy author, creator of the <em>Terminal Solution</em> world. </p>
+    <section class="hero-section" data-hero>
+      <div class="hero-slides" data-slides>
+        <div class="hero-slide" data-slide="3" data-slide-type="author" data-slide-bg="/images/author/hero-bg.jpg">
+          <div class="hero-parallax">
+            <div class="parallax-layer bg-layer" style="background-image: url(/images/author/hero-bg.jpg);" data-depth="0.5"></div>
+            <div class="parallax-layer fg-layer" style="background-image: url(/images/author/hero-fg.webp);" data-depth="0.3"></div>
+          </div>
+          
+          <div class="hero-content">
+            <div class="hero-column text-column">
+              <h1 class="hero-title">Meet the Author</h1>
+              <p class="hero-text">Discover the mind behind the Shattered Realms universe...</p>
+              <div class="hero-buttons">
+                <a href="/about" class="btn">About Tar Atore</a>
+              </div>
+            </div>
+            
+            <div class="hero-column image-column">
+              <img src="/images/author/TarAtore_headshot.webp" alt="Tar Atore" class="hero-featured-image">
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </section>
 
     <!-- Bio -->
@@ -99,13 +108,12 @@
             </div>
           </div>
           
-
           <div class="accordion-item">
             <a class="accordion-header" aria-expanded="false">
               <h4>Connect with me <span class="accordion-icon">▾</span></h4>
             </a>
             <div class="accordion-content">
-              <div class="social-links-grid">
+              <div class="grid">
                 <a href="https://www.patreon.com/TarAtore" class="social-card" target="_blank">
                   <img src="/images/logos/icon-patreon.svg" alt="Patreon">
                   <span>Patreon (Exclusive Content)</span>
