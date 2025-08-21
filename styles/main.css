@@ -922,7 +922,7 @@ select.form-input {
 /* #region - ACCORDIONS */
 .accordion-item {
   padding: var(--md) var(--tight-zero);
-  border-bottom: none;
+  border-bottom: var(--tiny-red-border);
   transition: var(--transition);
 }
 
@@ -1414,8 +1414,8 @@ span.spoiler.revealed::after {
 .hero-section {
   position: relative;
   width: var(--full-width);
-  min-height: 400px;
-  max-height: 80vh;
+  min-height: 50vh;
+  height: auto;
   overflow: hidden;
   background-color: var(--primary-bg);
 }
@@ -1423,14 +1423,14 @@ span.spoiler.revealed::after {
 .hero-slides {
   position: relative;
   width: var(--full-width);
-  height: var(--full-width);
+  height: var(--full-width) !important;
   display: flex;
 }
 
 .hero-slide {
   flex: 0 0 var(--full-width);
   position: relative;
-  min-height: 400px;
+  min-height: 50vh;
   display: flex;
   align-items: center;
 }
