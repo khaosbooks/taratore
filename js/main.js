@@ -846,6 +846,7 @@ function initializeHeroSlider() {
   const indicators = Array.from(heroSection.querySelectorAll('[data-indicators] .indicator'));
   let currentIndex = 0;
   let autoSlideInterval;
+  let isScrolling = false;
 
   // Set initial active slide
   updateSlider();
@@ -862,17 +863,52 @@ function initializeHeroSlider() {
   heroSection.addEventListener('mouseenter', stopAutoSlide);
   heroSection.addEventListener('mouseleave', startAutoSlide);
 
-  // Touch events for mobile
+  // Touch events for mobile - FIXED VERSION
   let touchStartX = 0;
+  let touchStartY = 0;
   let touchEndX = 0;
+  let touchEndY = 0;
 
   const handleTouchStart = (e) => {
     touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+    isScrolling = false;
+  };
+
+  const handleTouchMove = (e) => {
+    if (isScrolling) return;
+    
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    
+    // Calculate movement direction
+    const diffX = Math.abs(touchEndX - touchStartX);
+    const diffY = Math.abs(touchEndY - touchStartY);
+    
+    // If primarily horizontal movement, prevent vertical scroll
+    if (diffX > diffY && diffX > 10) {
+      e.preventDefault();
+    } else {
+      // This is primarily vertical scrolling, allow it
+      isScrolling = true;
+    }
   };
 
   const handleTouchEnd = () => {
-    if (touchEndX < touchStartX - 50) goToSlide(currentIndex + 1); // Swipe right
-    if (touchEndX > touchStartX + 50) goToSlide(currentIndex - 1); // Swipe left
+    if (isScrolling) return;
+    
+    const diffX = touchEndX - touchStartX;
+    
+    // Minimum swipe distance threshold
+    if (Math.abs(diffX) > 50) {
+      if (diffX < 0) {
+        // Swipe left - next slide
+        goToSlide(currentIndex + 1);
+      } else {
+        // Swipe right - previous slide
+        goToSlide(currentIndex - 1);
+      }
+    }
   };
 
   slidesContainer.addEventListener('touchstart', handleTouchStart, { passive: false });

@@ -284,6 +284,10 @@ html {
 .section-top {
   padding-top: var(--tight-zero);
 }
+
+.legal-document {
+  padding-top: var(--xxxl) !important;
+}
 /* #endregion */
 /* #region - SECTION TEXT OVERRIDES */
 .section-dark .metadata-card,

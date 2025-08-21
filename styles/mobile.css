@@ -361,6 +361,21 @@
     width: var(--padded-width);
     padding-bottom: var(--xl) !important;
     grid-template-columns: 1fr;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .footer-col {
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    width: 100% !important;
+    align-items: center !important;
+    padding: var(--tight-zero) !important;
+    box-sizing: border-box !important;
   }
 
   .footer-content {
@@ -377,15 +392,15 @@
     gap: var(--sm) !important;
   }
 
-    .footer-social-grid .social-card {
+  .footer-social-grid .social-card {
     width: 60px !important;
     height: 60px !important;
     padding: var(--xxs) !important;
   }
 
   .footer-social-grid .social-card img {
-    width: 100% !important;
-    height: 100% !important;
+    width: var(--full-width) !important;
+    height: var(--full-width) !important;
     object-fit: contain;
   }
   
@@ -395,12 +410,6 @@
 
   .social-icons {
     justify-content: center;
-  }
-
-  .footer-col {
-    align-items: center;
-    padding: var(--tight-zero) !important;
-    box-sizing: border-box;
   }
 
   .footer-bottom {
@@ -516,7 +525,10 @@
   }
 
   .discord-btn {
-    width: var(--rounding) !important;
+    width: var(--padded-width) !important;
+    padding: var(--sm) !important;
+    display: block !important;
+    margin: var(--tight-zero) auto var(--xxxl) !important;
   }
 
   .submenu-group .dropdown-arrow {
