@@ -66,7 +66,7 @@ function initializeLoadMoreBooks() {
     if (!loadMoreBtn || !booksGrid) return;
 
     // Configuration
-    const DESKTOP_BATCH_SIZE = 4;
+    const DESKTOP_BATCH_SIZE = 3;
     const MOBILE_BATCH_SIZE = 2;
     let visibleCount = 0;
     const allBooks = Array.from(booksGrid.querySelectorAll('.card'));
@@ -76,7 +76,7 @@ function initializeLoadMoreBooks() {
 
     // Initialize books visibility
     const initializeBooks = () => {
-      const initialBatchSize = getBatchSize() * 2; // 8 on desktop, 4 on mobile
+      const initialBatchSize = getBatchSize() * 2;
       allBooks.forEach((book, index) => {
         book.style.display = index < initialBatchSize ? 'block' : 'none';
       });
