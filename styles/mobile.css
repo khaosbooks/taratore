@@ -61,6 +61,16 @@
     gap: var(--lg) !important;
   }
 
+  .intro-section {
+    grid-template-columns: 1fr !important;
+    gap: var(--lg);
+  }
+  
+  .intro-image img {
+    max-width: var(--full-width) !important;
+    padding-top: var(--tight-zero) !important;
+  }
+  
   .intro-content,
   .series-info {
     max-width: var(--full-width) !important;
@@ -110,7 +120,7 @@
   }
 
   .social-links-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: var(--xxxs) !important;
   }
   
@@ -134,8 +144,12 @@
   }
   /* #endregion */
   /* #region - SERIES SECTIONS */
+  .series-section {
+    grid-template-columns: 1fr !important;
+    gap: var(--lg);
+  }
+  
   .series-info {
-    margin-bottom: var(--tight-zero) !important;
     text-align: center;
   }
 
@@ -145,6 +159,11 @@
 
   .series-description {
     margin-top: var(--sm);
+  }
+
+  .series-books .grid.grid-three {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--md);
   }
 
   .intro-buttons {

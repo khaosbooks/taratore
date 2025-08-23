@@ -18,7 +18,7 @@
   --accent-rgb: 242, 61, 61;
 
   /* Typography */
-  font-size: 18px;
+  font-size: 15px;
   --font-body: "Forum PS", sans-serif;
   --font-heading: "Analogist", serif;
   --line-height: 1.2;
@@ -52,7 +52,7 @@
   --full-width: 100% !important;
   --padded-width: 80% !important;
   --padding: 20% !important;
-  --max-width: 1200px !important;
+  --max-width: 1000px !important;
   --rounding: 50% !important;
   --minus-50: translateX(-50%);
 
@@ -82,8 +82,12 @@
   --tight-zero: 0 !important;
 
   /* Grids */
-  --two-grid: repeat(auto-fill, minmax(500px, 1fr));
-  --four-grid: repeat(auto-fit, minmax(250px, 1fr));
+  --two-grid: repeat(2, minmax(0, 1fr)) !important;
+  --four-grid: repeat(4, minmax(0, 1fr)) !important;
+  --six-grid: repeat(6, minmax(0, 1fr)) !important;
+  --fit-grid: repeat(auto-fit, minmax(200px, 1fr));
+  --fill-grid: repeat(auto-fill, minmax(500px, 1fr));
+
   
   /* Borders */
   --tiny-red-border: var(--pixel) solid var(--accent);
@@ -146,16 +150,28 @@ html {
   column-fill: balance;
 }
 
+.grid-fit {
+  grid-template-columns: var(--fit-grid) !important;
+}
+
+.grid-fill {
+  grid-template-columns: var(--fill-grid) !important;
+}
+
+.grid-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
 .glossary-grid {
   display: grid;
-  grid-template-columns: var(--four-grid);
+  grid-template-columns: var(--fit-grid);
   gap: var(--lg);
   align-items: start;
 }
 
 .social-links-grid {
   display: grid;
-  grid-template-columns: var(--four-grid);
+  grid-template-columns: var(--six-grid);
   gap: var(--md);
   margin: var(--md) 0;
 }
@@ -180,7 +196,7 @@ html {
 
 .exclusive-grid {
   display: grid;
-  grid-template-columns: var(--four-grid);
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: var(--xl);
 }
 
@@ -557,35 +573,44 @@ button[type="button"] {
 }
 /* #endregion */
 /* #region - HOME PAGE */
+.intro-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--xxxl);
+  align-items: start;
+}
+
 .intro-content {
-  flex: 1;
-  padding-right: var(--xl);
   padding-top: var(--xxxl);
 }
 
 .intro-image {
-  flex: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
   padding-top: var(--xxxl);
 }
 
 .intro-image img {
-  max-width: var(--full-width);
+  width: var(--full-width);
   height: auto;
   box-shadow: var(--shadow-default);
 }
 
+.series-section {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--xl);
+  align-items: start;
+}
+
 .series-info {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: top;
 }
 
 .series-books {
-  flex: 4;
+  flex: var(--full-width);
 }
 
 .series-logo {
@@ -688,7 +713,7 @@ select.form-input {
 /* #endregion */
 /* #region - DOWNLOADS CARDS */
 .downloads-image-container {
-  aspect-ratio: 8/5; /* Perfect square */
+  aspect-ratio: 8/5;
   width: var(--full-width);
   overflow: hidden;
   margin-bottom: var(--md);
@@ -898,12 +923,11 @@ select.form-input {
 /* #endregion */
 /* #region - STICKY SIDE COLUMN */
 .content-column {
-  flex: 3;
   padding-top: var(--xxl);
 }
 
 .sticky-side-column {
-  flex: 1;
+  flex: 0 0 30% !important;
   max-width: 35%;
   position: relative;
   background: var(--secondary-bg);
@@ -925,8 +949,8 @@ select.form-input {
 }
 
 .sticky-content {
-  padding: var(--xl) var(--tight-zero) var(--xl) var(--xl);
-  margin-right: var(--xl) var(--tight-zero) var(--xl) var(--xl);
+  padding: var(--xl);
+  margin-right: var(--xl);
 }
 /* #endregion */
 /* #region - ACCORDIONS */
@@ -1505,7 +1529,7 @@ span.spoiler.revealed::after {
 .hero-content {
   position: relative;
   z-index: 4;
-  width: var(--full-width);
+  width: var(--padded-width);
   max-width: var(--max-width);
   margin: 0 auto;
   padding-top: calc(var(--xxxl)*2);
