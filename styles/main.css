@@ -200,6 +200,32 @@ html {
   gap: var(--xl);
 }
 
+.process-grid {
+  display: grid;
+  grid-template-columns: var(--four-grid);
+  gap: var(--xl);
+  margin: var(--xl) 0;
+}
+
+.process-step {
+  text-align: center;
+  padding: var(--lg);
+  background: var(--secondary-bg);
+}
+
+.process-step h4 {
+  color: var(--primary-text);
+  margin: var(--xs) 0;
+  font-family: var(--font-heading);
+}
+
+.process-step p {
+  color: var(--primary-text);
+  font-size: var(--sm);
+  margin: var(--xs) 0 0 0;
+  line-height: 1.4;
+}
+
 /* #endregion */
 /* #region - SECTIONS */
 .section {
@@ -542,6 +568,19 @@ button[type="button"] {
   object-position: center;
   transition: var(--transition);
   transform-origin: center center;
+}
+
+.card-img-container.card-mockup {
+  background-color: transparent !important;
+  display: flex;
+  align-items: center;
+}
+
+.card-img-container.card-mockup img {
+  width: var(--padded-width) !important;
+  height: auto !important;
+  display: block;
+  margin: 0 auto;
 }
 
 .card:hover .card-img-container img {
@@ -1385,6 +1424,46 @@ select.form-input {
   height: var(--full-width);
   object-fit: cover;
   object-position: center;
+  display: block;
+}
+/* #endregion */
+/* #region - WORLD LORE */
+#world-lore .world-lore-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--xs);
+  align-items: center;
+}
+
+#world-lore .world-lore-tabs a {
+  position: relative;
+  padding: 0 var(--lg);
+  color: var(--primary-bg);
+}
+
+#world-lore .world-lore-tabs a:hover {
+  color: var(--accent);
+}
+
+#world-lore .world-lore-tabs a.current {
+  font-weight: bold;
+  color: var(--accent);
+}
+
+#world-lore .world-lore-tabs a:not(:first-child)::before {
+  content: "|";
+  position: absolute;
+  left: calc(var(--negative) * var(--xs));
+  color: var(--primary-bg);
+  font-weight: normal;
+}
+
+#world-lore .world-lore-content {
+  display: none;
+}
+
+#world-lore .world-lore-content.active-tab {
   display: block;
 }
 /* #endregion */

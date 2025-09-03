@@ -19,6 +19,7 @@ async function loadComponents() {
     initializeLoadMoreReviews();
     initializeMaps();
     initializeResourceTabs();
+    initializeWorldLoreTabs();
     initializeCountdown();
     initializeSpoilers();
     initializeCharacterDeepLinks();
@@ -288,21 +289,24 @@ function initializeResourceTabs() {
 	if (glossaryFilters) glossaryFilters.classList.add('active-filters');
 	if (downloadFilters) downloadFilters.classList.remove('active-filters');
 
-	const tabs = document.querySelectorAll('.tab-nav a');
+	const tabs = document.querySelectorAll('#resources .tab-nav a');
+	const allTabContents = document.querySelectorAll('#resources .tab-content');
+	
 	tabs.forEach(tab => {
 		tab.addEventListener('click', function(e) {
 			e.preventDefault();
 
 			tabs.forEach(t => t.classList.remove('current'));
+			
+			allTabContents.forEach(content => {
+				content.classList.remove('active-tab');
+			});
+
 			const glossaryCard = document.querySelector('.glossary-filters');
 			const downloadsCard = document.querySelector('.download-filters');
 
 			if (glossaryCard) glossaryCard.classList.remove('active-filters');
 			if (downloadsCard) downloadsCard.classList.remove('active-filters');
-
-			document.querySelectorAll('.tab-content').forEach(content => {
-				content.classList.remove('active-tab');
-			});
 
 			this.classList.add('current');
 
@@ -418,6 +422,42 @@ function updateResourceCounts() {
 	const visibleDownloads = document.querySelectorAll('#downloads .card[style*="block"], #downloads .card:not([style])').length;
 	const downloadCount = document.getElementById('download-count');
 	if (downloadCount) downloadCount.textContent = visibleDownloads;
+}
+
+// ===== WORLD LORE TABS =====
+function initializeWorldLoreTabs() {
+    const worldLoreSection = document.getElementById('world-lore');
+    if (!worldLoreSection) return;
+    
+    const worldLoreTabs = worldLoreSection.querySelectorAll('.world-lore-tabs a');
+    const worldLoreContents = worldLoreSection.querySelectorAll('.world-lore-content');
+    
+    worldLoreTabs.forEach((tab, index) => {
+        if (index === 0) {
+            tab.classList.add('current');
+        } else {
+            tab.classList.remove('current');
+        }
+    });
+    
+    worldLoreTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            const targetId = this.getAttribute('href').replace('#', '');
+            
+            worldLoreTabs.forEach(t => t.classList.remove('current'));
+            this.classList.add('current');
+
+            worldLoreContents.forEach(content => {
+                content.classList.remove('active-tab');
+                if (content.id === targetId) {
+                    content.classList.add('active-tab');
+                }
+            });
+        });
+    });
 }
 
 // ===== MAP INITIALIZATION =====
