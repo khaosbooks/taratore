@@ -103,6 +103,13 @@
 :target {
   scroll-margin-top: var(--padding) !important;
 }
+
+img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
 /* #endregion */
 /* #region - RESET & BASE STYLES */
 * {
@@ -999,10 +1006,6 @@ select.form-input {
   transition: var(--transition);
 }
 
-.accordion-item:last-child {
-  border-bottom: none;
-}
-
 .accordion-header {
   display: flex;
   justify-content: space-between;
@@ -1071,7 +1074,7 @@ select.form-input {
 
 .section-dark .accordion-header,
 .section-red .accordion-header {
-  color: var(--primary-bg);
+  color: var(--primary-bg) !important;
 }
 
 .section-dark .accordion-header:hover,
@@ -1159,6 +1162,11 @@ select.form-input {
 .card-img-container img[src=""] + .initials {
   display: block;
 }
+
+.pfp {
+  box-shadow: var(--shadow-default);
+}
+
 /* #endregion */
 /* #region - SERIES CARD ON BOOKS */
 .series-banner-container {
@@ -1168,6 +1176,7 @@ select.form-input {
   margin: calc(var(--negative) * var(--lg)) calc(var(--negative) * var(--lg))
     var(--xl);
   border-bottom: var(--thick-border);
+  background: var(--primary-text);
 }
 
 .series-banner-image {
@@ -1179,6 +1188,10 @@ select.form-input {
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
+}
+
+.faded {
+  opacity: var(--dropdown-low-opacity);
 }
 
 .series-logo-overlay {
@@ -1205,6 +1218,11 @@ select.form-input {
   z-index: 3; 
   font-size: var(--lg);
 }
+
+.banner-heading-white {
+  color: var(--primary-bg) !important;
+}
+
 /* #endregion */
 /* #region - PROGRESS DONUTS*/
 .progress-donut {
@@ -1601,8 +1619,27 @@ span.spoiler.revealed::after {
 
 .glow-layer {
   z-index: 3;
-  mix-blend-mode: lighten;
   opacity: 0.8;
+}
+
+.lighten {
+  mix-blend-mode: lighten;
+}
+
+.color-dodge {
+  mix-blend-mode: color-dodge;
+}
+
+.multiply {
+  mix-blend-mode: multiply;
+}
+
+.flip {
+  rotate: 180deg;
+}
+
+.lower-opacity {
+  opacity: .5;
 }
 
 .hero-content {
@@ -1706,7 +1743,7 @@ span.spoiler.revealed::after {
 }
 
 .hero-content .btn-secondary {
-  background: none !important;
+  background: rgba(var(--primary-text-rgb), var(--header-bg-opacity)) !important;
 }
 
 .hero-content .btn-secondary:hover {

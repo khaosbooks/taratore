@@ -29,6 +29,7 @@ async function loadComponents() {
     disableHashLinks('.nav-menu');
     initializeHeroSlider();
     initializeHeroParallax();
+    enableImageProtection();
 
     document.body.classList.add('components-loaded');
 
@@ -56,6 +57,23 @@ function disableHashLinks(parentSelector = '.nav-menu') {
     // Ensure CSS hover states still work
     link.style.pointerEvents = 'auto'; 
   });
+}
+
+// ===== IMAGE PROTECTION =====
+function enableImageProtection() {
+    // Prevent right-click on images
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+        }
+    });
+    
+    // Prevent drag-and-drop of images
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+        }
+    });
 }
 
 // ===== LOAD MORE BOOKS =====
@@ -1199,4 +1217,52 @@ function initializeLoadMoreCharacters() {
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
 	loadComponents();
+
+// ===== EXTERNAL LINKS OPEN IN NEW TAB =====
+function initializeExternalLinks() {
+  // Get all links on the page
+  const allLinks = document.querySelectorAll('a');
+  // Get current site's hostname
+  const currentHost = window.location.hostname;
+  
+  // Loop through each link
+  allLinks.forEach(link => {
+    // Get the href attribute
+    const href = link.getAttribute('href');
+    
+    // Check if it's an external link
+    if (href && href.startsWith('http')) {
+      try {
+        const linkUrl = new URL(href);
+        // If the hostname doesn't match current site
+        if (linkUrl.hostname !== currentHost && 
+            linkUrl.hostname !== 'taratore.khaosbooks.com') {
+          // Set to open in new tab
+          link.setAttribute('target', '_blank');
+          // Add security attributes
+          link.setAttribute('rel', 'noopener noreferrer');
+        }
+      } catch (e) {
+        // Handle invalid URLs quietly
+        console.log('Invalid URL encountered:', href);
+      }
+    }
+  });
+}
+
+document.body.addEventListener('components-loaded', initializeExternalLinks);
+
+const observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    if (mutation.addedNodes.length) {
+      initializeExternalLinks();
+    }
+  });
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
+});
+
 });
