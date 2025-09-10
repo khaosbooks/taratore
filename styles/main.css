@@ -209,7 +209,7 @@ html {
 
 .process-grid {
   display: grid;
-  grid-template-columns: var(--four-grid);
+  grid-template-columns: var(--fit-grid);
   gap: var(--xl);
   margin: var(--xl) 0;
 }
@@ -429,7 +429,6 @@ a {
   width: 100%;
   box-sizing: border-box;
   padding: var(--padding-btn);
-  border: none;
   cursor: pointer;
   text-transform: uppercase;
   transition: var(--transition);
@@ -447,7 +446,6 @@ a {
   display: flex;
   width: var(--full-width);
   padding: var(--padding-btn);
-  border: none;
   cursor: pointer;
   text-transform: uppercase;
   transition: var(--transition);
@@ -1751,4 +1749,3 @@ span.spoiler.revealed::after {
   color: var(--primary-text) !important;
 }
 /* #endregion */
-

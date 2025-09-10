@@ -1,0 +1,61 @@
+/* #region - LAST SUNRISE */
+.last-sunrise {
+  --primary-bg: #FFFAEB;
+  --secondary-bg: #FFF5E1;
+  --primary-text: #26170D;
+  --accent: #E6B325;
+  --dark-red: #A52A2A;
+  
+  --primary-bg-rgb: 255, 250, 235;
+  --secondary-bg-rgb: 255, 245, 225;
+  --primary-text-rgb: 38, 23, 13;
+  --accent-rgb: 230, 179, 37;
+  --dark-red-rgb: 165, 42, 42;
+
+  --tiny-red-border: var(--pixel) solid var(--accent);
+  --tiny-white-border: var(--pixel) solid var(--primary-bg);
+  --tiny-black-border: var(--pixel) solid var(--primary-text);
+  --thick-border: var(--xxxs) solid var(--accent); 
+}
+/* #endregion */
+/* #region - SOULTAMING */
+.soultaming {
+  --primary-bg: #F8F5F0;
+  --secondary-bg: #E8E1F0;
+  --primary-text: #2D1A36;
+  --accent: #8A4F7D;
+  --dark-red: #6B3A6B;
+  
+  --primary-bg-rgb: 248, 245, 240;
+  --secondary-bg-rgb: 232, 225, 240;
+  --primary-text-rgb: 45, 26, 54;
+  --accent-rgb: 138, 79, 125;
+  --dark-red-rgb: 107, 58, 107;
+
+  --tiny-red-border: var(--pixel) solid var(--accent);
+  --tiny-white-border: var(--pixel) solid var(--primary-bg);
+  --tiny-black-border: var(--pixel) solid var(--primary-text);
+  --thick-border: var(--xxxs) solid var(--accent);
+}
+/* #endregion */
+/* #region - STAR CATCHER */
+.star-catcher {
+  --primary-bg: #1E1E1E;
+  --secondary-bg: #0A0A0A;
+  --primary-text: #FFEEAA;
+  --accent: #556B2F;
+  --dark-red: #8F9779;
+  
+  /* RGB values */
+  --primary-bg-rgb: 30, 30, 30;
+  --secondary-bg-rgb: 10, 10, 10;
+  --primary-text-rgb: 255, 238, 170;
+  --accent-rgb: 85, 107, 47;
+  --dark-red-rgb: 143, 151, 121;
+
+  --tiny-red-border: var(--pixel) solid var(--accent);
+  --tiny-white-border: var(--pixel) solid var(--primary-bg);
+  --tiny-black-border: var(--pixel) solid var(--primary-text);
+  --thick-border: var(--xxxs) solid var(--accent);
+}
+/* #endregion */
