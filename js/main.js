@@ -42,6 +42,126 @@ async function loadComponents() {
   }
 }
 
+// ===== MAILERLITE FORM HANDLER =====
+function handleMailerLiteSubmit(event) {
+  event.preventDefault();
+  
+  const form = event.target;
+  const formData = new FormData(form);
+  
+  // Show loading state
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Submitting...';
+  submitBtn.disabled = true;
+  
+  // Submit to MailerLite using fetch API
+  fetch('https://assets.mailerlite.com/jsonp/1455211/forms/157114848756368733/subscribe', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Show success message
+    form.style.display = 'none';
+    
+    const successDiv = form.closest('.ml-form-embedContainer').querySelector('.row-success');
+    if (successDiv) {
+      successDiv.style.display = 'block';
+    } else {
+      // Create success message if it doesn't exist
+      const successMsg = document.createElement('div');
+      successMsg.className = 'row-success';
+      successMsg.innerHTML = `
+        <div class="ml-form-successContent">
+          <h4>Thank you!</h4>
+          <p>Thanks so much for signing up! Keep an eye out on your inbox for news and updates.</p>
+        </div>
+      `;
+      form.parentNode.insertBefore(successMsg, form.nextSibling);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Sorry, there was an error with your submission. Please try again.');
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  });
+  
+  return false;
+}
+
+// ===== FORM SUBMISSION =====
+function initFormHandlers() {
+    const forms = document.querySelectorAll('.feedback-form');
+    
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Determine which page we're on based on form context or URL
+            const isAboutPage = window.location.pathname.includes('about') || 
+                               form.closest('section').id.includes('about');
+            
+            handleFormSubmit(this, isAboutPage);
+        });
+    });
+}
+function handleFormSubmit(form, isAboutPage = false) {
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    // Submit form data
+    const formData = new FormData(form);
+    
+    fetch('https://formsubmit.co/ajax/3ee281d50f23ecbfbe77e19d2b97483a', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Hide form, show success message
+        form.style.display = 'none';
+        
+        // Create or show success message with appropriate text
+        let successMsg = form.nextElementSibling;
+        if (!successMsg || !successMsg.id.includes('form-success')) {
+            successMsg = document.createElement('div');
+            successMsg.id = 'form-success';
+            
+            if (isAboutPage) {
+                successMsg.innerHTML = `
+                    <h4>Thank you for your message!</h4>
+                    <p>Your message has been sent successfully. I'll get back to you soon!</p>
+                `;
+            } else {
+                successMsg.innerHTML = `
+                    <h4>Thank you for your review!</h4>
+                    <p>The fact that you've read my work is a gift enough, but your feedback truly means a lot to me!</p>
+                    <p>Your feedback helps me improve my writing and keeps me motivated to keep writing.</p>
+                `;
+            }
+            
+            form.parentNode.insertBefore(successMsg, form.nextElementSibling);
+        }
+        successMsg.style.display = 'block';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Sorry, there was an error sending your message. Please try again.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initFormHandlers);
+
 // ===== PREVENT HASH LINKS =====
 function disableHashLinks(parentSelector = '.nav-menu') {
   document.querySelectorAll(`${parentSelector} a[href="#"]`).forEach(link => {
@@ -872,7 +992,6 @@ function initializeFooter() {
 	// Initialize MailerLite
 	initializeMailerLite();
 }
-
 function initializeMailerLite() {
 	// Load MailerLite script if not already loaded
 	if (!document.querySelector('script[src*="mailerlite"]')) {

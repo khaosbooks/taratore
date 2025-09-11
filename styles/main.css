@@ -697,6 +697,8 @@ button[type="button"] {
 textarea.form-input {
   min-height: calc(var(--xl) * 3);
   resize: vertical;
+  font-family: var(--font-body);
+  font-size: var(--md);
 }
 
 select.form-input {
@@ -1024,9 +1026,6 @@ select.form-input {
   margin: var(--tight-zero);
   transition: var(--transition);
   flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .accordion-icon {
@@ -1747,5 +1746,22 @@ span.spoiler.revealed::after {
 .hero-content .btn-secondary:hover {
   background: var(--secondary-bg) !important;
   color: var(--primary-text) !important;
+}
+/* #endregion */
+/* #region - MAILERLITE CRAP */
+.ml-form-successContent h4 {
+    font-family: var(--font-heading) !important;
+    font-weight: normal !important;
+    color: var(--primary-text) !important;
+    margin-bottom: var(--md) !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+}
+
+.ml-form-successContent p {
+    font-family: var(--font-body) !important;
+    color: var(--primary-text) !important;
+    margin: 0 !important;
+    text-align: center !important;
 }
 /* #endregion */

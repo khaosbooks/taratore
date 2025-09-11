@@ -53,7 +53,7 @@
           </div>
         </div>
         
-        <!-- Slide 2: Series -->
+        <!-- Slide 2: Series 
         <div class="hero-slide" data-slide="2" data-slide-type="series" data-slide-bg="/images/series/shattered-realms/hero-bg.jpg">
           <div class="hero-parallax">
             <div class="parallax-layer bg-layer" style="background-image: url(/images/series/shattered-realms/hero-bg.png);" data-depth="0.5"></div>
@@ -75,7 +75,7 @@
               <a href="/books/last-sunrise.html#excerpt" class="btn btn-secondary">Read Excerpt</a>
             </div>
           </div>
-        </div>
+        </div>-->
         
         <!-- Slide 3: Author -->
         <div class="hero-slide" data-slide="3" data-slide-type="author" data-slide-bg="/images/author/hero-bg.jpg">
@@ -106,7 +106,7 @@
       <div class="slide-indicators" data-indicators>
         <button class="indicator" data-slide-to="1" aria-label="Go to slide 1"></button>
         <button class="indicator" data-slide-to="2" aria-label="Go to slide 2"></button>
-        <button class="indicator" data-slide-to="3" aria-label="Go to slide 3"></button>
+        <!--<button class="indicator" data-slide-to="3" aria-label="Go to slide 3"></button>-->
       </div>
     </section>
 
@@ -278,21 +278,18 @@
               </h5>
             </a>
             <div class="accordion-content">
-              <form action="https://formsubmit.co/your@email.com" method="POST" class="feedback-form">
+              <form action="https://formsubmit.co/3ee281d50f23ecbfbe77e19d2b97483a" method="POST" class="feedback-form">
                 <input type="hidden" name="_subject" value="New Reader Feedback">
-                <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you">
                 <div class="form-group">
                   <label>Name (optional):</label>
                   <input type="text" name="name" class="form-input">
                 </div>
                 <div class="form-group">
                   <label>Which book?</label>
-                  <select name="rating" class="form-input">
-                    <option>Book 1</option>
-                    <option>Book 2</option>
-                    <option>Book 3</option>
-                    <option>Book 4</option>
-                    <option>Book 5</option>
+                  <select name="book" class="form-input">
+                    <option>Soultaming the Serpent</option>
+                    <option>The Star Catcher</option>
+                    <option>Last Sunrise</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -309,8 +306,10 @@
                     <option value="1">★☆☆☆☆ - Didn't like it</option>
                   </select>
                 </div>
+                <input type="checkbox" name="_honeypot" style="display: none !important;" tabindex="-1" autocomplete="off">
                 <button type="submit" class="form-btn">Send Feedback</button>
                 <p>Your message will be emailed directly to the author</p>
+                <p class="ps">Form created using <a href="https://formsubmit.co/">FormSubmit.co</a></p>
               </form>
             </div>
           </div>

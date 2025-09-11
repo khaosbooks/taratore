@@ -44,16 +44,12 @@
   /* #endregion */
   /* #region - LAYOUT STRUCTURE */
   .status-banner-wrapper {
-    bottom: calc(var(--xxl) * 1.5);
+    bottom: calc(var(--xxl) * 1.25);
   }
   
   .section-content {
     padding: 0 var(--md) var(--md) !important;
     width: var(--padded-width) !important;
-  }
-
-  .section-with-divider {
-    padding-bottom: var(--xl) !important;
   }
 
   .two-column-section {
@@ -248,22 +244,9 @@
   .series-links a {
     padding: 0;
   }
-  
-  .section-with-divider {
-    padding-bottom: var(--xl);
-  }
-
-  .section-after-divider {
-    margin-top: 0;
-    padding-top: var(--xl);
-  }
 
   .section-final {
     padding-bottom: var(--xl);
-  }
-
-  .divider-down {
-    margin-top: calc(var(--negative) * var(--md) + 1px);
   }
 
   .series-logo-overlay {

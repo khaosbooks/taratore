@@ -57,5 +57,31 @@
   --tiny-white-border: var(--pixel) solid var(--primary-bg);
   --tiny-black-border: var(--pixel) solid var(--primary-text);
   --thick-border: var(--xxxs) solid var(--accent);
+
+  --shadow-default: var(--tight-zero) var(--xxxs) var(--xxs) var(--primary-text);
+
+  .series-banner-container {
+    background-color: var(--primary-bg) !important;
+  }
+
+  .footer-social-grid img {
+    filter: invert(1) brightness(1);
+  } 
+
+  body.star-catcher .ml-form-successContent h4,
+  .page-star-catcher .ml-form-successContent h4 {
+      color: var(--accent) !important;
+  }
+
+  body.star-catcher .ml-form-successContent p,
+  .page-star-catcher .ml-form-successContent p {
+      color: var(--dark-red) !important;
+  }
+
+  @media (max-width: 900px) {
+    .hero-title, .hero-text {
+        color: var(--primary-text) !important;
+    }
+  }
 }
 /* #endregion */
