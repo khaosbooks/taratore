@@ -771,11 +771,11 @@ function initializeTooltips() {
 	document.querySelectorAll('.tooltip-icon[data-wordcount]').forEach(icon => {
 		const wordCount = parseInt(icon.dataset.wordcount);
 		const formattedCount = wordCount.toLocaleString();
-		const pageCount = Math.round(wordCount / 250);
+		const pageCount = Math.round(wordCount / 300);
 
 		// Update tooltip text
 		icon.querySelector('.tooltip-text').textContent =
-			`This would be ${pageCount} pages long as a paperback book, calculated based on an average of 250 words per page.`;
+			`This would be ${pageCount} pages long as a paperback book, calculated based on an average of 300 words per page.`;
 
 		// Add accessibility attributes
 		icon.setAttribute('role', 'button');
