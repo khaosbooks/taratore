@@ -245,6 +245,11 @@ html {
   margin: var(--tight-zero) auto;
 }
 
+.centred {
+  align-items: center;
+  text-align: center;
+}
+
 .two-column-section {
   display: flex;
   width: var(--full-width);
