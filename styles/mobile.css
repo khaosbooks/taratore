@@ -138,6 +138,14 @@
   .map-back-btn {
     padding: var(--xxxs) var(--xs) !important;
   }
+
+  .mi-large {
+    font-size: var(--xl);
+    transform: translateY(10px);
+  }
+  .map-name {
+    font-size: var(--sm);
+  }
   /* #endregion */
   /* #region - SERIES SECTIONS */
   .series-section {

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 /* {
     outline: 1px solid red !important;
 }
@@ -948,6 +949,7 @@ select.form-input {
   line-height: var(--sm);
   box-shadow: var(--shadow-default);
   z-index: 9600 !important;
+  font-size: var(--sm);
 }
 
 .tooltip-text,
@@ -1339,9 +1341,12 @@ select.form-input {
   position: absolute;
   background: none;
   border: none;
-  padding: var(--tight-zero);
   transform: translate(-50%, -50%);
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
 }
 
 .map-marker {
@@ -1370,6 +1375,27 @@ select.form-input {
   text-shadow: var(--shadow-default);
   cursor: help;
   z-index: 1;
+  display: inline-block;
+  transform: translateY(6px);
+}
+
+.mi-large {
+  font-size: var(--xxl);
+  transform: translateY(10px);
+}
+
+.map-name {
+  font-family:'Audiowide';
+  font-size: var(--md);
+  color: var(--primary-bg);
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.name-small {
+  font-size: var(--sm);
+
 }
 
 .zoom-icon {
@@ -1383,13 +1409,8 @@ select.form-input {
   cursor: help;
 }
 
-.map-marker:hover .marker-icon {
-  transform: scale(1.3);
-}
-
-.map-zoom:hover .zoom-icon {
-  transform: var(--scale);
-  background: rgba(var(--accent-rgb), var(--header-bg-opacity));
+.map-zoom:hover .marker-icon{
+  color: var(--dark-red);
 }
 
 .map-back-btn {

@@ -19,7 +19,6 @@ async function loadComponents() {
     initializeLoadMoreReviews();
     initializeMaps();
     initializeResourceTabs();
-    initializeWorldLoreTabs();
     initializeCountdown();
     initializeSpoilers();
     initializeCharacterDeepLinks();
@@ -419,15 +418,18 @@ function initializeCountdown() {
 	timer();
 }
 
-// ===== RESOURCES TABS (Timeline, Glossary, Downloads) =====
+// ===== RESOURCES TABS (Timeline & Glossary) =====
 function initializeResourceTabs() {
     const tabs = document.querySelectorAll('#resources .tab-nav a');
     const tabContents = document.querySelectorAll('#resources .tab-content');
     
-    // Hide all filter containers since we're not using them
-    document.querySelectorAll('.timeline-filters, .glossary-filters, .download-filters').forEach(el => {
-        if (el) el.style.display = 'none';
-    });
+    // Get filter containers
+    const timelineFilters = document.querySelector('.timeline-filters');
+    const glossaryFilters = document.querySelector('.glossary-filters');
+    
+    // Hide all filter containers initially
+    if (timelineFilters) timelineFilters.style.display = 'none';
+    if (glossaryFilters) glossaryFilters.style.display = 'none';
     
     tabs.forEach(tab => {
         tab.addEventListener('click', function(e) {
@@ -444,65 +446,199 @@ function initializeResourceTabs() {
                 content.classList.remove('active-tab');
             });
             
-            // Show the selected tab content
+            // Hide all filter containers
+            if (timelineFilters) timelineFilters.style.display = 'none';
+            if (glossaryFilters) glossaryFilters.style.display = 'none';
+            
+            // Show selected tab content
             const targetId = this.getAttribute('href').replace('#', '');
             const targetContent = document.getElementById(targetId);
             if (targetContent) {
                 targetContent.classList.add('active-tab');
             }
+            
+            // Show appropriate filters
+            if (targetId === 'timeline') {
+                if (timelineFilters) {
+                    timelineFilters.style.display = 'block';
+                    setupTimelineFilters(); // Initialize timeline filters
+                }
+            } else if (targetId === 'glossary') {
+                if (glossaryFilters) {
+                    glossaryFilters.style.display = 'block';
+                    setupGlossaryFilters(); // Initialize glossary filters
+                }
+            }
         });
     });
     
-    // Activate the first tab by default
+    // Activate the first tab by default (Timeline)
     if (tabs.length > 0) {
         tabs[0].click();
     }
 }
-
-// ===== WORLD LORE TABS =====
-function initializeWorldLoreTabs() {
-    const worldLoreSection = document.getElementById('world-lore');
-    if (!worldLoreSection) return;
+function setupTimelineFilters() {
+    const timelineSearch = document.querySelector('.timeline-filters .search-input');
+    const timelineFilters = document.querySelectorAll('.timeline-filters .pill-list li');
+    const timelineEntries = document.querySelectorAll('#timeline .glossary-term');
+    const countElement = document.getElementById('timeline-count');
     
-    const worldLoreTabs = worldLoreSection.querySelectorAll('.world-lore-tabs a');
-    const worldLoreContents = worldLoreSection.querySelectorAll('.world-lore-content');
+    if (!timelineSearch || !timelineEntries.length) return;
     
-    worldLoreTabs.forEach((tab, index) => {
-        if (index === 0) {
-            tab.classList.add('current');
-        } else {
-            tab.classList.remove('current');
-        }
+    // Initial count
+    updateCount(timelineEntries.length);
+    
+    // Remove any existing event listeners by cloning and replacing
+    const newSearch = timelineSearch.cloneNode(true);
+    timelineSearch.parentNode.replaceChild(newSearch, timelineSearch);
+    
+    // Re-query the new search input
+    const updatedSearch = document.querySelector('.timeline-filters .search-input');
+    
+    // Search functionality
+    updatedSearch.addEventListener('input', function() {
+        filterTimeline();
     });
     
-    worldLoreTabs.forEach(tab => {
-        tab.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-
-            const targetId = this.getAttribute('href').replace('#', '');
-            
-            worldLoreTabs.forEach(t => t.classList.remove('current'));
+    // Filter functionality - remove old listeners first
+    timelineFilters.forEach(filter => {
+        const newFilter = filter.cloneNode(true);
+        filter.parentNode.replaceChild(newFilter, filter);
+    });
+    
+    // Re-query filters
+    const updatedFilters = document.querySelectorAll('.timeline-filters .pill-list li');
+    
+    updatedFilters.forEach(filter => {
+        filter.addEventListener('click', function() {
+            updatedFilters.forEach(f => f.classList.remove('current'));
             this.classList.add('current');
-
-            worldLoreContents.forEach(content => {
-                content.classList.remove('active-tab');
-                if (content.id === targetId) {
-                    content.classList.add('active-tab');
-                }
-            });
+            filterTimeline();
         });
     });
+    
+    function filterTimeline() {
+        const searchTerm = updatedSearch.value.toLowerCase();
+        const activeFilter = document.querySelector('.timeline-filters .pill-list .current')?.dataset.filter || 'all';
+        
+        let visibleCount = 0;
+        
+        timelineEntries.forEach(entry => {
+            const yearText = entry.querySelector('strong').textContent.toLowerCase();
+            const descriptionText = entry.querySelector('span').textContent.toLowerCase();
+            const matchesSearch = yearText.includes(searchTerm) || descriptionText.includes(searchTerm);
+            
+            const entryYear = entry.dataset.year;
+            const matchesFilter = activeFilter === 'all' || entryYear === activeFilter;
+            
+            if (matchesSearch && matchesFilter) {
+                entry.style.display = 'block';
+                visibleCount++;
+            } else {
+                entry.style.display = 'none';
+            }
+        });
+        
+        updateCount(visibleCount);
+    }
+    
+    function updateCount(count) {
+        if (countElement) {
+            countElement.textContent = count;
+        }
+    }
+}
+function setupGlossaryFilters() {
+    const glossarySearch = document.querySelector('.glossary-filters .search-input');
+    const glossaryFilters = document.querySelectorAll('.glossary-filters .pill-list li');
+    const glossaryTerms = document.querySelectorAll('#glossary .glossary-term');
+    const countElement = document.getElementById('glossary-count');
+    
+    if (!glossarySearch || !glossaryTerms.length) return;
+    
+    // Initial count
+    updateCount(glossaryTerms.length);
+    
+    // Remove any existing event listeners by cloning and replacing
+    const newSearch = glossarySearch.cloneNode(true);
+    glossarySearch.parentNode.replaceChild(newSearch, glossarySearch);
+    
+    // Re-query the new search input
+    const updatedSearch = document.querySelector('.glossary-filters .search-input');
+    
+    // Search functionality
+    updatedSearch.addEventListener('input', function() {
+        filterGlossary();
+    });
+    
+    // Filter functionality - remove old listeners first
+    glossaryFilters.forEach(filter => {
+        const newFilter = filter.cloneNode(true);
+        filter.parentNode.replaceChild(newFilter, filter);
+    });
+    
+    // Re-query filters
+    const updatedFilters = document.querySelectorAll('.glossary-filters .pill-list li');
+    
+    updatedFilters.forEach(filter => {
+        filter.addEventListener('click', function() {
+            updatedFilters.forEach(f => f.classList.remove('current'));
+            this.classList.add('current');
+            filterGlossary();
+        });
+    });
+    
+    function filterGlossary() {
+        const searchTerm = updatedSearch.value.toLowerCase();
+        const activeFilter = document.querySelector('.glossary-filters .pill-list .current')?.dataset.filter || 'all';
+        
+        let visibleCount = 0;
+        
+        glossaryTerms.forEach(term => {
+            const termText = term.querySelector('strong').textContent.toLowerCase();
+            const definitionText = term.querySelector('span').textContent.toLowerCase();
+            const matchesSearch = termText.includes(searchTerm) || definitionText.includes(searchTerm);
+            
+            const termCategory = term.dataset.category;
+            const matchesFilter = activeFilter === 'all' || termCategory === activeFilter;
+            
+            if (matchesSearch && matchesFilter) {
+                term.style.display = 'block';
+                visibleCount++;
+            } else {
+                term.style.display = 'none';
+            }
+        });
+        
+        updateCount(visibleCount);
+    }
+    
+    function updateCount(count) {
+        if (countElement) {
+            countElement.textContent = count;
+        }
+    }
 }
 
 // ===== MAP INITIALIZATION =====
 function initializeMaps() {
+  // Preload images to ensure quality
+  const mapImages = document.querySelectorAll('.map-zoom-container img, .map-marker img');
+  mapImages.forEach(img => {
+    // Ensure images aren't being compressed
+    img.style.imageRendering = 'high-quality';
+    img.style.imageRendering = '-webkit-optimize-contrast';
+    
+    // Force hardware acceleration for smoother rendering
+    img.style.transform = 'translateZ(0)';
+    img.style.backfaceVisibility = 'hidden';
+  });
+
   // Handle all map icons (both zoom and markers)
   document.querySelectorAll('.map-zoom, .map-marker').forEach(button => {
     button.addEventListener('click', function(e) {
       // On mobile, show tooltip on first tap for ALL icons
       if (window.innerWidth <= 900) {
-        // If this is a zoom button with data-target
         const isZoomButton = this.classList.contains('map-zoom');
         const tooltip = this.querySelector('.tooltip-text');
         
@@ -511,7 +647,6 @@ function initializeMaps() {
           e.stopPropagation();
           this.classList.add('show-tooltip');
           
-          // Hide tooltip after delay
           setTimeout(() => {
             if (this.classList.contains('show-tooltip')) {
               this.classList.remove('show-tooltip');
@@ -520,32 +655,69 @@ function initializeMaps() {
           return;
         }
         
-        // For zoom buttons only - second tap performs action
         if (isZoomButton) {
           this.classList.remove('show-tooltip');
           const targetId = this.getAttribute('data-target');
-          document.querySelector('.active-map').classList.remove('active-map');
-          document.getElementById(targetId).classList.add('active-map');
+          
+          // Smooth transition between maps
+          const currentMap = document.querySelector('.active-map');
+          const nextMap = document.getElementById(targetId);
+          
+          if (currentMap && nextMap) {
+            currentMap.style.opacity = '0';
+            currentMap.classList.remove('active-map');
+            
+            setTimeout(() => {
+              nextMap.style.opacity = '1';
+              nextMap.classList.add('active-map');
+            }, 50);
+          }
         }
         return;
       }
       
-      // Desktop behavior - only handle zoom buttons
+      // Desktop behavior
       if (this.classList.contains('map-zoom')) {
         const targetId = this.getAttribute('data-target');
-        document.querySelector('.active-map').classList.remove('active-map');
-        document.getElementById(targetId).classList.add('active-map');
+        const currentMap = document.querySelector('.active-map');
+        const nextMap = document.getElementById(targetId);
+        
+        if (currentMap && nextMap) {
+          currentMap.style.opacity = '0';
+          currentMap.classList.remove('active-map');
+          
+          setTimeout(() => {
+            nextMap.style.opacity = '1';
+            nextMap.classList.add('active-map');
+          }, 50);
+        }
       }
     });
   });
 
-  // Handle back buttons 
+  // Handle back buttons
   document.querySelectorAll('.map-back-btn').forEach(button => {
     button.addEventListener('click', function() {
       const targetId = this.getAttribute('data-target');
-      document.querySelector('.active-map').classList.remove('active-map');
-      document.getElementById(targetId).classList.add('active-map');
+      const currentMap = document.querySelector('.active-map');
+      const nextMap = document.getElementById(targetId);
+      
+      if (currentMap && nextMap) {
+        currentMap.style.opacity = '0';
+        currentMap.classList.remove('active-map');
+        
+        setTimeout(() => {
+          nextMap.style.opacity = '1';
+          nextMap.classList.add('active-map');
+        }, 50);
+      }
     });
+  });
+  
+  // Set initial opacity for all maps
+  document.querySelectorAll('.map-zoom-container').forEach(map => {
+    map.style.opacity = map.classList.contains('active-map') ? '1' : '0';
+    map.style.transition = 'opacity 0.2s ease';
   });
 }
 
@@ -1280,5 +1452,4 @@ observer.observe(document.body, {
   childList: true,
   subtree: true
 });
-
 });
