@@ -868,6 +868,14 @@ select.form-input {
   margin-right: var(--xs);
 }
 
+.details-list a {
+  margin-right: var(--xs);
+}
+
+.details-list .word-count-number {
+  margin-right: var(--xs);
+}
+
 .pill-list {
   list-style: none;
   padding: var(--tight-zero);
