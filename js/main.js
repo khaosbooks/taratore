@@ -419,147 +419,44 @@ function initializeCountdown() {
 	timer();
 }
 
-// ===== GLOSSARY & DOWNLOADS TABS =====
+// ===== RESOURCES TABS (Timeline, Glossary, Downloads) =====
 function initializeResourceTabs() {
-	const glossaryFilters = document.querySelector('.glossary-filters');
-	const downloadFilters = document.querySelector('.download-filters');
-
-	if (glossaryFilters) glossaryFilters.classList.add('active-filters');
-	if (downloadFilters) downloadFilters.classList.remove('active-filters');
-
-	const tabs = document.querySelectorAll('#resources .tab-nav a');
-	const allTabContents = document.querySelectorAll('#resources .tab-content');
-	
-	tabs.forEach(tab => {
-		tab.addEventListener('click', function(e) {
-			e.preventDefault();
-
-			tabs.forEach(t => t.classList.remove('current'));
-			
-			allTabContents.forEach(content => {
-				content.classList.remove('active-tab');
-			});
-
-			const glossaryCard = document.querySelector('.glossary-filters');
-			const downloadsCard = document.querySelector('.download-filters');
-
-			if (glossaryCard) glossaryCard.classList.remove('active-filters');
-			if (downloadsCard) downloadsCard.classList.remove('active-filters');
-
-			this.classList.add('current');
-
-			const targetTab = this.getAttribute('href').replace('#', '');
-
-			if (targetTab === 'glossary') {
-				document.getElementById('glossary').classList.add('active-tab');
-				if (glossaryFilters) glossaryFilters.classList.add('active-filters');
-			} else if (targetTab === 'downloads') {
-				document.getElementById('downloads').classList.add('active-tab');
-				if (downloadFilters) downloadFilters.classList.add('active-filters');
-			}
-
-			updateResourceCounts();
-		});
-	});
-
-	setupGlossaryFilters();
-	setupDownloadFilters();
-	updateResourceCounts();
-}
-function setupGlossaryFilters() {
-	const glossarySearch = document.querySelector('.glossary-filters .search-input');
-	const glossaryFilters = document.querySelectorAll('.glossary-filters .pill-list li');
-
-	if (!glossarySearch) return;
-
-	// Search functionality
-	glossarySearch.addEventListener('input', function() {
-		const searchTerm = this.value.toLowerCase();
-		const terms = document.querySelectorAll('#glossary .glossary-term');
-
-		terms.forEach(term => {
-			const text = term.textContent.toLowerCase();
-			const isVisible = text.includes(searchTerm) && checkGlossaryFilter(term);
-			term.style.display = isVisible ? 'block' : 'none';
-		});
-
-		updateResourceCounts();
-	});
-
-	// Filter functionality
-	glossaryFilters.forEach(filter => {
-		filter.addEventListener('click', function() {
-			glossaryFilters.forEach(f => f.classList.remove('current'));
-			this.classList.add('current');
-
-			const terms = document.querySelectorAll('#glossary .glossary-term');
-			terms.forEach(term => {
-				const isVisible = checkGlossaryFilter(term);
-				term.style.display = isVisible ? 'block' : 'none';
-			});
-
-			updateResourceCounts();
-		});
-	});
-}
-function setupDownloadFilters() {
-	const downloadSearch = document.querySelector('.download-filters .search-input');
-	const downloadFilters = document.querySelectorAll('.download-filters .pill-list li');
-
-	if (!downloadSearch) return;
-
-	// Search functionality
-	downloadSearch.addEventListener('input', function() {
-		const searchTerm = this.value.toLowerCase();
-		const downloads = document.querySelectorAll('#downloads .card');
-
-		downloads.forEach(download => {
-			const text = download.textContent.toLowerCase();
-			const isVisible = text.includes(searchTerm) && checkDownloadFilter(download);
-			download.style.display = isVisible ? 'block' : 'none';
-		});
-
-		updateResourceCounts();
-	});
-
-	// Filter functionality
-	downloadFilters.forEach(filter => {
-		filter.addEventListener('click', function() {
-			downloadFilters.forEach(f => f.classList.remove('current'));
-			this.classList.add('current');
-
-			const downloads = document.querySelectorAll('#downloads .card');
-			downloads.forEach(download => {
-				const isVisible = checkDownloadFilter(download);
-				download.style.display = isVisible ? 'block' : 'none';
-			});
-
-			updateResourceCounts();
-		});
-	});
-}
-function checkGlossaryFilter(term) {
-	const activeFilter = document.querySelector('.glossary-filters .pill-list .current')?.dataset.filter;
-	if (activeFilter === 'all') return true;
-	const termTypes = term.dataset.types?.split(' ') || [];
-	return termTypes.includes(activeFilter);
-}
-function checkDownloadFilter(download) {
-	const activeFilter = document.querySelector('.download-filters .pill-list .current')?.dataset.filter;
-	if (activeFilter === 'all') return true;
-	const downloadTypes = download.dataset.types?.split(' ') || [];
-	return downloadTypes.includes(activeFilter);
-}
-function updateResourceCounts() {
-	// Glossary count
-	const visibleTerms = document.querySelectorAll('#glossary .glossary-term[style*="block"], #glossary .glossary-term:not([style])').length;
-	const glossaryCount = document.getElementById('glossary-count');
-	if (glossaryCount) glossaryCount.textContent = visibleTerms;
-
-	// Downloads count
-	const visibleDownloads = document.querySelectorAll('#downloads .card[style*="block"], #downloads .card:not([style])').length;
-	const downloadCount = document.getElementById('download-count');
-	if (downloadCount) downloadCount.textContent = visibleDownloads;
+    const tabs = document.querySelectorAll('#resources .tab-nav a');
+    const tabContents = document.querySelectorAll('#resources .tab-content');
+    
+    // Hide all filter containers since we're not using them
+    document.querySelectorAll('.timeline-filters, .glossary-filters, .download-filters').forEach(el => {
+        if (el) el.style.display = 'none';
+    });
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove current class from all tabs
+            tabs.forEach(t => t.classList.remove('current'));
+            
+            // Add current class to clicked tab
+            this.classList.add('current');
+            
+            // Hide all tab contents
+            tabContents.forEach(content => {
+                content.classList.remove('active-tab');
+            });
+            
+            // Show the selected tab content
+            const targetId = this.getAttribute('href').replace('#', '');
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.add('active-tab');
+            }
+        });
+    });
+    
+    // Activate the first tab by default
+    if (tabs.length > 0) {
+        tabs[0].click();
+    }
 }
 
 // ===== WORLD LORE TABS =====
