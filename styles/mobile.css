@@ -139,12 +139,16 @@
     padding: var(--xxxs) var(--xs) !important;
   }
 
+  .marker-icon {
+    font-size: var(--sm);
+  }
+
   .mi-large {
-    font-size: var(--xl);
-    transform: translateY(10px);
+    font-size: var(--md);
+    transform: translateY(4px);
   }
   .map-name {
-    font-size: var(--sm);
+    font-size: var(--xxs);
   }
   /* #endregion */
   /* #region - SERIES SECTIONS */
@@ -636,7 +640,7 @@
     color: var(--primary-bg) !important;
   }
   /* #endregion */
-  /* #region - MAP TOOLTIPS MOBILE FIX */
+  /* #region - MAPS */
   .map-marker .tooltip-text,
   .map-zoom .tooltip-text {
     visibility: hidden;

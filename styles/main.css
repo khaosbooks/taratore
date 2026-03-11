@@ -957,6 +957,10 @@ select.form-input {
   transition: var(--transition) !important;
 }
 
+.tooltip-text p {
+  margin-bottom: var(--sm);
+}
+
 .tooltip-icon:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
@@ -1369,7 +1373,7 @@ select.form-input {
 }
 
 .marker-icon {
-  color: var(--accent);
+  color: var(--dark-red);
   font-size: var(--md);
   transition: var(--transition);
   text-shadow: var(--shadow-default);
@@ -1408,6 +1412,11 @@ select.form-input {
   transition: var(--transition);
   cursor: help;
 }
+
+.map-zoom .marker-icon{
+  color: var(--accent);
+}
+
 
 .map-zoom:hover .marker-icon{
   color: var(--dark-red);
