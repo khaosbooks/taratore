@@ -735,4 +735,10 @@
     background-position: 70% center !important;
   }
 /* #endregion */
+  /* #region - POLL */
+  .poll-options {
+    flex-direction: column;
+    gap: var(--sm);
+  }
+  /* #endregion */
 }
