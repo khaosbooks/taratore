@@ -1831,3 +1831,111 @@ span.attention {
     text-align: center !important;
 }
 /* #endregion */
+/* #region - POLL */
+.poll-container {
+  width: var(--max-width);
+  font-family: var(--font-body);
+  padding-top: var(--xl);
+}
+
+.poll-inner {
+  background: transparent;
+}
+
+.poll-question {
+  font-size: var(--lg);
+  margin-bottom: var(--lg);
+  color: var(--primary-bg);
+  font-family: var(--font-heading);
+}
+
+.poll-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--xl);
+  margin-bottom: var(--xl);
+}
+
+.poll-option {
+  padding: var(--md);
+  background: var(--secondary-bg);
+  border: var(--tiny-black-border);
+  color: var(--primary-text);
+  font-size: var(--md);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.poll-option:hover {
+  transform: var(--shift-up);
+  border-color: var(--accent);
+}
+
+.poll-option[sel="1"] {
+  border: var(--tiny-red-border);
+  background: rgba(var(--accent-rgb), 0.1);
+}
+
+.poll-option span {
+  display: inline-block;
+  cursor: inherit;
+  padding-left: 2em;
+  position: relative;
+  width: 100%;
+}
+
+.poll-option input[type="radio"] {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.poll-actions {
+  margin: var(--xl) 0 var(--lg);
+}
+
+.poll-btn {
+  width: 100%;
+  padding: var(--md);
+  background: var(--accent);
+  color: var(--primary-bg);
+  border: var(--tiny-red-border);
+  font-family: var(--font-body);
+  font-size: var(--sm);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.poll-btn:hover {
+  background: var(--dark-red);
+  transform: var(--shift-up);
+}
+
+.poll-footer {
+  text-align: center;
+  margin-top: var(--md);
+  font-size: var(--xs);
+  color: var(--primary-text);
+}
+
+.poll-footer a {
+  color: var(--accent);
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.poll-footer a:hover {
+  opacity: 1;
+}
+
+/* Required for poll functionality but hidden */
+#qp_rp5735742, #qp_rv5735742, #qp_rb5735742,
+#qp_rva5735742, #qp_rvb5735742, #qp_rvc5735742 {
+  display: none;
+}
+/* #endregion */
