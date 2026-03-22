@@ -20,7 +20,7 @@
 
   /* Typography */
   font-size: 15px;
-  --font-body: "Forum PS", sans-serif;
+  --font-body: "Trebuchet MS", sans-serif;
   --font-heading: "Analogist", serif;
   --line-height: 1.2;
   --letter-spacing: 0.2em;
@@ -420,6 +420,7 @@ h5 {
 a {
   color: var(--accent);
   text-decoration: none;
+  margin-left: var(--xxs);
 }
 
 .card a,
