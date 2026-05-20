@@ -1405,6 +1405,7 @@ function initializeLoadMoreCharacters() {
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
 	loadComponents();
+  initializeUniversalAmazonLinks();
 
 // ===== EXTERNAL LINKS OPEN IN NEW TAB =====
 function initializeExternalLinks() {
@@ -1453,3 +1454,52 @@ observer.observe(document.body, {
   subtree: true
 });
 });
+
+// ===== UNIVERSAL AMAZON LINKS =====
+function initializeUniversalAmazonLinks() {
+  // Mapping of country codes to Amazon TLDs
+  const amazonStores = {
+    'US': 'com',
+    'GB': 'co.uk',
+    'DE': 'de',
+    'CA': 'ca',
+    'FR': 'fr',
+    'ES': 'es',
+    'IT': 'it',
+    'AU': 'com.au',
+    'JP': 'co.jp',
+    'IN': 'in',
+    'BR': 'com.br',
+    'MX': 'com.mx',
+    'NL': 'nl',
+    'SE': 'se',
+    'PL': 'pl',
+    'TR': 'com.tr',
+    'AE': 'ae',
+    'SA': 'sa',
+    'SG': 'sg'
+  };
+  
+  const universalLinks = document.querySelectorAll('.universal-amazon');
+  if (!universalLinks.length) return;
+  
+  // Fetch user's country via free IP API
+  fetch('https://ipapi.co/json/')
+    .then(response => response.json())
+    .then(data => {
+      const countryCode = data.country_code;
+      const tld = amazonStores[countryCode] || 'com'; // Default to .com
+      
+      // Update each link
+      universalLinks.forEach(link => {
+        const asin = link.dataset.asin; // Store ASIN in data attribute
+        if (asin) {
+          link.href = `https://www.amazon.${tld}/dp/${asin}/`;
+        }
+      });
+    })
+    .catch(error => {
+      console.error('IP geolocation failed:', error);
+      // Fallback: keep default .com links
+    });
+}

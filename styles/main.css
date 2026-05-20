@@ -1221,7 +1221,7 @@ select.form-input {
 
 .series-divider {
   border-top:  var(--tiny-red-border);
-  margin-bottom: var(--xl);
+  margin: var(--xl) var(--tight-zero);
 }
 
 .series-logo-overlay {
