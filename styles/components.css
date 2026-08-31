@@ -55,7 +55,7 @@
 
 .nav-item {
   position: relative;
-  margin-left: var(--lg);
+  margin-left: var(--xl);
   font-family: var(--font-body);
 }
 

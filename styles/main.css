@@ -420,7 +420,6 @@ h5 {
 a {
   color: var(--accent);
   text-decoration: none;
-  margin-left: var(--xxs);
 }
 
 .card a,
